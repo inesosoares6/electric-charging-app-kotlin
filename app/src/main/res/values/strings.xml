@@ -3,4 +3,6 @@
     <string name="email">Email Address</string>
     <string name="pass">Password</string>
     <string name="login">LOGIN</string>
+    <string name="forgot_pass">Forgot Password</string>
+    <string name="remember_pass">Remember Password</string>
 </resources>
