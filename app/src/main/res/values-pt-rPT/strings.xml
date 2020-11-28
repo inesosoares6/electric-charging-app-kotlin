@@ -5,4 +5,5 @@
     <string name="login">ENTRAR</string>
     <string name="forgot_pass">Esqueci-me da palavra-passe</string>
     <string name="remember_pass">Lembrar palavra-passe</string>
+    <string name="logo">LOGO</string>
 </resources>
