@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SEAI G</string>
+    <string name="email">Endereço de Email</string>
+    <string name="pass">Palavra-passe</string>
+    <string name="login">ENTRAR</string>
+</resources>
