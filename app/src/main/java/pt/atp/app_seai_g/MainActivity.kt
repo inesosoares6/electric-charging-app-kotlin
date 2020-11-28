@@ -1,9 +1,7 @@
 package pt.atp.app_seai_g
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -11,7 +9,6 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import kotlinx.android.synthetic.main.activity_main.*
 

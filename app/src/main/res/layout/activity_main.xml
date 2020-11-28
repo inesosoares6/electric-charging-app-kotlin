@@ -104,6 +104,7 @@
         android:checked="false"
         android:text="@string/remember_pass"
         android:textSize="12sp"
+        android:buttonTint="@color/colorSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
