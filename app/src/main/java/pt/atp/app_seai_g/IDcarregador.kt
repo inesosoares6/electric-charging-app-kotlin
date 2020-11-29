@@ -5,6 +5,7 @@ import android.nfc.NfcAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
@@ -16,15 +17,22 @@ class IDcarregador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_id_carregador)
 
+        button_sendid.setOnClickListener{
+            val intent = Intent(this,ChargingMode::class.java)
+            intent.putExtra("chargerID",idcarregador.text.toString())
+            startActivity(intent)
+        }
+
         button_qrcode.setOnClickListener{
             scanQRCode()
         }
 
-        val button = findViewById<Button>(R.id.button_nfc)
-        button.setOnClickListener{
+        button_nfc.setOnClickListener{
             val intent = Intent(this, ReceiverActivity::class.java)
             startActivity(intent)
         }
+
+
     }
 
     private fun scanQRCode(){
