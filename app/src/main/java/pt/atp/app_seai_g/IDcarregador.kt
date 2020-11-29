@@ -8,7 +8,6 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
 import kotlinx.android.synthetic.main.activity_id_carregador.*
 
-const val TAG: String = "TAG"
 
 class IDcarregador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
