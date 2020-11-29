@@ -6,4 +6,7 @@
     <string name="forgot_pass">Forgot Password</string>
     <string name="remember_pass">Remember Password</string>
     <string name="logo">LOGO</string>
+    <string name="idcarregador">Insert Charger ID</string>
+    <string name="titleID">Charger ID</string>
+    <string name="submitID">Submit Charger ID</string>
 </resources>

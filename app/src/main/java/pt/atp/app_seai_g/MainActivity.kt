@@ -1,12 +1,14 @@
 package pt.atp.app_seai_g
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
+import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
@@ -125,6 +127,12 @@ class MainActivity : AppCompatActivity() {
                 remember_password.isChecked = false
                 remember_password.isSelected = false
             }
+        }
+
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener{
+            val intent = Intent(this, IDcarregador::class.java)
+            startActivity(intent)
         }
     }
 

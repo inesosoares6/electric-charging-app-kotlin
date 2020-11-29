@@ -6,4 +6,7 @@
     <string name="forgot_pass">Esqueci-me da palavra-passe</string>
     <string name="remember_pass">Lembrar palavra-passe</string>
     <string name="logo">LOGO</string>
+    <string name="idcarregador">Insira o ID do carregador</string>
+    <string name="titleID">ID do carregador</string>
+    <string name="submitID">Submeter ID</string>
 </resources>
