@@ -1,4 +1,4 @@
-# SEAI-Interface
+# SEAI-Interface (App)
 
 Este repositório é um dos módulos do sistema de gestão de carregamento de veículos elétricos. Este sistema foi dividido em Controlo, Gestão e Monitorização e Interface com o Utilizador.
 
