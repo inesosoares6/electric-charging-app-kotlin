@@ -134,6 +134,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, IDcarregador::class.java)
             startActivity(intent)
         }
+
+        button_register.setOnClickListener{
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
     }
 
     private val loginTextWatcher: TextWatcher = object : TextWatcher {

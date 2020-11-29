@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_SEAI_G">
+        <activity android:name=".Register"></activity>
         <activity android:name=".Finished" />
         <activity android:name=".ConfirmCancel" />
         <activity android:name=".Charging" />

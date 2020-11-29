@@ -31,4 +31,6 @@
     <string name="finished">Finished</string>
     <string name="ready">Your vehicle is charged.</string>
     <string name="totalprice">Price to pay:</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
 </resources>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".Register">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,10 +22,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"/>
 
+
+
     <EditText
-        android:id="@+id/email"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email"
+        android:id="@+id/name"
+        android:inputType="text"
+        android:hint="@string/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -44,6 +45,28 @@
         android:autofillHints="" />
 
     <EditText
+        android:id="@+id/email"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:autofillHints="" />
+
+
+    <EditText
         android:id="@+id/password"
         android:hint="@string/pass"
         android:layout_width="0dp"
@@ -52,69 +75,16 @@
         android:ems="10"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
         android:textAlignment="center"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintBottom_toTopOf="@+id/forgot_password"
+        app:layout_constraintBottom_toTopOf="@+id/button_register"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         android:autofillHints="" />
-
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="50dp"
-        android:text="@string/forgot_pass"
-        android:textColor="@color/gray"
-        android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="MissingConstraints,SmallSp"/>
-
-    <Button
-        android:id="@+id/button"
-        android:text="@string/login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/remember_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"/>
-
-
-    <RadioButton
-        android:id="@+id/remember_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:checked="false"
-        android:text="@string/remember_pass"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
 
     <Button
         android:id="@+id/button_register"
@@ -125,10 +95,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/remember_password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
