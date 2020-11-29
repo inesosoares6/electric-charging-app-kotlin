@@ -31,4 +31,7 @@
     <string name="finished">Terminado</string>
     <string name="ready">O seu veículo está carregado.</string>
     <string name="totalprice">Preço a pagar:</string>
+    <string name="name">Nome</string>
+    <string name="register">Registar</string>
+    <string name="confirm_pass">Confirmar Palavra-passe</string>
 </resources>
