@@ -1,8 +1,10 @@
 package pt.atp.app_seai_g
 
 import android.content.Intent
+import android.nfc.NfcAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
@@ -16,6 +18,12 @@ class IDcarregador : AppCompatActivity() {
 
         button_qrcode.setOnClickListener{
             scanQRCode()
+        }
+
+        val button = findViewById<Button>(R.id.button_nfc)
+        button.setOnClickListener{
+            val intent = Intent(this, ReceiverActivity::class.java)
+            startActivity(intent)
         }
     }
 

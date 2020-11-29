@@ -7,7 +7,14 @@
     <string name="remember_pass">Lembrar palavra-passe</string>
     <string name="logo">LOGO</string>
     <string name="idcarregador">Insira o ID do carregador</string>
-    <string name="titleID">ID do carregador</string>
+    <string name="titleID">Insira o ID do carregador</string>
     <string name="submitID">Submeter ID</string>
     <string name="scanQRcode">Scan do código QR</string>
+    <string name="NFCreader">NFC</string>
+    <string name="hint_your_message">message hint</string>
+    <string name="label_your_message">Inserting id through NFC</string>
+    <string name="title_btn_set">NFC</string>
+    <string name="idtext">Através de texto:</string>
+    <string name="idqrcode">Através do código QR:</string>
+    <string name="idnfc">Através NFC:</string>
 </resources>
