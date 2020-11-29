@@ -1,10 +1,10 @@
 package pt.atp.app_seai_g
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_charging.*
 import kotlinx.android.synthetic.main.activity_charging_mode.*
-import kotlinx.android.synthetic.main.activity_id_carregador.*
 
 class ChargingMode : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +25,5 @@ class ChargingMode : AppCompatActivity() {
             val intent = Intent(this, Charging::class.java)
             startActivity(intent)
         }
-
     }
 }

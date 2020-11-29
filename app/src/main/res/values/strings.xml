@@ -23,6 +23,12 @@
     <string name="textprices">Prices</string>
     <string name="textpricenormal">Regular charging:</string>
     <string name="textpricefast">Fast Charging:</string>
-    <string name="charging">Charging...</string>
+    <string name="charging">Charging…</string>
     <string name="cancelcharge">Cancel</string>
+    <string name="confirmcancel">Are you sure that you want to cancel?</string>
+    <string name="cancel">Yes, cancel.</string>
+    <string name="notcancelreturn">No, resume charging.</string>
+    <string name="finished">Finished</string>
+    <string name="ready">Your vehicle is charged.</string>
+    <string name="totalprice">Price to pay:</string>
 </resources>
