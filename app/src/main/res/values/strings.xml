@@ -17,4 +17,12 @@
     <string name="idtext">By text:</string>
     <string name="idqrcode">By QR code scanning:</string>
     <string name="idnfc">By NFC:</string>
+    <string name="selectmode">Please select the charging mode.</string>
+    <string name="normalcharging">Regular charging</string>
+    <string name="fastcharging">Fast charging</string>
+    <string name="textprices">Prices</string>
+    <string name="textpricenormal">Regular charging:</string>
+    <string name="textpricefast">Fast Charging:</string>
+    <string name="charging">Charging...</string>
+    <string name="cancelcharge">Cancel</string>
 </resources>

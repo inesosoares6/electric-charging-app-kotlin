@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_SEAI_G">
-        <activity android:name=".ChargingMode"></activity>
+        <activity android:name=".Charging"></activity>
+        <activity android:name=".ChargingMode" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

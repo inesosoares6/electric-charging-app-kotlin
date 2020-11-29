@@ -17,4 +17,11 @@
     <string name="idtext">Através de texto:</string>
     <string name="idqrcode">Através do código QR:</string>
     <string name="idnfc">Através NFC:</string>
+    <string name="selectmode">Por favor selecione o modo de carregamento.</string>
+    <string name="normalcharging">Normal</string>
+    <string name="fastcharging">Rápido</string>
+    <string name="textprices">Preços</string>
+    <string name="textpricenormal">Carregamento Normal:</string>
+    <string name="textpricefast">Carregamento Rápido:</string>
+    <string name="charging">A carregar...</string>
 </resources>
