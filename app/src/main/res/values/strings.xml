@@ -33,4 +33,5 @@
     <string name="totalprice">Price to pay:</string>
     <string name="name">Name</string>
     <string name="register">Register</string>
+    <string name="confirm_pass">Confirm Password</string>
 </resources>
