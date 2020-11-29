@@ -9,4 +9,5 @@
     <string name="idcarregador">Insert Charger ID</string>
     <string name="titleID">Charger ID</string>
     <string name="submitID">Submit Charger ID</string>
+    <string name="scanQRcode">Scan QR code</string>
 </resources>
