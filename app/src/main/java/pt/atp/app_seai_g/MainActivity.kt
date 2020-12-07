@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG)
                         .show()
-                    val intent = Intent(this, IdCharger::class.java)
+                    val intent = Intent(this, Welcome::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(applicationContext, email, Toast.LENGTH_LONG).show()
