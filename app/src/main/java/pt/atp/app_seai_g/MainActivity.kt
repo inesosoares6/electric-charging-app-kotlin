@@ -12,19 +12,19 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
+    private var emailTV: EditText? = null
+    private var passwordTV: EditText? = null
+    private var loginBtn: Button? = null
+    private var registerBtn: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
-
-        val buttonLogin = findViewById<Button>(R.id.button_login)
-        buttonLogin.setOnClickListener{
-            loginUserAccount()
-        }
-        val buttonRegister = findViewById<Button>(R.id.button_register)
-        buttonRegister.setOnClickListener{
+        initializeUI()
+        loginBtn!!.setOnClickListener { loginUserAccount() }
+        registerBtn!!.setOnClickListener{
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
@@ -57,5 +57,12 @@ class MainActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+    }
+
+    private fun initializeUI() {
+        emailTV = findViewById(R.id.email)
+        passwordTV = findViewById(R.id.password)
+        loginBtn = findViewById(R.id.button_login)
+        registerBtn = findViewById(R.id.button_register)
     }
 }

@@ -21,21 +21,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_SEAI_G"
         tools:ignore="RtlEnabled">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".IdCharger" />
         <activity android:name=".Register" />
         <activity android:name=".Finished" />
         <activity android:name=".ConfirmCancel" />
         <activity android:name=".Charging" />
         <activity android:name=".ChargingMode" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".IdCharger" />
-        <activity
-            android:name=".CaptureActivity"
+        <activity android:name=".CaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />
