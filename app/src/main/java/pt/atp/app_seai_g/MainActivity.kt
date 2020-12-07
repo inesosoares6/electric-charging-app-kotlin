@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loginUserAccount() {
-        val email = findViewById<EditText>(R.id.email).toString()
-        val password = findViewById<EditText>(R.id.password).toString()
+        val email: String = emailTV!!.text.toString()
+        val password: String = passwordTV!!.text.toString()
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, IdCharger::class.java)
                     startActivity(intent)
                 } else {
+                    Toast.makeText(applicationContext, email, Toast.LENGTH_LONG).show()
                     Toast.makeText(
                         applicationContext,
                         "Login failed! Please try again later",

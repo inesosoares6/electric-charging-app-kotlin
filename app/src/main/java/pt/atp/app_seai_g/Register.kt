@@ -12,28 +12,37 @@ import com.google.firebase.auth.FirebaseAuth
 
 class Register : AppCompatActivity() {
 
+    private var emailTV: EditText? = null
+    private var passwordTV: EditText? = null
+    private var confirmPasswordTV: EditText? = null
+    private var regBtn: Button? = null
     private var mAuth: FirebaseAuth? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         mAuth = FirebaseAuth.getInstance()
-
-        val buttonRegister = findViewById<Button>(R.id.button_register)
-        buttonRegister.setOnClickListener{
+        initializeUI()
+        regBtn!!.setOnClickListener{
             registerNewUser()
         }
     }
 
     private fun registerNewUser() {
-        val email = findViewById<EditText>(R.id.email).toString()
-        val password = findViewById<EditText>(R.id.password).toString()
+        val email: String = emailTV!!.text.toString()
+        val password: String = passwordTV!!.text.toString()
+        val confirmPassword: String = confirmPasswordTV!!.text.toString()
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please enter email", Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please enter password", Toast.LENGTH_LONG).show()
+            return
+        }
+        if(password != confirmPassword){
+            Toast.makeText(applicationContext, "Passwords don't match", Toast.LENGTH_LONG).show()
             return
         }
         mAuth!!.createUserWithEmailAndPassword(email, password)
@@ -55,5 +64,12 @@ class Register : AppCompatActivity() {
                     ).show()
                 }
             }
+    }
+
+    private fun initializeUI() {
+        emailTV = findViewById(R.id.email)
+        passwordTV = findViewById(R.id.password)
+        confirmPasswordTV = findViewById(R.id.confirm_password)
+        regBtn = findViewById(R.id.button_register)
     }
 }

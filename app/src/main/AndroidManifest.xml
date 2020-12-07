@@ -5,7 +5,6 @@
     package="pt.atp.app_seai_g">
 
     <uses-sdk tools:ignore="GradleOverrides" />
-
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -20,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_SEAI_G"
-        tools:ignore="RtlEnabled">
+        android:usesCleartextTraffic="true"
+        tools:ignore="RtlEnabled"
+        tools:targetApi="m">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,5 +46,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
