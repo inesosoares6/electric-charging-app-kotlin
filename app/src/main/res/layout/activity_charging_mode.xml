@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChargingMode">
+<!--
+    <include layout="@layout/activity_charging"
+        android:visibility="gone"/>
+
+    <include layout="@layout/activity_confirm_cancel"
+        android:visibility="gone"/>
+
+    <include layout="@layout/activity_finished"
+        android:visibility="gone"/>-->
 
     <TextView
         android:id="@+id/chargerid"
