@@ -31,28 +31,28 @@ class Welcome : AppCompatActivity() {
             true
         }
 
-        val buttonSendId = findViewById<Button>(R.id.button_sendid)
+        /*val buttonSendId = findViewById<Button>(R.id.button_sendid2)
         buttonSendId.setOnClickListener{
             val intent = Intent(this,ChargingMode::class.java)
-            val idCharger = findViewById<EditText>(R.id.idcarregador)
+            val idCharger = findViewById<EditText>(R.id.idcarregador2)
             intent.putExtra("chargerID",idCharger.text.toString())
             startActivity(intent)
         }
 
-        val buttonQrCode = findViewById<Button>(R.id.button_qrcode)
+        val buttonQrCode = findViewById<Button>(R.id.button_qrcode2)
         buttonQrCode.setOnClickListener{
             scanQRCode()
         }
 
-        val buttonNFC = findViewById<Button>(R.id.button_nfc)
+        val buttonNFC = findViewById<Button>(R.id.button_nfc2)
         buttonNFC.setOnClickListener{
             val intent = Intent(this, ReceiverActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
     }
 
-    private fun scanQRCode(){
+    /*private fun scanQRCode(){
         val integrator = IntentIntegrator(this).apply{
             captureActivity= CaptureActivity::class.java
             setOrientationLocked(false)
@@ -70,7 +70,7 @@ class Welcome : AppCompatActivity() {
         } else{
             super.onActivityResult(requestCode, resultCode, data)
         }
-    }
+    }*/
 
     private fun setCurrentFragment(fragment:Fragment)=
         supportFragmentManager.beginTransaction().apply {
