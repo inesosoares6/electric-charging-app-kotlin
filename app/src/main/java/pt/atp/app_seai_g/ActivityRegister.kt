@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 
-class Register : AppCompatActivity() {
+class ActivityRegister : AppCompatActivity() {
 
     private var nameTV: EditText? = null
     private var emailTV: EditText? = null
@@ -61,7 +61,7 @@ class Register : AppCompatActivity() {
                         "Registration successful!",
                         Toast.LENGTH_LONG
                     ).show()
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(this, ActivityLogin::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(

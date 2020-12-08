@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/activity_charging_mode"
+    <include layout="@layout/layout_charging_mode"
         android:id="@+id/chargingModePage"/>
 
-    <include layout="@layout/charging"
+    <include layout="@layout/layout_charging"
         android:id="@+id/chargingPage"
         android:visibility="gone"/>
 
-    <include layout="@layout/confirm_cancel"
+    <include layout="@layout/layout_confirm_cancel"
         android:id="@+id/confirmCancelPage"
         android:visibility="gone"/>
 
-    <include layout="@layout/finished"
+    <include layout="@layout/layout_finished"
         android:id="@+id/finishedPage"
         android:visibility="gone"/>
 

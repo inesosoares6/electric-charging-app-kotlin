@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 
-class ChargeFragment : Fragment(R.layout.fragment_charge) {
+class FragmentCharge : Fragment(R.layout.fragment_charge) {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -20,10 +21,17 @@ class ChargeFragment : Fragment(R.layout.fragment_charge) {
 //        val buttonNFC: Button = rootView.findViewById(R.id.button_nfc)
 
         buttonSendId.setOnClickListener {
-            val intent = Intent(context,ChargingActivity::class.java)
+            val intent = Intent(context,ActivityCharging::class.java)
             val chargerIdText: EditText = rootView.findViewById(R.id.idcarregador)
-            intent.putExtra("chargerID",chargerIdText.text.toString())
-            startActivity(intent)
+            val list = listOf("202001","202002","202003","202004","202005")
+            if(list.contains(chargerIdText.text.toString())){
+                intent.putExtra("chargerID",chargerIdText.text.toString())
+                startActivity(intent)
+            } else{
+                println("Insert valid charger ID")
+                Toast.makeText(context, "Inset valid charger ID",Toast.LENGTH_LONG).show()
+            }
+
         }
 
 /*        buttonQrCode.setOnClickListener{

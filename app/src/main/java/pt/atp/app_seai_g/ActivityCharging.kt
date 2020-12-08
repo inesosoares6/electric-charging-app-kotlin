@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class ChargingActivity : AppCompatActivity() {
+class ActivityCharging : AppCompatActivity() {
 
     private lateinit var chargingPage: View
     private lateinit var chargingModePage: View
@@ -62,7 +62,7 @@ class ChargingActivity : AppCompatActivity() {
 
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
         returnHomepage.setOnClickListener{
-           val intent = Intent(this, Welcome::class.java)
+           val intent = Intent(this, ActivityWelcome::class.java)
             startActivity(intent)
         }
     }

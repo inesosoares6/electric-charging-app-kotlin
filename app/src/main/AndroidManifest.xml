@@ -22,18 +22,18 @@
         android:usesCleartextTraffic="true"
         tools:ignore="RtlEnabled"
         tools:targetApi="m">
-        <activity android:name=".Welcome" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ActivityWelcome" />
+        <activity android:name=".ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".ChargingActivity" />
+        <activity android:name=".ActivityRegister" />
+        <activity android:name=".ActivityCharging" />
         <activity
-            android:name=".CaptureActivity"
+            android:name=".ActivityCapture"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />

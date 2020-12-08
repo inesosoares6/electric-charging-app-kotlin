@@ -21,7 +21,7 @@ class ReceiverActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_receiver)
+        setContentView(R.layout.activity_receiver_nfc)
 
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this)
 
