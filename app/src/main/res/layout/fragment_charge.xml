@@ -55,7 +55,7 @@
 
 
     <EditText
-        android:id="@+id/idcarregador2"
+        android:id="@+id/idcarregador"
         android:hint="@string/idcarregador"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
         android:inputType="number" />
 
     <Button
-        android:id="@+id/button_sendid2"
+        android:id="@+id/button_sendid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -86,11 +86,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idcarregador2"
+        app:layout_constraintTop_toBottomOf="@+id/idcarregador"
         app:layout_constraintVertical_bias="0.00" />
 
     <TextView
-        android:id="@+id/idqrcode2"
+        android:id="@+id/idqrcode"
         android:text="@string/idqrcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,11 +102,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_sendid2"
+        app:layout_constraintTop_toBottomOf="@+id/button_sendid"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button_qrcode2"
+        android:id="@+id/button_qrcode"
         android:text="@string/scanQRcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -118,11 +118,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idqrcode2"
+        app:layout_constraintTop_toBottomOf="@+id/idqrcode"
         app:layout_constraintVertical_bias="0.000" />
 
     <TextView
-        android:id="@+id/idnfc2"
+        android:id="@+id/idnfc"
         android:text="@string/idnfc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,11 +134,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_qrcode2"
+        app:layout_constraintTop_toBottomOf="@+id/button_qrcode"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button_nfc2"
+        android:id="@+id/button_nfc"
         android:text="@string/NFCreader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idnfc2"
+        app:layout_constraintTop_toBottomOf="@+id/idnfc"
         app:layout_constraintVertical_bias="0.000" />
 
 
