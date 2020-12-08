@@ -34,4 +34,13 @@
     <string name="name">Nome</string>
     <string name="register">Registar</string>
     <string name="confirm_pass">Confirmar Palavra-passe</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="return_to_homepage">Voltar à página inicial</string>
+    <string name="welcome">Bem-vindo</string>
+    <string name="account">Conta pessoal</string>
+    <string name="incoming_nfc_message">Mensagem NFC:</string>
+    <string name="textview">TextView</string>
+    <string name="home">Home</string>
+    <string name="charge_car">Carregar Carro</string>
+    <string name="person">Conta</string>
 </resources>
