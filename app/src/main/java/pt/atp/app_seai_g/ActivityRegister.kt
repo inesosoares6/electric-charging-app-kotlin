@@ -37,38 +37,30 @@ class ActivityRegister : AppCompatActivity() {
         val confirmPassword: String = confirmPasswordTV!!.text.toString()
 
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(applicationContext, "Please enter name", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.enterName), Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.enterEmail), Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, "Please enter password", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.enterPassword), Toast.LENGTH_LONG).show()
             return
         }
         if(password != confirmPassword){
-            Toast.makeText(applicationContext, "Passwords don't match", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.matchPassword), Toast.LENGTH_LONG).show()
             return
         }
 
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Registration successful!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(applicationContext, getString(R.string.successRegister), Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ActivityLogin::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Registration failed! Please try again later",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(applicationContext, getString(R.string.failRegister), Toast.LENGTH_LONG).show()
                 }
             }
     }

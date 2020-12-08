@@ -38,22 +38,21 @@ class ActivityLogin : AppCompatActivity() {
         val password: String = passwordTV!!.text.toString()
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.enterEmail), Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, getString(R.string.enterPassword), Toast.LENGTH_LONG).show()
             return
         }
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(applicationContext, getString(R.string.successLogin), Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ActivityWelcome::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(applicationContext, "Login failed! Please try again later", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, getString(R.string.failLogin), Toast.LENGTH_LONG).show()
                 }
             }
     }

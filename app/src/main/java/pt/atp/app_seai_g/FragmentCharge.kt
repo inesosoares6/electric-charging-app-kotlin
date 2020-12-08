@@ -28,8 +28,7 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
                 intent.putExtra("chargerID",chargerIdText.text.toString())
                 startActivity(intent)
             } else{
-                println("Insert valid charger ID")
-                Toast.makeText(context, "Inset valid charger ID",Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.insertValidId),Toast.LENGTH_LONG).show()
             }
 
         }
