@@ -8,7 +8,7 @@ import android.widget.Button
 class Charging : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_charging)
+        setContentView(R.layout.charging)
 
         val cancelCharge = findViewById<Button>(R.id.cancelcharge)
         cancelCharge.setOnClickListener{

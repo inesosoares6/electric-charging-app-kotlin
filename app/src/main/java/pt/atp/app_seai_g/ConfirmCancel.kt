@@ -8,7 +8,7 @@ import android.widget.Button
 class ConfirmCancel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_confirm_cancel)
+        setContentView(R.layout.confirm_cancel)
 
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{

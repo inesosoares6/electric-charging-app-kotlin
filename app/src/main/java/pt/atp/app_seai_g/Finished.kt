@@ -8,7 +8,7 @@ import android.widget.Button
 class Finished : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_finished)
+        setContentView(R.layout.finished)
 
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
         returnHomepage.setOnClickListener{
