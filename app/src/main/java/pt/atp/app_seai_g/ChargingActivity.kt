@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class ChargingMode : AppCompatActivity() {
+class ChargingActivity : AppCompatActivity() {
 
     private lateinit var chargingPage: View
     private lateinit var chargingModePage: View

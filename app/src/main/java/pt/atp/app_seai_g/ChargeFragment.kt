@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import com.google.zxing.integration.android.IntentIntegrator
-import com.journeyapps.barcodescanner.CaptureActivity
 
 
 class ChargeFragment : Fragment(R.layout.fragment_charge) {
@@ -22,7 +20,7 @@ class ChargeFragment : Fragment(R.layout.fragment_charge) {
 //        val buttonNFC: Button = rootView.findViewById(R.id.button_nfc)
 
         buttonSendId.setOnClickListener {
-            val intent = Intent(context,ChargingMode::class.java)
+            val intent = Intent(context,ChargingActivity::class.java)
             val chargerIdText: EditText = rootView.findViewById(R.id.idcarregador)
             intent.putExtra("chargerID",chargerIdText.text.toString())
             startActivity(intent)

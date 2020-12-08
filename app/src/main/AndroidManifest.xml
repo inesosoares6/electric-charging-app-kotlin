@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
-        <activity android:name=".ChargingMode" />
+        <activity android:name=".ChargingActivity" />
         <activity
             android:name=".CaptureActivity"
             android:screenOrientation="fullSensor"
