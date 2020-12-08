@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     private var emailTV: EditText? = null
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val password: String = passwordTV!!.text.toString()
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please enter email!", Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password)) {
