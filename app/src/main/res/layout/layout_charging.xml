@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Charging">
+    tools:context=".ActivityCharging">
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,11 +28,11 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="50dp"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/charging"
-        android:textColor="@color/white"
+        android:textColor="#43a047"
         android:textSize="40sp"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
