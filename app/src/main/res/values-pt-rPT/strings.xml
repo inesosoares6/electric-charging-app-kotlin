@@ -34,4 +34,21 @@
     <string name="name">Nome</string>
     <string name="register">Registar</string>
     <string name="confirm_pass">Confirmar Palavra-passe</string>
+    <string name="return_to_homepage">Voltar à página inicial</string>
+    <string name="welcome">Bem-vindo</string>
+    <string name="account">Conta pessoal</string>
+    <string name="incoming_nfc_message">Mensagem NFC:</string>
+    <string name="textview">TextView</string>
+    <string name="home">Início</string>
+    <string name="charge_car">Carregar Carro</string>
+    <string name="person">Conta</string>
+    <string name="insertValidId">Insira um ID válido</string>
+    <string name="enterName">Insira o nome</string>
+    <string name="enterEmail">Insira o email</string>
+    <string name="enterPassword">Insira palavra passe</string>
+    <string name="matchPassword">Palavra passe errada</string>
+    <string name="successRegister">Registo bem sucedido</string>
+    <string name="failRegister">Registo falhou - por favor tente mais tarde</string>
+    <string name="successLogin">Login bem sucedido</string>
+    <string name="failLogin">Login falhou - por favor tente mais tarde</string>
 </resources>

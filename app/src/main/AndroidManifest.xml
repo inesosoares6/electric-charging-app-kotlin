@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="pt.atp.app_seai_g">
 
-    <uses-sdk
-        android:minSdkVersion="10"
-        tools:ignore="GradleOverrides" />
+    <uses-sdk tools:ignore="GradleOverrides" />
 
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -19,22 +18,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App_SEAI_G">
-        <activity android:name=".Register"></activity>
-        <activity android:name=".Finished" />
-        <activity android:name=".ConfirmCancel" />
-        <activity android:name=".Charging" />
-        <activity android:name=".ChargingMode" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.App_SEAI_G"
+        android:usesCleartextTraffic="true"
+        tools:ignore="RtlEnabled"
+        tools:targetApi="m">
+        <activity android:name=".ActivityWelcome" />
+        <activity android:name=".ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IDcarregador" />
+        <activity android:name=".ActivityRegister" />
+        <activity android:name=".ActivityCharging" />
         <activity
-            android:name=".CaptureActivity"
+            android:name=".ActivityCapture"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />

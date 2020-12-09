@@ -34,4 +34,21 @@
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="confirm_pass">Confirm Password</string>
+    <string name="return_to_homepage">Return to homepage</string>
+    <string name="welcome">Welcome</string>
+    <string name="account">Account</string>
+    <string name="incoming_nfc_message">Incoming NFC message:</string>
+    <string name="textview">TextView</string>
+    <string name="home">Home</string>
+    <string name="charge_car">Charge Car</string>
+    <string name="person">Account</string>
+    <string name="insertValidId">Inset valid charger ID</string>
+    <string name="enterName">Please enter name</string>
+    <string name="enterEmail">Please enter email</string>
+    <string name="enterPassword">Please enter password</string>
+    <string name="matchPassword">Passwords do not match</string>
+    <string name="successRegister">Registration successful!</string>
+    <string name="failRegister">Registration failed! Please try again later</string>
+    <string name="successLogin">Login successful!</string>
+    <string name="failLogin">Login failed! Please try again later</string>
 </resources>
