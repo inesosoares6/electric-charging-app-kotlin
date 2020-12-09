@@ -51,4 +51,6 @@
     <string name="failRegister">Registo falhou - por favor tente mais tarde</string>
     <string name="successLogin">Login bem sucedido</string>
     <string name="failLogin">Login falhou - por favor tente mais tarde</string>
+    <string name="log_out">Terminar sessão</string>
+    <string name="successSignOut">Sessão terminada com sucesso</string>
 </resources>

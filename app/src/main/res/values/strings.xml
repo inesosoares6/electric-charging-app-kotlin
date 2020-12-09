@@ -47,8 +47,10 @@
     <string name="enterEmail">Please enter email</string>
     <string name="enterPassword">Please enter password</string>
     <string name="matchPassword">Passwords do not match</string>
-    <string name="successRegister">Registration successful!</string>
+    <string name="successRegister">Registration successful</string>
     <string name="failRegister">Registration failed! Please try again later</string>
-    <string name="successLogin">Login successful!</string>
+    <string name="successLogin">Login successful</string>
     <string name="failLogin">Login failed! Please try again later</string>
+    <string name="log_out">Log Out</string>
+    <string name="successSignOut">Sign out successful</string>
 </resources>
