@@ -32,4 +32,7 @@ class ActivityWelcome : AppCompatActivity() {
             commit()
         }
 
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
 }
