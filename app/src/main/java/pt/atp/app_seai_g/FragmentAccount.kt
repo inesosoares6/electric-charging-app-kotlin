@@ -1,6 +1,5 @@
 package pt.atp.app_seai_g
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 class FragmentAccount : Fragment(R.layout.fragment_account) {
 
-    var fbAuth = FirebaseAuth.getInstance()
+    private var fbAuth = FirebaseAuth.getInstance()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
         val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
 
