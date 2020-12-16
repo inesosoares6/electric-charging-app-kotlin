@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ActivityWelcome">
 
-    <TextView
-        android:id="@+id/qrChargerID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/gray"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,SmallSp" />
-
     <ImageView
         android:id="@+id/imageView"
         android:contentDescription="@string/logo"
