@@ -50,12 +50,9 @@ class ReceiverActivity : AppCompatActivity() {
     private fun enableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
         val intent = Intent(activity.applicationContext, activity.javaClass)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-
         val pendingIntent = PendingIntent.getActivity(activity.applicationContext, 0, intent, 0)
-
         val filters = arrayOfNulls<IntentFilter>(1)
         val techList = arrayOf<Array<String>>()
-
         filters[0] = IntentFilter()
         with(filters[0]) {
             this?.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED)
@@ -66,7 +63,6 @@ class ReceiverActivity : AppCompatActivity() {
                 throw RuntimeException("Check your MIME type")
             }
         }
-
         adapter?.enableForegroundDispatch(activity, pendingIntent, filters, techList)
     }
 
@@ -87,7 +83,6 @@ class ReceiverActivity : AppCompatActivity() {
                 val inNDefMessage = this?.get(0) as NdefMessage
                 val inNefRecords = inNDefMessage.records
                 val nDefRecord0 = inNefRecords[0]
-
                 val inMessage = String(nDefRecord0.payload)
                 nfcIDCharger?.text = inMessage
                 confirmIdCharger(inMessage)
