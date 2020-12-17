@@ -23,11 +23,11 @@ class ReceiverActivity : AppCompatActivity() {
         setContentView(R.layout.activity_receiver_nfc)
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (!isNfcSupported) {
-            Toast.makeText(this, "Nfc is not supported on this device", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.nfcNotSupported), Toast.LENGTH_SHORT).show()
             this.finish()
         }
         if (!nfcAdapter!!.isEnabled) {
-            Toast.makeText(this, "NFC disabled on this device. Turn on to proceed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.nfcDisabled), Toast.LENGTH_SHORT).show()
         }
         initViews()
     }
@@ -60,7 +60,7 @@ class ReceiverActivity : AppCompatActivity() {
             try {
                 this?.addDataType(MIME_TEXT_PLAIN)
             } catch (ex: IntentFilter.MalformedMimeTypeException) {
-                throw RuntimeException("Check your MIME type")
+                throw RuntimeException(getString(R.string.mimeType))
             }
         }
         adapter?.enableForegroundDispatch(activity, pendingIntent, filters, techList)

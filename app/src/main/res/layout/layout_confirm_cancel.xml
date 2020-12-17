@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/textConfirmCancel"
-        android:text="@string/confirmcancel"
+        android:text="@string/confirmCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -55,7 +55,7 @@
 
     <Button
         android:id="@+id/continuecharging"
-        android:text="@string/notcancelreturn"
+        android:text="@string/notCancelReturn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
