@@ -1,0 +1,22 @@
+package pt.atp.app_seai_g
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+
+class ViewModelLogin : ViewModel() {
+
+    private val _loginResult = MutableLiveData<Boolean>()
+    val loginResultLiveData = _loginResult
+
+    fun areCredentialsValid(mAuth: FirebaseAuth?, email: String, password: String){
+        mAuth!!.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    loginResultLiveData.postValue(true)
+                } else {
+                    loginResultLiveData.postValue(false)
+                }
+            }
+    }
+}
