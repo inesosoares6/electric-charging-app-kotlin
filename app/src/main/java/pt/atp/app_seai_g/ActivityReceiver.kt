@@ -14,35 +14,26 @@ const val MIME_TEXT_PLAIN = "text/plain"
 
 class ReceiverActivity : AppCompatActivity() {
 
-    private var tvIncomingMessage: TextView? = null
+    private var nfcIDCharger: TextView? = null
     private var nfcAdapter: NfcAdapter? = null
     private val isNfcSupported: Boolean = this.nfcAdapter != null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver_nfc)
-
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this)
-
         if (!isNfcSupported) {
             Toast.makeText(this, "Nfc is not supported on this device", Toast.LENGTH_SHORT).show()
             this.finish()
         }
-
         if (!nfcAdapter!!.isEnabled) {
-            Toast.makeText(
-                this,
-                "NFC disabled on this device. Turn on to proceed",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, "NFC disabled on this device. Turn on to proceed", Toast.LENGTH_SHORT).show()
         }
-
         initViews()
     }
 
     private fun initViews() {
-        this.tvIncomingMessage = findViewById(R.id.tv_in_message)
+        this.nfcIDCharger = findViewById(R.id.nfcMessage)
     }
 
     override fun onNewIntent(intent: Intent){
@@ -93,13 +84,24 @@ class ReceiverActivity : AppCompatActivity() {
         if(NfcAdapter.ACTION_NDEF_DISCOVERED==action){
             val parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)
             with(parcelables){
-                val inNdefMessage = this?.get(0) as NdefMessage
-                val inNefRecords = inNdefMessage.records
-                val ndefRecord_0 = inNefRecords[0]
+                val inNDefMessage = this?.get(0) as NdefMessage
+                val inNefRecords = inNDefMessage.records
+                val nDefRecord0 = inNefRecords[0]
 
-                val inMessage = String(ndefRecord_0.payload)
-                tvIncomingMessage?.text = inMessage
+                val inMessage = String(nDefRecord0.payload)
+                nfcIDCharger?.text = inMessage
+                confirmIdCharger(inMessage)
             }
         }
+    }
+    private fun confirmIdCharger(chargerID: String){
+        //TODO verify if id charger is ready to use (value available in database)
+        sendID(chargerID)
+    }
+
+    private fun sendID(chargerID: String){
+        val intent = Intent(this,ActivityCharging::class.java)
+        intent.putExtra("chargerID",chargerID)
+        startActivity(intent)
     }
 }

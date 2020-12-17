@@ -38,7 +38,7 @@
     <string name="welcome">Bem-vindo</string>
     <string name="account">Conta pessoal</string>
     <string name="incoming_nfc_message">Mensagem NFC:</string>
-    <string name="textview">TextView</string>
+    <string name="NFCIdCharger">TextView</string>
     <string name="home">Início</string>
     <string name="charge_car">Carregar Carro</string>
     <string name="person">Conta</string>

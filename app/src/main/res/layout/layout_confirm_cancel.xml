@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="1.0"/>
 
     <TextView
-        android:id="@+id/textconfirmcancel"
+        android:id="@+id/textConfirmCancel"
         android:text="@string/confirmcancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textconfirmcancel"
+        app:layout_constraintTop_toBottomOf="@+id/textConfirmCancel"
         app:layout_constraintVertical_bias="0.000" />
 
     <Button

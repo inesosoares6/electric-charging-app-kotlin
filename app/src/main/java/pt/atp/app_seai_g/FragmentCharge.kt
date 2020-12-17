@@ -19,7 +19,7 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
         val rootView: View = inflater.inflate(R.layout.fragment_charge,container,false)
         val buttonSendId: Button = rootView.findViewById(R.id.button_sendid)
         val buttonQrCode: Button = rootView.findViewById(R.id.button_qrcode)
-//        val buttonNFC: Button = rootView.findViewById(R.id.button_nfc)
+        val buttonNFC: Button = rootView.findViewById(R.id.button_nfc)
 
         buttonSendId.setOnClickListener {
             val chargerIdText: EditText = rootView.findViewById(R.id.idcarregador)
@@ -35,10 +35,10 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
             intentIntegrator.initiateScan()
         }
 
-        /*buttonNFC.setOnClickListener{
+        buttonNFC.setOnClickListener{
             val intent = Intent(context, ReceiverActivity::class.java)
             startActivity(intent)
-        }*/
+        }
 
         return rootView
     }
