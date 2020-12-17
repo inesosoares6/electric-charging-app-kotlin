@@ -17,6 +17,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
         val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
+        val settingsButton: Button = rootView.findViewById(R.id.settingsButton)
 
         buttonLogout.setOnClickListener{
             fbAuth.signOut()
@@ -29,6 +30,11 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             if(fbAuth.currentUser == null){
                 activity?.finish()
             }
+        }
+
+        settingsButton.setOnClickListener{
+            val intent = Intent(context,SettingsActivity::class.java)
+            startActivity(intent)
         }
 
         return rootView
