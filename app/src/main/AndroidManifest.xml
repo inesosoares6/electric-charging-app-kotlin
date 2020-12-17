@@ -7,6 +7,7 @@
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -22,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="RtlEnabled"
         tools:targetApi="m">
-        <activity android:name=".ActivityResetPassword"></activity>
+        <activity android:name=".ActivityResetPassword" />
         <activity
             android:name=".ActivityWelcome"
             android:screenOrientation="portrait" />
