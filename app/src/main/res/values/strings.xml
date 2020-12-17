@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SEAI G</string>
-    <string name="email">Email Address</string>
+    <string name="email">Email</string>
     <string name="pass">Password</string>
     <string name="login">LOGIN</string>
     <string name="forgot_pass">Forgot Password</string>
@@ -48,9 +48,14 @@
     <string name="enterPassword">Please enter password</string>
     <string name="matchPassword">Passwords do not match</string>
     <string name="successRegister">Registration successful</string>
-    <string name="failRegister">Registration failed! Please try again later</string>
+    <string name="failRegister">Registration failed</string>
     <string name="successLogin">Login successful</string>
-    <string name="failLogin">Login failed! Please try again later</string>
+    <string name="failLogin">Login failed</string>
     <string name="log_out">Log Out</string>
     <string name="successSignOut">Sign out successful</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="password_reset_instructions">We just need your registered email to send you password reset instructions.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sent_email_recover">We have sent you instructions to reset your password</string>
+    <string name="fail_email_recover">Failed to send reset email</string>
 </resources>

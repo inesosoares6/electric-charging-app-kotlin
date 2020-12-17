@@ -22,9 +22,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="RtlEnabled"
         tools:targetApi="m">
-        <activity android:name=".ActivityWelcome"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ActivityLogin"
+        <activity android:name=".ActivityResetPassword"></activity>
+        <activity
+            android:name=".ActivityWelcome"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityLogin"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +35,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityRegister"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ActivityCharging"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivityRegister"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityCharging"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityCapture"
             android:screenOrientation="fullSensor"

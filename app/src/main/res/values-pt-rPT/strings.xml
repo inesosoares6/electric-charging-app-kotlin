@@ -48,9 +48,14 @@
     <string name="enterPassword">Insira palavra passe</string>
     <string name="matchPassword">Palavra passe errada</string>
     <string name="successRegister">Registo bem sucedido</string>
-    <string name="failRegister">Registo falhou - por favor tente mais tarde</string>
+    <string name="failRegister">Registo falhou</string>
     <string name="successLogin">Login bem sucedido</string>
-    <string name="failLogin">Login falhou - por favor tente mais tarde</string>
+    <string name="failLogin">Login falhou</string>
     <string name="log_out">Terminar sessão</string>
     <string name="successSignOut">Sessão terminada com sucesso</string>
+    <string name="forgot_password">Esqueceu-se da palavra passe?</string>
+    <string name="password_reset_instructions">É necessário introduzir o seu email para que seja possível enviar as intruções de recuperação/alteração de palavra passe.</string>
+    <string name="reset_password">Enviar</string>
+    <string name="sent_email_recover">As instruções de recuperação/alteração de palavra passe foram enviadas.</string>
+    <string name="fail_email_recover">Envio das instruções falhou, por favor tente novamente.</string>
 </resources>

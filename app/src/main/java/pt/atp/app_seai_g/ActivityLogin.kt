@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class ActivityLogin : AppCompatActivity() {
     private var passwordTV: EditText? = null
     private var loginBtn: Button? = null
     private var registerBtn: Button? = null
+    private var forgotPassword: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,10 @@ class ActivityLogin : AppCompatActivity() {
         loginBtn!!.setOnClickListener { validateCredentialsAndRedirect() }
         registerBtn!!.setOnClickListener{
             val intent = Intent(this, ActivityRegister::class.java)
+            startActivity(intent)
+        }
+        forgotPassword!!.setOnClickListener{
+            val intent = Intent(this, ActivityResetPassword::class.java)
             startActivity(intent)
         }
         viewModel.loginResultLiveData.observe(this){ loginResult ->
@@ -69,5 +75,6 @@ class ActivityLogin : AppCompatActivity() {
         passwordTV = findViewById(R.id.password)
         loginBtn = findViewById(R.id.button_login)
         registerBtn = findViewById(R.id.button_register)
+        forgotPassword = findViewById(R.id.forgot_password)
     }
 }
