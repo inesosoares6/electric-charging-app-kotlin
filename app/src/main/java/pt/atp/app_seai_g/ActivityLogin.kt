@@ -22,6 +22,11 @@ class ActivityLogin : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+        if(mAuth!!.currentUser != null){
+            startActivity(Intent(this, ActivityWelcome::class.java))
+            finish()
+        }
         setContentView(R.layout.activity_main)
         setup()
     }
@@ -39,8 +44,7 @@ class ActivityLogin : AppCompatActivity() {
                 Toast.makeText(applicationContext, getString(R.string.failLogin), Toast.LENGTH_LONG).show()
             } else{
                 Toast.makeText(applicationContext, getString(R.string.successLogin), Toast.LENGTH_LONG).show()
-                val intent = Intent(this, ActivityWelcome::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, ActivityWelcome::class.java))
                 finish()
             }
         }
