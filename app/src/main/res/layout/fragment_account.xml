@@ -72,9 +72,15 @@
         android:clickable="true"
         app:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_settings_foreground"
-        tools:layout_editor_absoluteX="326dp"
-        tools:layout_editor_absoluteY="580dp"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintHorizontal_bias="1.0"
         tools:ignore="MissingConstraints"
-        android:focusable="true" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true"
+        android:contentDescription="@string/settings_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
