@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 // Activity that contains the locations of the charging stations
 //     - pin in charging station
 //     - shows the slots available
+// https://www.raywenderlich.com/230-introduction-to-google-maps-api-for-android-with-kotlin
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
