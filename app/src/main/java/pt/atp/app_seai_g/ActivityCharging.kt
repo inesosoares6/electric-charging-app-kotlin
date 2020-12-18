@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+// Activity to charge the vehicle
+//   - communication with control module
+
 class ActivityCharging : AppCompatActivity() {
 
     private lateinit var chargingPage: View

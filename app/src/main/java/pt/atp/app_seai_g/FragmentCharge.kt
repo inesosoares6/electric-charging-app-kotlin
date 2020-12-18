@@ -11,6 +11,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.integration.android.IntentIntegrator
 
+// Fragment to insert charger id
+//     - verify id charger
+//          - if charger is available
+//          - the vehicle is connected
+//     - begin charging (ActivityCharging)
 
 class FragmentCharge : Fragment(R.layout.fragment_charge) {
 

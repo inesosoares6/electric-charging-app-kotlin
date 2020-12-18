@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
+// View model used to verify login in server
+
 class ViewModelLogin : ViewModel() {
 
     private val _loginResult = MutableLiveData<Boolean>()

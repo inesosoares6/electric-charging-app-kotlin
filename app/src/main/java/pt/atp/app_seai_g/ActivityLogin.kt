@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
+// Activity to login the user and redirect to Register if it is not a user yet
 
 class ActivityLogin : AppCompatActivity() {
 

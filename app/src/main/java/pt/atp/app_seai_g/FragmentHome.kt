@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 
+// Fragment home that contains:
+//    - button to open maps with location of parking stations
 
 class FragmentHome : Fragment(R.layout.fragment_home) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

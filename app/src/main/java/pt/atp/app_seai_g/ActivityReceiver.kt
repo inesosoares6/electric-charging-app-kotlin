@@ -10,6 +10,8 @@ import android.nfc.NfcAdapter
 import android.widget.TextView
 import android.widget.Toast
 
+// Activity to read NFC
+
 const val MIME_TEXT_PLAIN = "text/plain"
 
 class ReceiverActivity : AppCompatActivity() {

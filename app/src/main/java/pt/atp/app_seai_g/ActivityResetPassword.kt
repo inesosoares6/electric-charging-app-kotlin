@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
+// Activity to send email instructions to reset the password
+
 class ActivityResetPassword : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null

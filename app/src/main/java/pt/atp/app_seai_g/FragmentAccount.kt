@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
+// Fragment of account page
+//    - sign out
+//    - go to settings
+
 class FragmentAccount : Fragment(R.layout.fragment_account) {
 
     private var fbAuth = FirebaseAuth.getInstance()
