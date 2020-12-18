@@ -70,7 +70,7 @@
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your username</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="language_title">Language</string>
 
     <!-- Sync Preferences -->
     <string name="darkTheme">Dark Theme</string>
