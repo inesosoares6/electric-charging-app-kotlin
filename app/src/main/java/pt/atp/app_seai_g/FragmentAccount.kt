@@ -50,9 +50,14 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
 
         darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
-                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                true -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    darkThemeButton.isChecked=true
+                }
+                false -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    darkThemeButton.isChecked=false
+                }
             }
         }
 
