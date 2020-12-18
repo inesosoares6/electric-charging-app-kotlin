@@ -1,8 +1,8 @@
 <resources>
     <!-- Reply Preference -->
     <string-array name="language_entries">
-        <item>Português</item>
-        <item>English</item>
+        <item>@string/portuguese</item>
+        <item>@string/english</item>
     </string-array>
 
     <string-array name="language_values">
@@ -11,10 +11,10 @@
     </string-array>
 
     <string-array name="vehicle_entries">
-        <item>Car</item>
-        <item>Motorcycle</item>
-        <item>Scooter</item>
-        <item>Truck</item>
+        <item>@string/car</item>
+        <item>@string/motorcycle</item>
+        <item>@string/scooter</item>
+        <item>@string/truck</item>
     </string-array>
 
     <string-array name="vehicle_values">

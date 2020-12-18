@@ -11,21 +11,21 @@
             app:entries="@array/vehicle_entries"
             app:entryValues="@array/vehicle_values"
             app:key="vehicle"
-            app:title="Vehicle"
+            app:title="@string/vehicle"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
             app:entries="@array/brand_entries"
             app:entryValues="@array/brand_values"
             app:key="brand"
-            app:title="Brand"
+            app:title="@string/brand"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
             app:entries="@array/model_entries"
             app:entryValues="@array/model_values"
             app:key="model"
-            app:title="Model"
+            app:title="@string/model"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
@@ -42,13 +42,6 @@
             app:key="language"
             app:title="@string/language_title"
             app:useSimpleSummaryProvider="true" />
-
-        <!--<SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />-->
 
     </PreferenceCategory>
 
