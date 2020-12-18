@@ -8,6 +8,8 @@ import androidx.preference.SwitchPreferenceCompat
 
 // Activity of settings
 
+var darkMode: Boolean = false
+
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +30,11 @@ class SettingsActivity : AppCompatActivity() {
                 if (switchTheme.isChecked) {
                     Toast.makeText(context, "Unchecked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = false
+                    darkMode=true
                 } else {
                     Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = true
+                    darkMode=false
                 }
                 false
             }
