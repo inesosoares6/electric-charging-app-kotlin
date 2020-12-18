@@ -35,7 +35,7 @@
         app:title="@string/application">
 
         <SwitchPreferenceCompat
-            app:key="sync"
+            app:key="darkTheme"
             app:title="@string/darkTheme" />
 
         <ListPreference
