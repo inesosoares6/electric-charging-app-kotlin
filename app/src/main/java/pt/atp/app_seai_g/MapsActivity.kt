@@ -42,11 +42,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
         val feup = LatLng(41.1780, -8.5980)
-        map.addMarker(MarkerOptions().position(feup).title("FEUP: 10 lugares livres"))
-//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(feup, 12.0f))
-
+        map.addMarker(MarkerOptions().position(feup).title(getString(R.string.parkingFeup)))
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
         setUpMap()
@@ -70,6 +67,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
             return
         }
+        // Map types:
+        //   - MAP_TYPE_TERRAIN displays a more detailed view of the area
+        //   - MAP_TYPE_NORMAL displays a typical road map with labels
+        //   - MAP_TYPE_SATELLITE displays a satellite view of an area with no labels
+        //   - MAP_TYPE_HYBRID displays a combination of the satellite and normal mode
+        map.mapType = GoogleMap.MAP_TYPE_NORMAL
     }
 
 }

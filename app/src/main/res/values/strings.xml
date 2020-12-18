@@ -73,6 +73,7 @@
     <string name="nfcNotSupported">Nfc is not supported on this device</string>
     <string name="nfcDisabled">NFC disabled on this device, turn on to proceed.</string>
     <string name="mimeType">Check your MIME type</string>
+    <string name="parkingFeup">FEUP: 10 free slots</string>
 
     <!-- Settings Activity -->
     <string name="settings">Settings</string>
