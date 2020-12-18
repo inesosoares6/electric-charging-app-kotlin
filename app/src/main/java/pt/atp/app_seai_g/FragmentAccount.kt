@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
 class FragmentAccount : Fragment(R.layout.fragment_account) {
@@ -17,7 +18,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
         val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
-        val settingsButton: Button = rootView.findViewById(R.id.settingsButton)
+        val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
 
         buttonLogout.setOnClickListener{
             fbAuth.signOut()
