@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListView
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -27,7 +28,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
         val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
         val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
-        val switch1: Switch = rootView.findViewById(R.id.switch1)
+        val darkThemeButton: Switch = rootView.findViewById(R.id.darkThemeButton)
 
         buttonLogout.setOnClickListener{
             fbAuth.signOut()
@@ -47,7 +48,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             startActivity(intent)
         }
 
-        switch1.setOnCheckedChangeListener { _, checkedId ->
+        darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
