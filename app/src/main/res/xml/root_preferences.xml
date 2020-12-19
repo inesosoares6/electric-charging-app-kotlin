@@ -7,6 +7,23 @@
             app:key="signature"
             app:title="@string/signature_title" />
 
+        <Preference
+            app:summary="Click to start an activity"
+            app:title="Add vehicle">
+            <!--<intent
+                app:action="com.chikeandroid.settingsscreendemo.SETTING_START_ACTIVITY"
+                app:targetClass="com.chikeandroid.settingsscreendemo.MyActivity"
+                app:targetPackage="com.chikeandroid.settingsscreendemo" />-->
+        </Preference>
+        <Preference
+            app:summary="Click to start an activity"
+            app:title="Reset password">
+            <!--<intent
+                app:action="com.chikeandroid.settingsscreendemo.SETTING_START_ACTIVITY"
+                app:targetClass="com.chikeandroid.settingsscreendemo.MyActivity"
+                app:targetPackage="com.chikeandroid.settingsscreendemo" />-->
+        </Preference>
+
         <ListPreference
             app:entries="@array/vehicle_entries"
             app:entryValues="@array/vehicle_values"

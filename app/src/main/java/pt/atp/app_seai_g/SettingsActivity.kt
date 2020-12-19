@@ -2,14 +2,12 @@ package pt.atp.app_seai_g
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.EditTextPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreferenceCompat
+import androidx.preference.*
 
 // Activity of settings
 
@@ -62,6 +60,21 @@ class SettingsActivity : AppCompatActivity() {
                     //TODO go find the name in database
                     text
                 }
+            }
+            val switchLanguage: ListPreference? = findPreference("language")
+            switchLanguage?.setOnPreferenceChangeListener { preference, newValue ->
+                if (preference is ListPreference) {
+                    val index = preference.findIndexOfValue(newValue.toString())
+                    //val entry = preference.entries[index]
+                    val entryValue = preference.entryValues[index]
+                    if(entryValue=="portuguese"){
+                        //TODO change language to Portuguese
+                    } else{
+                        //TODO change Language to English
+                    }
+                }
+
+                true
             }
         }
     }
