@@ -57,7 +57,7 @@
     <string name="search_charger_station">Procurar parque de carregamento</string>
     <string name="welcome">Bem-vindo</string>
     <string name="account">Conta pessoal</string>
-    <string name="incoming_nfc_message">Mensagem NFC:</string>
+    <string name="incoming_nfc_message">A receber mensagem NFC</string>
     <string name="NFCIdCharger">TextView</string>
     <string name="home">Início</string>
     <string name="charge_car">Carregar Carro</string>

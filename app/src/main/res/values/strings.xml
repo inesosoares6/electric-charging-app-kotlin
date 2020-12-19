@@ -57,7 +57,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="search_charger_station">Search charger station</string>
     <string name="account">Account</string>
-    <string name="incoming_nfc_message">Incoming NFC message:</string>
+    <string name="incoming_nfc_message">Incoming NFC message</string>
     <string name="NFCIdCharger">TextView</string>
     <string name="home">Home</string>
     <string name="charge_car">Charge Car</string>

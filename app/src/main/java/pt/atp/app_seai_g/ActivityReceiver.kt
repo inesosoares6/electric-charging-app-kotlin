@@ -24,10 +24,10 @@ class ReceiverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver_nfc)
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this)
-        if (!isNfcSupported) {
+        /*if (!isNfcSupported) {
             Toast.makeText(this, getString(R.string.nfcNotSupported), Toast.LENGTH_SHORT).show()
             this.finish()
-        }
+        }*/
         if (!nfcAdapter!!.isEnabled) {
             Toast.makeText(this, getString(R.string.nfcDisabled), Toast.LENGTH_SHORT).show()
         }
