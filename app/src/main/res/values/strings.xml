@@ -40,7 +40,7 @@
     <string name="normalCharging">Regular charging</string>
     <string name="fastCharging">Fast charging</string>
     <string name="textPrices">Prices</string>
-    <string name="textPriceNormal">Regular charging:</string>
+    <string name="textPriceNormal">Regular Charging:</string>
     <string name="textPriceFast">Fast Charging:</string>
     <string name="charging">Charging…</string>
     <string name="cancelCharge">Cancel</string>
@@ -101,4 +101,7 @@
     <string name="english">English</string>
     <string name="addVehicle">Add vehicle</string>
     <string name="resetPassword">Reset password</string>
+    <string name="greenCharging">Green charging</string>
+    <string name="textPriceGreen">Green Charging:</string>
+    <string name="returnButton">Cancel</string>
 </resources>
