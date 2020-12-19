@@ -1,8 +1,13 @@
 package pt.atp.app_seai_g
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.EditTextPreference
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 
@@ -21,6 +26,15 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.itemId
+        if(id==android.R.id.home){
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -37,6 +51,17 @@ class SettingsActivity : AppCompatActivity() {
                     darkMode=false
                 }
                 false
+            }
+
+            val countingPreference: EditTextPreference? = findPreference("signature")
+            countingPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
+                val text = preference.text
+                if (TextUtils.isEmpty(text)) {
+                    "Not set"
+                } else {
+                    //TODO go find the name in database
+                    text
+                }
             }
         }
     }

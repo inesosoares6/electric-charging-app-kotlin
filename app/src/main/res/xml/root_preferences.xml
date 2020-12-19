@@ -5,8 +5,7 @@
 
         <EditTextPreference
             app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+            app:title="@string/signature_title" />
 
         <ListPreference
             app:entries="@array/vehicle_entries"
