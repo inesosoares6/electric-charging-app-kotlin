@@ -99,5 +99,7 @@
     <string name="language_title">Idioma</string>
     <string name="portuguese">Português</string>
     <string name="english">Inglês</string>
+    <string name="addVehicle">Adicionar veículo</string>
+    <string name="resetPassword">Alterar palavra-passe</string>
 
 </resources>

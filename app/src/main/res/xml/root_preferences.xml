@@ -1,4 +1,6 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         app:title="@string/messages_header">
@@ -9,22 +11,21 @@
 
         <Preference
             app:summary="Click to start an activity"
-            app:title="Add vehicle">
+            app:title="@string/addVehicle">
             <!--<intent
                 app:action="com.chikeandroid.settingsscreendemo.SETTING_START_ACTIVITY"
                 app:targetClass="com.chikeandroid.settingsscreendemo.MyActivity"
                 app:targetPackage="com.chikeandroid.settingsscreendemo" />-->
         </Preference>
         <Preference
-            app:summary="Click to start an activity"
-            app:title="Reset password">
-            <!--<intent
-                app:action="com.chikeandroid.settingsscreendemo.SETTING_START_ACTIVITY"
-                app:targetClass="com.chikeandroid.settingsscreendemo.MyActivity"
-                app:targetPackage="com.chikeandroid.settingsscreendemo" />-->
+            app:title="@string/resetPassword">
+            <intent
+                android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
+                android:targetClass="pt.atp.app_seai_g.ActivityResetPassword"
+                android:targetPackage="pt.atp.app_seai_g" />
         </Preference>
 
-        <ListPreference
+       <!-- <ListPreference
             app:entries="@array/vehicle_entries"
             app:entryValues="@array/vehicle_values"
             app:key="vehicle"
@@ -43,7 +44,7 @@
             app:entryValues="@array/model_values"
             app:key="model"
             app:title="@string/model"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true" />-->
 
     </PreferenceCategory>
 
