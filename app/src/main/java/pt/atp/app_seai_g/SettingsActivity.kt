@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.*
+import java.util.*
 
 // Activity of settings
 
@@ -69,8 +70,12 @@ class SettingsActivity : AppCompatActivity() {
                     val entryValue = preference.entryValues[index]
                     if(entryValue=="portuguese"){
                         //TODO change language to Portuguese
+                        Locale("por")
+                        Toast.makeText(context, "POR", Toast.LENGTH_SHORT).show()
                     } else{
                         //TODO change Language to English
+                        Locale("en")
+                        Toast.makeText(context, "EN", Toast.LENGTH_SHORT).show()
                     }
                 }
 
