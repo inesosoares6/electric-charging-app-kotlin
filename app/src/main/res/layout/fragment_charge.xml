@@ -29,7 +29,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
@@ -45,7 +44,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
@@ -97,7 +95,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
@@ -129,7 +126,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
@@ -152,7 +148,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idnfc"
         app:layout_constraintVertical_bias="0.000" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
