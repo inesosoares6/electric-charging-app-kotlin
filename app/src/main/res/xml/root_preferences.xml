@@ -34,9 +34,10 @@
     <PreferenceCategory
         app:title="@string/application">
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             app:key="darkTheme"
-            app:title="@string/darkTheme" />
+            app:title="@string/darkTheme"
+            app:useSimpleSummaryProvider="true"/>
 
         <ListPreference
             app:entries="@array/language_entries"
