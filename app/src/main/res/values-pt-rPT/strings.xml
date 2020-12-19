@@ -51,6 +51,9 @@
     <string name="ready">O seu veículo está carregado.</string>
     <string name="totalPrice">Preço a pagar:</string>
     <string name="return_to_homepage">Voltar à página inicial</string>
+    <string name="greenCharging">Carregamento Verde</string>
+    <string name="textPriceGreen">Carregamento Verde:</string>
+    <string name="returnButton">Cancelar</string>
 
     <!-- Welcome Activity -->
     <string name="title_activity_maps">Mapa</string>

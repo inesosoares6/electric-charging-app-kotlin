@@ -51,6 +51,9 @@
     <string name="ready">Your vehicle is charged.</string>
     <string name="totalPrice">Price to pay:</string>
     <string name="return_to_homepage">Return to homepage</string>
+    <string name="greenCharging">Green charging</string>
+    <string name="textPriceGreen">Green Charging:</string>
+    <string name="returnButton">Cancel</string>
 
     <!-- Welcome Activity -->
     <string name="welcome">Welcome</string>
@@ -101,7 +104,4 @@
     <string name="english">English</string>
     <string name="addVehicle">Add vehicle</string>
     <string name="resetPassword">Reset password</string>
-    <string name="greenCharging">Green charging</string>
-    <string name="textPriceGreen">Green Charging:</string>
-    <string name="returnButton">Cancel</string>
 </resources>
