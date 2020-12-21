@@ -104,5 +104,6 @@
     <string name="english">Inglês</string>
     <string name="addVehicle">Adicionar veículo</string>
     <string name="resetPassword">Alterar palavra-passe</string>
+    <string name="historic_button">Historic button</string>
 
 </resources>
