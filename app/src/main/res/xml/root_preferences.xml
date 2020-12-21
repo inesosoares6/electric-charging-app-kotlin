@@ -13,9 +13,10 @@
             app:title="@string/addVehicle">
             <intent
                 android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
-                android:targetClass="pt.atp.app_seai_g.AddVehicleActivity"
+                android:targetClass="pt.atp.app_seai_g.ActivityAddVehicle"
                 android:targetPackage="pt.atp.app_seai_g" />
         </Preference>
+
         <Preference
             app:title="@string/resetPassword">
             <intent
@@ -23,27 +24,6 @@
                 android:targetClass="pt.atp.app_seai_g.ActivityResetPassword"
                 android:targetPackage="pt.atp.app_seai_g" />
         </Preference>
-
-       <!-- <ListPreference
-            app:entries="@array/vehicle_entries"
-            app:entryValues="@array/vehicle_values"
-            app:key="vehicle"
-            app:title="@string/vehicle"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:entries="@array/brand_entries"
-            app:entryValues="@array/brand_values"
-            app:key="brand"
-            app:title="@string/brand"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:entries="@array/model_entries"
-            app:entryValues="@array/model_values"
-            app:key="model"
-            app:title="@string/model"
-            app:useSimpleSummaryProvider="true" />-->
 
     </PreferenceCategory>
 

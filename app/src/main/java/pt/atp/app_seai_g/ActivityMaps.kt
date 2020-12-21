@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 //     - shows the slots available
 // https://www.raywenderlich.com/230-introduction-to-google-maps-api-for-android-with-kotlin
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -31,11 +31,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -44,6 +42,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         val feup = LatLng(41.1780, -8.5980)
+        //TODO update free parking slots
         map.addMarker(MarkerOptions().position(feup).title(getString(R.string.parkingFeup)))
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)

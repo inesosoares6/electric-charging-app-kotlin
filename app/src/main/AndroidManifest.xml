@@ -28,7 +28,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="RtlEnabled"
         tools:targetApi="m">
-        <activity android:name=".AddVehicleActivity"></activity>
+        <activity android:name=".ActivityAddVehicle"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -45,7 +45,7 @@
             android:value=".ActivityWelcome" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ActivityMaps"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".SettingsActivity"
