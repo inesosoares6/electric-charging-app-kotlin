@@ -105,5 +105,6 @@
     <string name="addVehicle">Adicionar veículo</string>
     <string name="resetPassword">Alterar palavra-passe</string>
     <string name="historic_button">Historic button</string>
+    <string name="add_vehicle">Add vehicle</string>
 
 </resources>
