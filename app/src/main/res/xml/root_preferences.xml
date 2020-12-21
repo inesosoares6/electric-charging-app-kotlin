@@ -10,12 +10,11 @@
             app:title="@string/signature_title" />
 
         <Preference
-            app:summary="Click to start an activity"
             app:title="@string/addVehicle">
-            <!--<intent
-                app:action="com.chikeandroid.settingsscreendemo.SETTING_START_ACTIVITY"
-                app:targetClass="com.chikeandroid.settingsscreendemo.MyActivity"
-                app:targetPackage="com.chikeandroid.settingsscreendemo" />-->
+            <intent
+                android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
+                android:targetClass="pt.atp.app_seai_g.AddVehicleActivity"
+                android:targetPackage="pt.atp.app_seai_g" />
         </Preference>
         <Preference
             app:title="@string/resetPassword">

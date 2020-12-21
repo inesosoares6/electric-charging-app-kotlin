@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AddVehicleActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:contentDescription="@string/logo"
-        android:layout_width="228dp"
-        android:layout_height="225dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        app:srcCompat="@drawable/logo_seai"
-        app:layout_constraintBottom_toTopOf="@+id/textBrand"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
 
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type of vehicle"/>
+
+    <RadioGroup
+        android:id="@+id/groupType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/buttonCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Car" />
+
+        <RadioButton
+            android:id="@+id/buttonMotorcycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Motorcycle"/>
+
+        <RadioButton
+            android:id="@+id/buttonScooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scooter" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/textBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brand"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        android:text="Brand" />
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textBrand"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddVehicle"
-        app:layout_constraintVertical_bias="0.24000001">
+        android:id="@+id/groupBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -80,12 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup1"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Add Vehicle"
+        android:textColor="@color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
