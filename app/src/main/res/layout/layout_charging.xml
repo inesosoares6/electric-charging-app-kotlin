@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="1.0"/>
 
     <TextView
-        android:id="@+id/textcharging"
+        android:id="@+id/textCharging"
         android:layout_width="257dp"
         android:layout_height="94dp"
         android:layout_marginStart="50dp"
@@ -39,7 +39,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/cancelcharge"
+        android:id="@+id/cancelCharge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"

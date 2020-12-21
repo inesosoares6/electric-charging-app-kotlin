@@ -7,7 +7,7 @@
     tools:context=".ActivityCharging">
 
     <TextView
-        android:id="@+id/chargerid"
+        android:id="@+id/chargerId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="1.0"/>
 
     <TextView
-        android:id="@+id/textchargemode"
+        android:id="@+id/textChargeMode"
         android:text="@string/selectMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/chargenormal"
+        android:id="@+id/chargeNormal"
         android:text="@string/normalCharging"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,11 +63,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textchargemode"
+        app:layout_constraintTop_toBottomOf="@+id/textChargeMode"
         app:layout_constraintVertical_bias="0.000" />
 
     <Button
-        android:id="@+id/chargefast"
+        android:id="@+id/chargeFast"
         android:text="@string/fastCharging"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chargenormal"
+        app:layout_constraintTop_toBottomOf="@+id/chargeNormal"
         app:layout_constraintVertical_bias="0.000" />
 
     <Button
@@ -95,11 +95,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chargefast"
+        app:layout_constraintTop_toBottomOf="@+id/chargeFast"
         app:layout_constraintVertical_bias="0.000" />
 
     <TextView
-        android:id="@+id/textprices"
+        android:id="@+id/textPrices"
         android:text="@string/textPrices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textprices"
+        app:layout_constraintTop_toBottomOf="@+id/textPrices"
         tools:ignore="MissingConstraints" />
 
     <TextView

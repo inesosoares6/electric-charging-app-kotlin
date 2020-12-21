@@ -22,12 +22,12 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         val rootView: View = inflater.inflate(R.layout.fragment_charge,container,false)
-        val buttonSendId: Button = rootView.findViewById(R.id.button_sendid)
-        val buttonQrCode: Button = rootView.findViewById(R.id.button_qrcode)
+        val buttonSendId: Button = rootView.findViewById(R.id.button_sendId)
+        val buttonQrCode: Button = rootView.findViewById(R.id.button_QRCode)
         val buttonNFC: Button = rootView.findViewById(R.id.button_nfc)
 
         buttonSendId.setOnClickListener {
-            val chargerIdText: EditText = rootView.findViewById(R.id.idcarregador)
+            val chargerIdText: EditText = rootView.findViewById(R.id.idCharger)
             confirmIdCharger(chargerIdText.text.toString())
         }
 

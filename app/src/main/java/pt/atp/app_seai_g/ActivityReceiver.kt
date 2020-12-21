@@ -18,7 +18,7 @@ class ReceiverActivity : AppCompatActivity() {
 
     private var nfcIDCharger: TextView? = null
     private var nfcAdapter: NfcAdapter? = null
-    private val isNfcSupported: Boolean = this.nfcAdapter != null
+//    private val isNfcSupported: Boolean = this.nfcAdapter != null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
