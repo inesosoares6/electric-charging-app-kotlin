@@ -49,10 +49,6 @@ class ActivityCharging : AppCompatActivity() {
 
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
-            val database = Firebase.database
-            val myRef = database.getReference("message")
-            myRef.setValue("Hello, World!")
-            Toast.makeText(applicationContext,"Sent to database", Toast.LENGTH_LONG).show()
             //TODO send info to control: id, charging mode GREEN
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
