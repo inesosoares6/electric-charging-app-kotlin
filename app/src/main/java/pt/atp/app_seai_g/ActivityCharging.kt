@@ -5,7 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
+// Activity to charge the vehicle
+//   - communication with control module
 
 class ActivityCharging : AppCompatActivity() {
 
@@ -29,16 +35,30 @@ class ActivityCharging : AppCompatActivity() {
 
         val chargeNormal = findViewById<Button>(R.id.chargenormal)
         chargeNormal.setOnClickListener{
-            //TODO send info to control: charging mode NORMAL
+            //TODO send info to control: id, charging mode NORMAL
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
         }
 
         val chargeFast = findViewById<Button>(R.id.chargefast)
         chargeFast.setOnClickListener{
-            //TODO send info to control: charging mode FAST
+            //TODO send info to control: id, charging mode FAST
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+        }
+
+        val chargeGreen = findViewById<Button>(R.id.chargeGreen)
+        chargeGreen.setOnClickListener{
+            //TODO send info to control: id, charging mode GREEN
+            chargingModePage.visibility=View.GONE
+            chargingPage.visibility=View.VISIBLE
+        }
+
+        val returnButton = findViewById<Button>(R.id.returnButton)
+        returnButton.setOnClickListener{
+            val intent = Intent(this, ActivityWelcome::class.java)
+            startActivity(intent)
+            finish()
         }
 
         val cancelCharge = findViewById<Button>(R.id.cancelcharge)
@@ -55,7 +75,7 @@ class ActivityCharging : AppCompatActivity() {
 
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
-            //TODO send info to control: cancel charging
+            //TODO send info to control: id, cancel charging
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
         }

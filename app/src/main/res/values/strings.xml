@@ -1,56 +1,109 @@
 <resources>
+
     <string name="app_name">SEAI G</string>
-    <string name="email">Email Address</string>
+    <string name="logo">LOGO</string>
+
+    <!-- Login Page -->
+    <string name="email">Email</string>
     <string name="pass">Password</string>
     <string name="login">LOGIN</string>
     <string name="forgot_pass">Forgot Password</string>
-    <string name="remember_pass">Remember Password</string>
-    <string name="logo">LOGO</string>
-    <string name="idcarregador">Insert Charger ID</string>
-    <string name="titleID">Insert charger ID</string>
-    <string name="submitID">Submit Charger ID</string>
-    <string name="scanQRcode">Scan QR code</string>
-    <string name="NFCreader">NFC</string>
-    <string name="hint_your_message">message hint</string>
-    <string name="label_your_message">Inserting id through NFC</string>
-    <string name="title_btn_set">NFC</string>
-    <string name="idtext">By text:</string>
-    <string name="idqrcode">By QR code scanning:</string>
-    <string name="idnfc">By NFC:</string>
-    <string name="selectmode">Please select the charging mode.</string>
-    <string name="normalcharging">Regular charging</string>
-    <string name="fastcharging">Fast charging</string>
-    <string name="textprices">Prices</string>
-    <string name="textpricenormal">Regular charging:</string>
-    <string name="textpricefast">Fast Charging:</string>
-    <string name="charging">Charging…</string>
-    <string name="cancelcharge">Cancel</string>
-    <string name="confirmcancel">Are you sure that you want to cancel?</string>
-    <string name="cancel">Yes, cancel.</string>
-    <string name="notcancelreturn">No, resume charging.</string>
-    <string name="finished">Finished</string>
-    <string name="ready">Your vehicle is charged.</string>
-    <string name="totalprice">Price to pay:</string>
+    <string name="successLogin">Login successful</string>
+    <string name="failLogin">Login failed</string>
+
+    <!-- Register Page -->
     <string name="name">Name</string>
     <string name="register">Register</string>
     <string name="confirm_pass">Confirm Password</string>
-    <string name="return_to_homepage">Return to homepage</string>
-    <string name="welcome">Welcome</string>
-    <string name="account">Account</string>
-    <string name="incoming_nfc_message">Incoming NFC message:</string>
-    <string name="textview">TextView</string>
-    <string name="home">Home</string>
-    <string name="charge_car">Charge Car</string>
-    <string name="person">Account</string>
-    <string name="insertValidId">Inset valid charger ID</string>
     <string name="enterName">Please enter name</string>
     <string name="enterEmail">Please enter email</string>
     <string name="enterPassword">Please enter password</string>
     <string name="matchPassword">Passwords do not match</string>
     <string name="successRegister">Registration successful</string>
-    <string name="failRegister">Registration failed! Please try again later</string>
-    <string name="successLogin">Login successful</string>
-    <string name="failLogin">Login failed! Please try again later</string>
+    <string name="failRegister">Registration failed</string>
+
+    <!-- ID charger Fragment -->
+    <string name="idCharger">Insert Charger ID</string>
+    <string name="titleID">Insert charger ID</string>
+    <string name="submitID">Submit Charger ID</string>
+    <string name="scanQRCode">Scan QR code</string>
+    <string name="NFCreate">NFC</string>
+    <string name="hint_your_message">message hint</string>
+    <string name="label_your_message">Inserting id through NFC</string>
+    <string name="title_btn_set">NFC</string>
+    <string name="idText">By text:</string>
+    <string name="idQRCode">By QR code scanning:</string>
+    <string name="idNFC">By NFC:</string>
+
+    <!-- Charging Activity -->
+    <string name="selectMode">Please select the charging mode.</string>
+    <string name="normalCharging">Regular charging</string>
+    <string name="fastCharging">Fast charging</string>
+    <string name="textPrices">Prices</string>
+    <string name="textPriceNormal">Regular Charging:</string>
+    <string name="textPriceFast">Fast Charging:</string>
+    <string name="charging">Charging…</string>
+    <string name="cancelCharge">Cancel</string>
+    <string name="confirmCancel">Are you sure that you want to cancel?</string>
+    <string name="cancel">Yes, cancel.</string>
+    <string name="notCancelReturn">No, resume charging.</string>
+    <string name="finished">Finished</string>
+    <string name="ready">Your vehicle is charged.</string>
+    <string name="totalPrice">Price to pay:</string>
+    <string name="return_to_homepage">Return to homepage</string>
+    <string name="greenCharging">Green charging</string>
+    <string name="textPriceGreen">Green Charging:</string>
+    <string name="returnButton">Cancel</string>
+
+    <!-- Welcome Activity -->
+    <string name="welcome">Welcome</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search_charger_station">Search charger station</string>
+    <string name="account">Account</string>
+    <string name="incoming_nfc_message">Incoming NFC message</string>
+    <string name="NFCIdCharger">TextView</string>
+    <string name="home">Home</string>
+    <string name="charge_car">Charge Car</string>
+    <string name="person">Account</string>
+    <string name="insertValidId">Inset valid charger ID</string>
     <string name="log_out">Log Out</string>
     <string name="successSignOut">Sign out successful</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="password_reset_instructions">We just need your registered email to send you password reset instructions.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sent_email_recover">We have sent you instructions to reset your password</string>
+    <string name="fail_email_recover">Failed to send reset email</string>
+    <string name="nfcNotSupported">Nfc is not supported on this device</string>
+    <string name="nfcDisabled">NFC disabled on this device, turn on to proceed.</string>
+    <string name="mimeType">Check your MIME type</string>
+    <string name="parkingFeup">FEUP: 10 free slots</string>
+
+    <!-- Settings Activity -->
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings_button">Settings Button</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Account</string>
+    <string name="application">Application</string>
+
+    <!-- Account Preferences -->
+    <string name="signature_title">Your username</string>
+    <string name="car">Car</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="truck">Truck</string>
+    <string name="scooter">Scooter</string>
+
+    <!-- Application Preferences -->
+    <string name="darkTheme">Dark Theme</string>
+    <string name="language_title">Language</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="english">English</string>
+    <string name="addVehicle">Add vehicle</string>
+    <string name="resetPassword">Reset password</string>
+    <string name="historic_button">Historic button</string>
+    <string name="add_vehicle">Add vehicle</string>
 </resources>

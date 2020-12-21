@@ -10,39 +10,32 @@ import android.nfc.NfcAdapter
 import android.widget.TextView
 import android.widget.Toast
 
+// Activity to read NFC
+
 const val MIME_TEXT_PLAIN = "text/plain"
 
 class ReceiverActivity : AppCompatActivity() {
 
-    private var tvIncomingMessage: TextView? = null
+    private var nfcIDCharger: TextView? = null
     private var nfcAdapter: NfcAdapter? = null
     private val isNfcSupported: Boolean = this.nfcAdapter != null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver_nfc)
-
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this)
-
-        if (!isNfcSupported) {
-            Toast.makeText(this, "Nfc is not supported on this device", Toast.LENGTH_SHORT).show()
+        /*if (!isNfcSupported) {
+            Toast.makeText(this, getString(R.string.nfcNotSupported), Toast.LENGTH_SHORT).show()
             this.finish()
-        }
-
+        }*/
         if (!nfcAdapter!!.isEnabled) {
-            Toast.makeText(
-                this,
-                "NFC disabled on this device. Turn on to proceed",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, getString(R.string.nfcDisabled), Toast.LENGTH_SHORT).show()
         }
-
         initViews()
     }
 
     private fun initViews() {
-        this.tvIncomingMessage = findViewById(R.id.tv_in_message)
+        this.nfcIDCharger = findViewById(R.id.nfcMessage)
     }
 
     override fun onNewIntent(intent: Intent){
@@ -59,12 +52,9 @@ class ReceiverActivity : AppCompatActivity() {
     private fun enableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
         val intent = Intent(activity.applicationContext, activity.javaClass)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-
         val pendingIntent = PendingIntent.getActivity(activity.applicationContext, 0, intent, 0)
-
         val filters = arrayOfNulls<IntentFilter>(1)
         val techList = arrayOf<Array<String>>()
-
         filters[0] = IntentFilter()
         with(filters[0]) {
             this?.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED)
@@ -72,10 +62,9 @@ class ReceiverActivity : AppCompatActivity() {
             try {
                 this?.addDataType(MIME_TEXT_PLAIN)
             } catch (ex: IntentFilter.MalformedMimeTypeException) {
-                throw RuntimeException("Check your MIME type")
+                throw RuntimeException(getString(R.string.mimeType))
             }
         }
-
         adapter?.enableForegroundDispatch(activity, pendingIntent, filters, techList)
     }
 
@@ -93,13 +82,23 @@ class ReceiverActivity : AppCompatActivity() {
         if(NfcAdapter.ACTION_NDEF_DISCOVERED==action){
             val parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)
             with(parcelables){
-                val inNdefMessage = this?.get(0) as NdefMessage
-                val inNefRecords = inNdefMessage.records
-                val ndefRecord_0 = inNefRecords[0]
-
-                val inMessage = String(ndefRecord_0.payload)
-                tvIncomingMessage?.text = inMessage
+                val inNDefMessage = this?.get(0) as NdefMessage
+                val inNefRecords = inNDefMessage.records
+                val nDefRecord0 = inNefRecords[0]
+                val inMessage = String(nDefRecord0.payload)
+                nfcIDCharger?.text = inMessage
+                confirmIdCharger(inMessage)
             }
         }
+    }
+    private fun confirmIdCharger(chargerID: String){
+        //TODO verify if id charger is ready to use (value available in database)
+        sendID(chargerID)
+    }
+
+    private fun sendID(chargerID: String){
+        val intent = Intent(this,ActivityCharging::class.java)
+        intent.putExtra("chargerID",chargerID)
+        startActivity(intent)
     }
 }

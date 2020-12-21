@@ -63,22 +63,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         android:autofillHints="" />
 
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="50dp"
-        android:text="@string/forgot_pass"
-        android:textColor="@color/gray"
-        android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintBottom_toTopOf="@+id/button_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="MissingConstraints,SmallSp"/>
+
 
     <Button
         android:id="@+id/button_login"
@@ -89,32 +74,28 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/remember_password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintBottom_toTopOf="@+id/forgot_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"/>
 
-
-    <RadioButton
-        android:id="@+id/remember_password"
+    <TextView
+        android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_login"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:checked="false"
-        android:text="@string/remember_pass"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/forgot_pass"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@+id/button_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
+        tools:ignore="MissingConstraints,SmallSp"/>
 
     <Button
         android:id="@+id/button_register"
@@ -125,7 +106,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/remember_password"
+        android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

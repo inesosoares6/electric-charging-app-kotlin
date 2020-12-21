@@ -1,0 +1,66 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/messages_header">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_title" />
+
+        <Preference
+            app:title="@string/addVehicle">
+            <intent
+                android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
+                android:targetClass="pt.atp.app_seai_g.AddVehicleActivity"
+                android:targetPackage="pt.atp.app_seai_g" />
+        </Preference>
+        <Preference
+            app:title="@string/resetPassword">
+            <intent
+                android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
+                android:targetClass="pt.atp.app_seai_g.ActivityResetPassword"
+                android:targetPackage="pt.atp.app_seai_g" />
+        </Preference>
+
+       <!-- <ListPreference
+            app:entries="@array/vehicle_entries"
+            app:entryValues="@array/vehicle_values"
+            app:key="vehicle"
+            app:title="@string/vehicle"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:entries="@array/brand_entries"
+            app:entryValues="@array/brand_values"
+            app:key="brand"
+            app:title="@string/brand"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:entries="@array/model_entries"
+            app:entryValues="@array/model_values"
+            app:key="model"
+            app:title="@string/model"
+            app:useSimpleSummaryProvider="true" />-->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/application">
+
+        <SwitchPreferenceCompat
+            app:key="darkTheme"
+            app:title="@string/darkTheme" />
+
+        <ListPreference
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:key="language"
+            app:title="@string/language_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

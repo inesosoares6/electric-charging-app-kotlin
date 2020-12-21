@@ -1,0 +1,54 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="language_entries">
+        <item>@string/portuguese</item>
+        <item>@string/english</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>portuguese</item>
+        <item>english</item>
+    </string-array>
+
+    <string-array name="vehicle_entries">
+        <item>@string/car</item>
+        <item>@string/motorcycle</item>
+        <item>@string/scooter</item>
+        <item>@string/truck</item>
+    </string-array>
+
+    <string-array name="vehicle_values">
+        <item>car</item>
+        <item>motorcycle</item>
+        <item>scooter</item>
+        <item>truck</item>
+    </string-array>
+
+    <string-array name="brand_entries">
+        <item>Tesla</item>
+        <item>BMW</item>
+        <item>Mercedes</item>
+        <item>Toyota</item>
+    </string-array>
+
+    <string-array name="brand_values">
+        <item>tesla</item>
+        <item>bmw</item>
+        <item>mercedes</item>
+        <item>toyota</item>
+    </string-array>
+
+    <string-array name="model_entries">
+        <item>not_defined</item>
+        <item>not_defined</item>
+        <item>not_defined</item>
+        <item>not_defined</item>
+    </string-array>
+
+    <string-array name="model_values">
+        <item>not_defined</item>
+        <item>not_defined</item>
+        <item>not_defined</item>
+        <item>not_defined</item>
+    </string-array>
+</resources>

@@ -2,8 +2,16 @@ package pt.atp.app_seai_g
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Switch
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
+// Activity that contains the three fragments:
+//    - home          (FragmentHome)
+//    - charging id   (Fragment Charge)
+//    - account       (Fragment Account)
 
 class ActivityWelcome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
