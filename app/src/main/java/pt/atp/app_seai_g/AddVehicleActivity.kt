@@ -1,8 +1,10 @@
 package pt.atp.app_seai_g
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -24,6 +26,9 @@ class AddVehicleActivity : AppCompatActivity() {
 
         buttonAddVehicle!!.setOnClickListener{
             //TODO verify info of vehicle and write to database
+            val intent = Intent(this, ActivityWelcome::class.java)
+            startActivity(intent)
+            Toast.makeText(applicationContext,"Didn't send data to database",Toast.LENGTH_LONG).show()
         }
 
     }
