@@ -28,8 +28,6 @@ import com.google.firebase.ktx.Firebase
 
 class FragmentAccount : Fragment(R.layout.fragment_account) {
 
-    private var fbAuth = FirebaseAuth.getInstance()
-
     @SuppressLint("UseSwitchCompatOrMaterialCode", "SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
@@ -44,14 +42,14 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         mAuth=FirebaseAuth.getInstance()
 
         buttonLogout.setOnClickListener{
-            fbAuth.signOut()
+            mAuth.signOut()
             Toast.makeText(context,getString(R.string.successSignOut),Toast.LENGTH_LONG).show()
             val intent = Intent(context,ActivityLogin::class.java)
             startActivity(intent)
         }
 
-        fbAuth.addAuthStateListener {
-            if(fbAuth.currentUser == null){
+        mAuth.addAuthStateListener {
+            if(mAuth.currentUser == null){
                 activity?.finish()
             }
         }
