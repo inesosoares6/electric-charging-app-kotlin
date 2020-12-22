@@ -59,10 +59,10 @@ class SettingsActivity : AppCompatActivity() {
                 db.collection("users").document(it).get()
                         .addOnSuccessListener { result ->
                             name=result["name"].toString()
-                            Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
+                            //Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
                         }
                         .addOnFailureListener {
-                            Toast.makeText(context, "Error getting numCharges", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, getString(R.string.error_name), Toast.LENGTH_LONG).show()
                         }
             }
             val countingPreference: EditTextPreference? = findPreference("signature")

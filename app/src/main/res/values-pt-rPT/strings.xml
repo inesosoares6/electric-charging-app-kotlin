@@ -110,5 +110,6 @@
     <!-- Account Fragment -->
     <string name="number_of_charges">Número de carregamentos: </string>
     <string name="error_number_of_charges">Erro ao ler número de carregamentos</string>
+    <string name="error_name">Erro ao ler o nome</string>
 
 </resources>

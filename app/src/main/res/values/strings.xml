@@ -110,4 +110,5 @@
     <!-- Account Fragment -->
     <string name="number_of_charges">Number of charges: </string>
     <string name="error_number_of_charges">Error in reading number of charges</string>
+    <string name="error_name">Error in reading name</string>
 </resources>
