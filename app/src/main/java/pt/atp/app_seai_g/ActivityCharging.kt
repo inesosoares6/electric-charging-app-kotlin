@@ -89,7 +89,7 @@ class ActivityCharging : AppCompatActivity() {
             db.collection("users").document(it).get()
                     .addOnSuccessListener { result ->
                         numCharges=result["numCharges"].toString().toInt()
-                        Toast.makeText(applicationContext, result["numCharges"].toString(), Toast.LENGTH_LONG).show()
+                        //Toast.makeText(applicationContext, result["numCharges"].toString(), Toast.LENGTH_LONG).show()
                     }
                     .addOnFailureListener {
                         Toast.makeText(applicationContext, "Error getting numCharges", Toast.LENGTH_LONG).show()
