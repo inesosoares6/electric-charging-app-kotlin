@@ -50,8 +50,7 @@ class ActivityRegister : AppCompatActivity() {
         // Add a new document with a generated ID
         db.collection("users")
                 .add(user)
-                .addOnSuccessListener { documentReference ->
-                    Toast.makeText(applicationContext, "DocumentSnapshot added with ID: ${documentReference.id}",Toast.LENGTH_LONG).show()
+                .addOnSuccessListener {
                     Toast.makeText(applicationContext, getString(R.string.successRegister), Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ActivityLogin::class.java)
                     startActivity(intent)

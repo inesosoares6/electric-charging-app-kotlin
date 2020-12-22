@@ -38,6 +38,8 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
         val database = Firebase.database
         val myRef = database.getReference("message")
+        // Access a Cloud Firestore instance from your Activity
+        val db = FirebaseFirestore.getInstance()
 
         buttonLogout.setOnClickListener{
             fbAuth.signOut()
@@ -60,6 +62,17 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         historicButton.setOnClickListener{
             /*myRef.setValue("Hello, World!")
             Toast.makeText(context,"Sent to database", Toast.LENGTH_LONG).show()*/
+
+            db.collection("users")
+                    .get()
+                    .addOnSuccessListener { result ->
+                        for (document in result) {
+                            Toast.makeText(context, "${document.id} => ${document.data}",Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Error getting documents.", Toast.LENGTH_LONG).show()
+                    }
         }
 
         darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
