@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 
 // Activity to charge the vehicle
 //   - communication with control module
@@ -77,10 +81,29 @@ class ActivityCharging : AppCompatActivity() {
             finishedPage.visibility=View.VISIBLE
         }
 
+        val db = FirebaseFirestore.getInstance()
+        val mAuth: FirebaseAuth?
+        var numCharges : Int = 0
+        mAuth= FirebaseAuth.getInstance()
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).get()
+                    .addOnSuccessListener { result ->
+                        numCharges=result["numCharges"].toString().toInt()
+                        Toast.makeText(applicationContext, result["numCharges"].toString(), Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(applicationContext, "Error getting numCharges", Toast.LENGTH_LONG).show()
+                    }
+        }
         returnHomepage.setOnClickListener{
            val intent = Intent(this, ActivityWelcome::class.java)
             startActivity(intent)
+            mAuth.currentUser?.email?.let {
+                db.collection("users").document(it).update(mapOf(
+                        "numCharges" to (numCharges+1)
+                ))
+            }
         }
     }
 
