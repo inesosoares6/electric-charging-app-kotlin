@@ -82,7 +82,7 @@ class ActivityCharging : AppCompatActivity() {
 
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
-        var numCharges : Int = 0
+        var numCharges = 0
         mAuth= FirebaseAuth.getInstance()
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
         mAuth.currentUser?.email?.let {
