@@ -54,11 +54,22 @@ class SettingsActivity : AppCompatActivity() {
                 false
             }
 
+            var name = ""
+            mAuth.currentUser?.email?.let {
+                db.collection("users").document(it).get()
+                        .addOnSuccessListener { result ->
+                            name=result["name"].toString()
+                            Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, "Error getting numCharges", Toast.LENGTH_LONG).show()
+                        }
+            }
             val countingPreference: EditTextPreference? = findPreference("signature")
             countingPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
                 val text = preference.text
                 if (TextUtils.isEmpty(text)) {
-                    "Not set"
+                    name
                 } else {
                     //TODO go find the name in database
                     mAuth.currentUser?.email?.let {

@@ -80,6 +80,7 @@ class ActivityCharging : AppCompatActivity() {
             finishedPage.visibility=View.VISIBLE
         }
 
+        // Update numCharges in database
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
         var numCharges = 0
