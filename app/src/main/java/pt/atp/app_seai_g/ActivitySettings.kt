@@ -6,6 +6,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 // Activity of settings
@@ -13,7 +15,6 @@ import java.util.*
 var darkMode: Boolean = false
 
 class SettingsActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -36,6 +37,9 @@ class SettingsActivity : AppCompatActivity() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
+            val db = FirebaseFirestore.getInstance()
+            var mAuth: FirebaseAuth? = null
+            mAuth=FirebaseAuth.getInstance()
             val switchTheme: SwitchPreferenceCompat? = findPreference("darkTheme")
             switchTheme!!.setOnPreferenceChangeListener { _, _ ->
                 if (switchTheme.isChecked) {
@@ -57,6 +61,11 @@ class SettingsActivity : AppCompatActivity() {
                     "Not set"
                 } else {
                     //TODO go find the name in database
+                    mAuth.currentUser?.email?.let {
+                        db.collection("users").document(it).update(mapOf(
+                                "name" to text
+                        ))
+                    }
                     text
                 }
             }
