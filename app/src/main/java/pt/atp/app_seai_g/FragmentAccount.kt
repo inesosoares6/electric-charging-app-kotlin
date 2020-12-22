@@ -60,9 +60,6 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         }
 
         historicButton.setOnClickListener{
-            /*myRef.setValue("Hello, World!")
-            Toast.makeText(context,"Sent to database", Toast.LENGTH_LONG).show()*/
-
             db.collection("users")
                     .get()
                     .addOnSuccessListener { result ->

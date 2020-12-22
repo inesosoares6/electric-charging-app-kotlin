@@ -45,11 +45,12 @@ class ActivityRegister : AppCompatActivity() {
         val user = hashMapOf(
                 "name" to name,
                 "email" to email,
+                "numCharges" to 0
         )
 
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
+        db.collection("users").document(email)
+                .set(user)
                 .addOnSuccessListener {
                     Toast.makeText(applicationContext, getString(R.string.successRegister), Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ActivityLogin::class.java)
