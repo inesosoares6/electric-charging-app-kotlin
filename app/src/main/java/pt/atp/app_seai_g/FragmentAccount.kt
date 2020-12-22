@@ -38,8 +38,6 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val darkThemeButton: Switch = rootView.findViewById(R.id.darkThemeButton)
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
         val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
-        val database = Firebase.database
-        val myRef = database.getReference("message")
         // Access a Cloud Firestore instance from your Activity
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
@@ -71,21 +69,12 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
                         numChargesText.text = getString(R.string.number_of_charges) + "   " + numCharges
                     }
                     .addOnFailureListener {
-                        Toast.makeText(context,"Error in reading number of charges",Toast.LENGTH_LONG).show()
+                        Toast.makeText(context,getString(R.string.error_number_of_charges),Toast.LENGTH_LONG).show()
                     }
         }
 
         historicButton.setOnClickListener{
-            db.collection("users")
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (document in result) {
-                            Toast.makeText(context, "${document.id} => ${document.data}",Toast.LENGTH_LONG).show()
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(context, "Error getting documents.", Toast.LENGTH_LONG).show()
-                    }
+            //TODO implement a listView of charges history
         }
 
         darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
@@ -100,22 +89,6 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
                 }
             }
         }
-
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Toast.makeText(context,"Value is: $value", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Toast.makeText(context,"Failed to read value.", Toast.LENGTH_LONG).show()
-            }
-        })
-
         return rootView
     }
 }
