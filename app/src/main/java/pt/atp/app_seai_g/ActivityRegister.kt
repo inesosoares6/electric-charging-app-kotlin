@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import pt.atp.app_seai_g.models.User
 
@@ -25,7 +26,8 @@ class ActivityRegister : AppCompatActivity() {
     private var confirmPasswordTV: EditText? = null
     private var regBtn: Button? = null
     private var mAuth: FirebaseAuth? = null
-    private lateinit var database: DatabaseReference
+    // Access a Cloud Firestore instance from your Activity
+    private val db = FirebaseFirestore.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,36 +38,27 @@ class ActivityRegister : AppCompatActivity() {
         regBtn!!.setOnClickListener{
             registerNewUser()
         }
-        database = Firebase.database.reference
     }
 
-    public override fun onStart() {
-        super.onStart()
-        mAuth?.currentUser?.let{
-            onAuthSuccess(it)
-        }
-    }
+    private fun writeNewUserDatabase(name: String, email: String) {
+        // Create a new user with a first and last name
+        val user = hashMapOf(
+                "name" to name,
+                "email" to email,
+        )
 
-    private fun onAuthSuccess(user: FirebaseUser) {
-        val username = usernameFromEmail(user.email!!)
-        writeNewUserDatabase(user.uid, username, user.email!!)
-        // Go to login activity
-        Toast.makeText(applicationContext, getString(R.string.successRegister), Toast.LENGTH_LONG).show()
-        val intent = Intent(this, ActivityLogin::class.java)
-        startActivity(intent)
-    }
-
-    private fun usernameFromEmail(email: String): String {
-        return if (email.contains("@")) {
-            email.split("@".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-        } else {
-            email
-        }
-    }
-
-    private fun writeNewUserDatabase(userId: String, name: String, email: String) {
-        val user = User(name,email)
-        database.child("users").child(userId).setValue(user)
+        // Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(applicationContext, "DocumentSnapshot added with ID: ${documentReference.id}",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, getString(R.string.successRegister), Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, ActivityLogin::class.java)
+                    startActivity(intent)
+                }
+                .addOnFailureListener {
+                    Toast.makeText(applicationContext, "Error adding document", Toast.LENGTH_LONG).show()
+                }
     }
 
     private fun registerNewUser() {
@@ -94,7 +87,7 @@ class ActivityRegister : AppCompatActivity() {
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    onAuthSuccess(task.result?.user!!)
+                    writeNewUserDatabase(name,email)
                 } else {
                     Toast.makeText(applicationContext, getString(R.string.failRegister), Toast.LENGTH_LONG).show()
                 }
