@@ -38,7 +38,7 @@ class SettingsActivity : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val db = FirebaseFirestore.getInstance()
-            var mAuth: FirebaseAuth? = null
+            val mAuth: FirebaseAuth?
             mAuth=FirebaseAuth.getInstance()
             val switchTheme: SwitchPreferenceCompat? = findPreference("darkTheme")
             switchTheme!!.setOnPreferenceChangeListener { _, _ ->
