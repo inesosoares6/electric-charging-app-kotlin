@@ -32,7 +32,7 @@ class ActivityCharging : AppCompatActivity() {
 
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
-        chargerID.text = bb!!.getString("chargerID")
+        chargerID.text = bb?.getString("chargerID")
 
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
@@ -53,7 +53,6 @@ class ActivityCharging : AppCompatActivity() {
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
-            Toast.makeText(applicationContext,LocalDateTime.now().toString(),Toast.LENGTH_LONG).show()
         }
 
         val chargeFast = findViewById<Button>(R.id.chargeFast)
@@ -94,6 +93,7 @@ class ActivityCharging : AppCompatActivity() {
             //TODO send info to control: id, cancel charging
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
+            timeFinished = LocalDateTime.now()
         }
 
 
@@ -103,7 +103,6 @@ class ActivityCharging : AppCompatActivity() {
             db.collection("users").document(it).get()
                     .addOnSuccessListener { result ->
                         numCharges=result["numCharges"].toString().toInt()
-                        //Toast.makeText(applicationContext, result["numCharges"].toString(), Toast.LENGTH_LONG).show()
                     }
                     .addOnFailureListener {
                         Toast.makeText(applicationContext, "Error getting numCharges", Toast.LENGTH_LONG).show()
@@ -117,14 +116,12 @@ class ActivityCharging : AppCompatActivity() {
                         "numCharges" to (numCharges+1)
                 ))
             }
-            timeFinished = LocalDateTime.now()
             val charger = hashMapOf(
-                "idCharger" to bb.getString("chargerID"),
+                "idCharger" to bb?.getString("chargerID"),
                 "timeStarted" to timeStarted,
                 "timeFinished" to timeFinished,
                 "price" to 0
             )
-            Toast.makeText(applicationContext,LocalDateTime.now().toString(),Toast.LENGTH_LONG).show()
             //TODO update price in database
             mAuth.currentUser?.email?.let { it1 ->
                 db.collection("users").document(it1).collection("charges").document((numCharges+1).toString())
