@@ -45,6 +45,12 @@ class ActivityCharging : AppCompatActivity() {
         var numCharges = 0
         var timeStarted: LocalDateTime = LocalDateTime.now()
         var timeFinished: LocalDateTime = LocalDateTime.now()
+        var time: String = ""
+        var day: String = ""
+        var month: String = ""
+        var year: String = ""
+        var hour: String = ""
+        var minute: String = ""
         mAuth= FirebaseAuth.getInstance()
 
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
@@ -53,6 +59,11 @@ class ActivityCharging : AppCompatActivity() {
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
+            day = timeStarted.dayOfMonth.toString()
+            month = timeStarted.monthValue.toString()
+            year = timeStarted.year.toString()
+            hour = timeStarted.hour.toString()
+            minute = timeStarted.minute.toString()
         }
 
         val chargeFast = findViewById<Button>(R.id.chargeFast)
@@ -94,6 +105,7 @@ class ActivityCharging : AppCompatActivity() {
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             timeFinished = LocalDateTime.now()
+
         }
 
 
@@ -118,6 +130,8 @@ class ActivityCharging : AppCompatActivity() {
             }
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
+                "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute),
+                "time" to time,
                 "timeStarted" to timeStarted,
                 "timeFinished" to timeFinished,
                 "price" to 0
