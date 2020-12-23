@@ -42,9 +42,9 @@ class ActivityAddVehicle : AppCompatActivity() {
                 "brand" to brand,
                 "model" to model
         )
-        val vehicles: Int = getNumberOfVehicles()
+        val vehicleId: String = type + "_" + brand + "_" + model
         mAuth?.currentUser?.email?.let { it1 ->
-            db.collection("users").document(it1).collection("vehicles").document((vehicles+1).toString()).set(vehicle)
+            db.collection("users").document(it1).collection("vehicles").document(vehicleId).set(vehicle)
                     .addOnSuccessListener {
                         Toast.makeText(applicationContext, getString(R.string.vehicle_addition_successful), Toast.LENGTH_LONG).show()
                         val intent = Intent(this, ActivityWelcome::class.java)
@@ -54,25 +54,6 @@ class ActivityAddVehicle : AppCompatActivity() {
                         Toast.makeText(applicationContext, getString(R.string.error_adding_vehicle), Toast.LENGTH_LONG).show()
                     }
         }
-    }
-
-    private fun getNumberOfVehicles(): Int {
-        var count = 0
-        mAuth?.currentUser?.email?.let {
-            db.collection("users").document(it).collection("vehicles").get()
-                    .addOnCompleteListener { task ->
-                        if(task.isSuccessful){
-                            count = 0
-                            for(document in task.result){
-                                count++
-                            }
-                            Toast.makeText(applicationContext,count.toString(),Toast.LENGTH_LONG).show()
-                        } else{
-                            Toast.makeText(applicationContext,getString(R.string.error_getting_documents),Toast.LENGTH_LONG).show()
-                        }
-                    }
-        }
-        return count
     }
 
     private fun initializeUI() {
