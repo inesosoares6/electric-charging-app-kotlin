@@ -1,14 +1,18 @@
 package pt.atp.app_seai_g
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import java.time.LocalDateTime
 
 // Activity to charge the vehicle
 //   - communication with control module
@@ -20,6 +24,8 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var confirmCancelPage: View
     private lateinit var finishedPage: View
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_charging)
@@ -33,11 +39,21 @@ class ActivityCharging : AppCompatActivity() {
         confirmCancelPage = findViewById(R.id.confirmCancelPage)
         finishedPage = findViewById(R.id.finishedPage)
 
+        // Update numCharges in database
+        val db = FirebaseFirestore.getInstance()
+        val mAuth: FirebaseAuth?
+        var numCharges = 0
+        var timeStarted: LocalDateTime = LocalDateTime.now()
+        var timeFinished: LocalDateTime = LocalDateTime.now()
+        mAuth= FirebaseAuth.getInstance()
+
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
         chargeNormal.setOnClickListener{
             //TODO send info to control: id, charging mode NORMAL
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+            timeStarted = LocalDateTime.now()
+            Toast.makeText(applicationContext,LocalDateTime.now().toString(),Toast.LENGTH_LONG).show()
         }
 
         val chargeFast = findViewById<Button>(R.id.chargeFast)
@@ -80,11 +96,8 @@ class ActivityCharging : AppCompatActivity() {
             finishedPage.visibility=View.VISIBLE
         }
 
-        // Update numCharges in database
-        val db = FirebaseFirestore.getInstance()
-        val mAuth: FirebaseAuth?
-        var numCharges = 0
-        mAuth= FirebaseAuth.getInstance()
+
+
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).get()
@@ -103,6 +116,19 @@ class ActivityCharging : AppCompatActivity() {
                 db.collection("users").document(it).update(mapOf(
                         "numCharges" to (numCharges+1)
                 ))
+            }
+            timeFinished = LocalDateTime.now()
+            val charger = hashMapOf(
+                "idCharger" to bb.getString("chargerID"),
+                "timeStarted" to timeStarted,
+                "timeFinished" to timeFinished,
+                "price" to 0
+            )
+            Toast.makeText(applicationContext,LocalDateTime.now().toString(),Toast.LENGTH_LONG).show()
+            //TODO update price in database
+            mAuth.currentUser?.email?.let { it1 ->
+                db.collection("users").document(it1).collection("charges").document((numCharges+1).toString())
+                    .set(charger)
             }
         }
     }
