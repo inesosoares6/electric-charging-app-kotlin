@@ -1,7 +1,11 @@
 package pt.atp.app_seai_g
 
+import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.DisplayMetrics
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +14,7 @@ import androidx.preference.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+
 
 // Activity of settings
 
@@ -33,6 +38,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
+
+        private lateinit var myLocale: Locale
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val db = FirebaseFirestore.getInstance()
@@ -54,15 +62,14 @@ class SettingsActivity : AppCompatActivity() {
             countingPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
                 val text = preference.text
                 if (TextUtils.isEmpty(text)) {
-                    getNameFromDatabase(db,mAuth)
+                    getNameFromDatabase(db, mAuth)
                 } else {
-                    //TODO go find the name in database
                     mAuth.currentUser?.email?.let {
                         db.collection("users").document(it).update(mapOf(
                                 "name" to text
                         ))
                     }
-                    getNameFromDatabase(db,mAuth)
+                    getNameFromDatabase(db, mAuth)
                 }
             }
             val switchLanguage: ListPreference? = findPreference("language")
@@ -71,14 +78,25 @@ class SettingsActivity : AppCompatActivity() {
                     val index = preference.findIndexOfValue(newValue.toString())
                     //val entry = preference.entries[index]
                     val entryValue = preference.entryValues[index]
+                    val preferences = PreferenceManager.getDefaultSharedPreferences(context)
                     if(entryValue=="portuguese"){
                         //TODO change language to Portuguese
-                        Locale("por")
                         Toast.makeText(context, "POR", Toast.LENGTH_SHORT).show()
+                        setLocale("pt")
+                        preferences.edit().putString("lang", "pt").apply()
+                        /*val locale = Locale("por" as String)
+                        Locale.setDefault(locale)
+                        var res : Resources? = context?.resources
+                        var config : Configuration? = res?.configuration
+                        if (config != null) {
+                            config.locale = locale
+                        }
+                        res?.updateConfiguration(config,res.displayMetrics)*/
                     } else{
                         //TODO change Language to English
-                        Locale("en")
                         Toast.makeText(context, "EN", Toast.LENGTH_SHORT).show()
+                        setLocale("en")
+                        preferences.edit().putString("lang", "en").apply()
                     }
                 }
 
@@ -86,7 +104,18 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        private fun getNameFromDatabase(db:FirebaseFirestore, mAuth: FirebaseAuth): String {
+        private fun setLocale(lang: String) {
+            myLocale = Locale(lang)
+            val res: Resources = resources
+            val dm: DisplayMetrics = res.displayMetrics
+            val conf: Configuration = res.configuration
+            conf.locale = myLocale
+            res.updateConfiguration(conf, dm)
+            val refresh = Intent(context, ActivityWelcome::class.java)
+            startActivity(refresh)
+        }
+
+        private fun getNameFromDatabase(db: FirebaseFirestore, mAuth: FirebaseAuth): String {
             var name = ""
             mAuth.currentUser?.email?.let {
                 db.collection("users").document(it).get()
