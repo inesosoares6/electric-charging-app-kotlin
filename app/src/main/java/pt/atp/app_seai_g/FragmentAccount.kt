@@ -35,6 +35,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
         val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
+        val userNameText: TextView = rootView.findViewById(R.id.userNameText)
         // Access a Cloud Firestore instance from your Activity
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
@@ -67,6 +68,18 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
                     }
                     .addOnFailureListener {
                         Toast.makeText(context,getString(R.string.error_number_of_charges),Toast.LENGTH_LONG).show()
+                    }
+        }
+
+        var userName : String
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).get()
+                    .addOnSuccessListener { result ->
+                        userName = result["name"].toString()
+                        userNameText.text = userName
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context,getString(R.string.error_name),Toast.LENGTH_LONG).show()
                     }
         }
 
