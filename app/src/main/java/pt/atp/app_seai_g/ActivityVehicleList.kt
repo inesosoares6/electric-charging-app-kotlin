@@ -26,14 +26,6 @@ class ActivityVehicleList : AppCompatActivity() {
         "Hadoop is an open source framework from Apache written in Java."
     )
 
-    private val imageId = arrayOf(
-        R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-        R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-        R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-        R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-        R.mipmap.ic_launcher
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vehicle_list)
@@ -55,7 +47,7 @@ class ActivityVehicleList : AppCompatActivity() {
                 }
         }*/
 
-        val myListAdapter = VehicleAdapter(this,language,description,imageId)
+        val myListAdapter = VehicleAdapter(this, language, description)
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = myListAdapter
 

@@ -10,7 +10,11 @@ import android.widget.TextView
 import pt.atp.app_seai_g.R
 
 
-class VehicleAdapter(private val context: Activity, private val title: Array<String>, private val description: Array<String>, private val imgid: Array<Int>)
+class VehicleAdapter(
+    private val context: Activity,
+    private val title: Array<String>,
+    private val description: Array<String>
+)
     : ArrayAdapter<String>(context, R.layout.layout_vehicle_list, title) {
 
     @SuppressLint("ViewHolder", "InflateParams")
