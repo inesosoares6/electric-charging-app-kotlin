@@ -31,12 +31,11 @@ class ActivityHistory : AppCompatActivity() {
                         arrayPrice.add(document["price"].toString())
                         arrayTime.add(document["time"].toString())
                     }
-                    Toast.makeText(applicationContext,arrayCharger.toString(),Toast.LENGTH_LONG).show()
-                    sendData(arrayDate,arrayTime, arrayPrice, arrayCharger)
+                    Toast.makeText(applicationContext,arrayTime.toString(),Toast.LENGTH_LONG).show()
+                    //sendData(arrayDate,arrayTime, arrayPrice, arrayCharger)
                 }
                 .addOnFailureListener {
-                    Toast.makeText(applicationContext,getString(R.string.error_getting_documents),
-                        Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,getString(R.string.error_getting_documents), Toast.LENGTH_LONG).show()
                 }
         }
     }
