@@ -25,9 +25,9 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val buttonLogout: FloatingActionButton = rootView.findViewById(R.id.logoutButton)
         val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
+        val vehiclesButton: FloatingActionButton = rootView.findViewById(R.id.vehiclesButton)
         val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
         val userNameText: TextView = rootView.findViewById(R.id.userNameText)
-        val listOfVehicles: TextView = rootView.findViewById(R.id.listOfVehicles)
         // Access a Cloud Firestore instance from your Activity
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
@@ -79,7 +79,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             //TODO implement a listView of charges history
         }
 
-        listOfVehicles.setOnClickListener {
+        vehiclesButton.setOnClickListener {
             //TODO show list of vehicles
             val intent = Intent(context,ActivityVehicleList::class.java)
             startActivity(intent)
