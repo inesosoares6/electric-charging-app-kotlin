@@ -115,5 +115,6 @@
     <string name="error_number_of_charges">Erro ao ler número de carregamentos</string>
     <string name="error_name">Erro ao ler o nome</string>
     <string name="logout_button">Logout Button</string>
+    <string name="error_getting_documents">Erro a aceder aos documentos</string>
 
 </resources>

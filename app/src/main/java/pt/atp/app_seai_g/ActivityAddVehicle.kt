@@ -6,9 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
@@ -27,16 +29,9 @@ class ActivityAddVehicle : AppCompatActivity() {
         setContentView(R.layout.activity_add_vehicle)
         initializeUI()
         mAuth= FirebaseAuth.getInstance()
-        //database = Firebase.database.reference
 
         buttonAddVehicle!!.setOnClickListener{
-            //TODO verify info of vehicle and write to database
-
             writeVehicleToDatabase(vehicleTV?.text.toString(),brandTV?.text.toString(),modelTV?.text.toString())
-
-            val intent = Intent(this, ActivityWelcome::class.java)
-            startActivity(intent)
-            Toast.makeText(applicationContext,"Didn't send data to database",Toast.LENGTH_LONG).show()
         }
 
     }
@@ -47,18 +42,37 @@ class ActivityAddVehicle : AppCompatActivity() {
                 "brand" to brand,
                 "model" to model
         )
-
+        val vehicles: Int = getNumberOfVehicles()
         mAuth?.currentUser?.email?.let { it1 ->
-            db.collection("users").document(it1).collection("vehicles").document().set(vehicle)
+            db.collection("users").document(it1).collection("vehicles").document((vehicles+1).toString()).set(vehicle)
                     .addOnSuccessListener {
                         Toast.makeText(applicationContext, getString(R.string.vehicle_addition_successful), Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, SettingsActivity::class.java)
+                        val intent = Intent(this, ActivityWelcome::class.java)
                         startActivity(intent)
                     }
                     .addOnFailureListener {
-                        Toast.makeText(applicationContext, "Error adding vehicle", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, getString(R.string.error_adding_vehicle), Toast.LENGTH_LONG).show()
                     }
         }
+    }
+
+    private fun getNumberOfVehicles(): Int {
+        var count = 0
+        mAuth?.currentUser?.email?.let {
+            db.collection("users").document(it).collection("vehicles").get()
+                    .addOnCompleteListener { task ->
+                        if(task.isSuccessful){
+                            count = 0
+                            for(document in task.result){
+                                count++
+                            }
+                            Toast.makeText(applicationContext,count.toString(),Toast.LENGTH_LONG).show()
+                        } else{
+                            Toast.makeText(applicationContext,getString(R.string.error_getting_documents),Toast.LENGTH_LONG).show()
+                        }
+                    }
+        }
+        return count
     }
 
     private fun initializeUI() {
