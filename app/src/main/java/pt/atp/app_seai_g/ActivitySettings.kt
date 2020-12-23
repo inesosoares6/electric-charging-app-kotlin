@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
-
 // Activity of settings
 
 class SettingsActivity : AppCompatActivity() {
@@ -76,30 +75,18 @@ class SettingsActivity : AppCompatActivity() {
             switchLanguage?.setOnPreferenceChangeListener { preference, newValue ->
                 if (preference is ListPreference) {
                     val index = preference.findIndexOfValue(newValue.toString())
-                    //val entry = preference.entries[index]
                     val entryValue = preference.entryValues[index]
                     val preferences = PreferenceManager.getDefaultSharedPreferences(context)
                     if(entryValue=="portuguese"){
-                        //TODO change language to Portuguese
                         Toast.makeText(context, "POR", Toast.LENGTH_SHORT).show()
                         setLocale("pt")
                         preferences.edit().putString("lang", "pt").apply()
-                        /*val locale = Locale("por" as String)
-                        Locale.setDefault(locale)
-                        var res : Resources? = context?.resources
-                        var config : Configuration? = res?.configuration
-                        if (config != null) {
-                            config.locale = locale
-                        }
-                        res?.updateConfiguration(config,res.displayMetrics)*/
                     } else{
-                        //TODO change Language to English
                         Toast.makeText(context, "EN", Toast.LENGTH_SHORT).show()
                         setLocale("en")
                         preferences.edit().putString("lang", "en").apply()
                     }
                 }
-
                 true
             }
         }
@@ -121,7 +108,6 @@ class SettingsActivity : AppCompatActivity() {
                 db.collection("users").document(it).get()
                         .addOnSuccessListener { result ->
                             name = result["name"].toString()
-                            //Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
                         }
                         .addOnFailureListener {
                             Toast.makeText(context, getString(R.string.error_name), Toast.LENGTH_LONG).show()
