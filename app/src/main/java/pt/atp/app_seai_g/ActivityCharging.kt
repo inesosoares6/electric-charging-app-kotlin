@@ -71,6 +71,12 @@ class ActivityCharging : AppCompatActivity() {
             //TODO send info to control: id, charging mode FAST
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+            timeStarted = LocalDateTime.now()
+            day = timeStarted.dayOfMonth.toString()
+            month = timeStarted.monthValue.toString()
+            year = timeStarted.year.toString()
+            hour = timeStarted.hour.toString()
+            minute = timeStarted.minute.toString()
         }
 
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
@@ -78,6 +84,12 @@ class ActivityCharging : AppCompatActivity() {
             //TODO send info to control: id, charging mode GREEN
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+            timeStarted = LocalDateTime.now()
+            day = timeStarted.dayOfMonth.toString()
+            month = timeStarted.monthValue.toString()
+            year = timeStarted.year.toString()
+            hour = timeStarted.hour.toString()
+            minute = timeStarted.minute.toString()
         }
 
         val returnButton = findViewById<Button>(R.id.returnButton)
@@ -108,8 +120,6 @@ class ActivityCharging : AppCompatActivity() {
 
         }
 
-
-
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).get()
@@ -130,8 +140,8 @@ class ActivityCharging : AppCompatActivity() {
             }
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
-                "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute),
-                "time" to time,
+                "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
+                "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
                 "timeStarted" to timeStarted,
                 "timeFinished" to timeFinished,
                 "price" to 0
