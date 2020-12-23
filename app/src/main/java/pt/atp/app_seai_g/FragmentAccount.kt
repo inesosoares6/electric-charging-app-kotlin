@@ -33,7 +33,6 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
         val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
         val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
-        val darkThemeButton: Switch = rootView.findViewById(R.id.darkThemeButton)
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
         val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
         // Access a Cloud Firestore instance from your Activity
@@ -64,7 +63,7 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             db.collection("users").document(it).get()
                     .addOnSuccessListener { result ->
                         numCharges = result["numCharges"].toString()
-                        numChargesText.text = getString(R.string.number_of_charges) + "   " + numCharges
+                        numChargesText.text = (activity?.getString(R.string.number_of_charges)) + "   " + numCharges
                     }
                     .addOnFailureListener {
                         Toast.makeText(context,getString(R.string.error_number_of_charges),Toast.LENGTH_LONG).show()
@@ -75,18 +74,6 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             //TODO implement a listView of charges history
         }
 
-        darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                true -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    darkThemeButton.isChecked=true
-                }
-                false -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    darkThemeButton.isChecked=false
-                }
-            }
-        }
         return rootView
     }
 }

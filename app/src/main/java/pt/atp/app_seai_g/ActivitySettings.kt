@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,10 +46,12 @@ class SettingsActivity : AppCompatActivity() {
                 if (switchTheme.isChecked) {
                     Toast.makeText(context, "Unchecked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = false
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     darkMode=true
                 } else {
                     Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = true
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     darkMode=false
                 }
                 false
