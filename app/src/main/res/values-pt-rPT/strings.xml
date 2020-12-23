@@ -116,5 +116,6 @@
     <string name="error_name">Erro ao ler o nome</string>
     <string name="logout_button">Logout Button</string>
     <string name="error_getting_documents">Erro a aceder aos documentos</string>
+    <string name="see_list_of_vehicles_saved">Consultar lista de veículos >></string>
 
 </resources>

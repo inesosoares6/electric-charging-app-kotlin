@@ -20,7 +20,6 @@ class ActivityAddVehicle : AppCompatActivity() {
     private var brandTV: EditText? = null
     private var modelTV: EditText? = null
     private var buttonAddVehicle: Button? = null
-    // Access a Cloud Firestore instance from your Activity
     private val db = FirebaseFirestore.getInstance()
     private var mAuth: FirebaseAuth? = null
 
