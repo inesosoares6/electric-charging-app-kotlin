@@ -9,23 +9,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import pt.atp.app_seai_g.models.VehicleAdapter
 
 class ActivityVehicleList : AppCompatActivity() {
-    private val language = arrayOf("C","C++","Java",".Net","Kotlin","Ruby","Rails","Python","Java Script","Php","Ajax","Perl","Hadoop")
-    private val description = arrayOf(
-        "C programming is considered as the base for other programming languages",
-        "C++ is an object-oriented programming language.",
-        "Java is a programming language and a platform.",
-        ".NET is a framework which is used to develop software applications.",
-        "Kotlin is a open-source programming language, used to develop Android apps and much more.",
-        "Ruby is an open-source and fully object-oriented programming language.",
-        "Ruby on Rails is a server-side web application development framework written in Ruby language.",
-        "Python is interpreted scripting  and object-oriented programming language.",
-        "JavaScript is an object-based scripting language.",
-        "PHP is an interpreted language, i.e., there is no need for compilation.",
-        "AJAX allows you to send and receive data asynchronously without reloading the web page.",
-        "Perl is a cross-platform environment used to create network and server-side applications.",
-        "Hadoop is an open source framework from Apache written in Java."
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vehicle_list)
@@ -33,21 +16,26 @@ class ActivityVehicleList : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
         mAuth=FirebaseAuth.getInstance()
+        val arrayType: ArrayList<String> = ArrayList()
+        val arrayDetails: ArrayList<String> = ArrayList()
 
-        val arrayType: Array<String> = arrayOf()
-        val arrayDetails: Array<String> = arrayOf()
-
-        /*mAuth.currentUser?.email?.let {
+        mAuth.currentUser?.email?.let {
             db.collection("users").document(it).collection("vehicles").get()
                 .addOnSuccessListener { result ->
-                    for((i, document) in result.withIndex()){
-                        arrayType[i]=(document["type"] as String)
-                        arrayDetails[i]=((document["brand"] as String)+(document["model"] as String))
+                    for(document in result){
+                        arrayType.add(document["type"].toString())
+                        arrayDetails.add((document["brand"].toString())+" - "+(document["model"] as String))
                     }
+                    sendData(arrayType,arrayDetails)
                 }
-        }*/
+                .addOnFailureListener {
+                    Toast.makeText(applicationContext,getString(R.string.error_getting_documents),Toast.LENGTH_LONG).show()
+                }
+        }
+    }
 
-        val myListAdapter = VehicleAdapter(this, language, description)
+    private fun sendData(arrayType: ArrayList<String>, arrayDetails: ArrayList<String>) {
+        val myListAdapter = VehicleAdapter(this, arrayType.toTypedArray(), arrayDetails.toTypedArray())
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = myListAdapter
 
