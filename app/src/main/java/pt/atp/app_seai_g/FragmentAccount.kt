@@ -76,11 +76,11 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         }
 
         historicButton.setOnClickListener{
-            //TODO implement a listView of charges history
+            val intent = Intent(context,ActivityHistory::class.java)
+            startActivity(intent)
         }
 
         vehiclesButton.setOnClickListener {
-            //TODO show list of vehicles
             val intent = Intent(context,ActivityVehicleList::class.java)
             startActivity(intent)
         }

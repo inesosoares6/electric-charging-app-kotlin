@@ -26,11 +26,12 @@ class ActivityHistory : AppCompatActivity() {
             db.collection("users").document(it).collection("charges").get()
                 .addOnSuccessListener { result ->
                     for(document in result){
+                        arrayDate.add(document["dayHour"].toString())
                         arrayCharger.add(document["idCharger"].toString())
                         arrayPrice.add(document["price"].toString())
-                        arrayDate.add(document["dayHour"].toString())
                         arrayTime.add(document["time"].toString())
                     }
+                    Toast.makeText(applicationContext,arrayCharger.toString(),Toast.LENGTH_LONG).show()
                     sendData(arrayDate,arrayTime, arrayPrice, arrayCharger)
                 }
                 .addOnFailureListener {

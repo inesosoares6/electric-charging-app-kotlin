@@ -29,7 +29,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="RtlEnabled"
         tools:targetApi="m">
-        <activity android:name=".ActivityHistory"></activity>
+        <activity android:name=".ActivityHistory" />
         <activity android:name=".ActivityVehicleList" />
         <activity android:name=".ActivityAddVehicle" />
         <!--
