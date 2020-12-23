@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import pt.atp.app_seai_g.models.VehicleAdapter
 
 class ActivityVehicleList : AppCompatActivity() {
@@ -35,6 +37,23 @@ class ActivityVehicleList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vehicle_list)
+        // Access a Cloud Firestore instance from your Activity
+        val db = FirebaseFirestore.getInstance()
+        val mAuth: FirebaseAuth?
+        mAuth=FirebaseAuth.getInstance()
+
+        val arrayType: Array<String> = arrayOf()
+        val arrayDetails: Array<String> = arrayOf()
+
+        /*mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).collection("vehicles").get()
+                .addOnSuccessListener { result ->
+                    for((i, document) in result.withIndex()){
+                        arrayType[i]=(document["type"] as String)
+                        arrayDetails[i]=((document["brand"] as String)+(document["model"] as String))
+                    }
+                }
+        }*/
 
         val myListAdapter = VehicleAdapter(this,language,description,imageId)
         val listView: ListView = findViewById(R.id.listView)

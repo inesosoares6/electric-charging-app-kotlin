@@ -23,7 +23,7 @@ class VehicleAdapter(private val context: Activity, private val title: Array<Str
         val subtitleText = rowView.findViewById(R.id.description) as TextView
 
         titleText.text = title[position]
-        imageView.setImageResource(imgid[position])
+        imageView.setImageResource(R.mipmap.ic_launcher)
         subtitleText.text = description[position]
 
         return rowView
