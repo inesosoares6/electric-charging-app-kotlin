@@ -13,8 +13,6 @@ import java.util.*
 
 // Activity of settings
 
-var darkMode: Boolean = false
-
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +42,11 @@ class SettingsActivity : AppCompatActivity() {
             val switchTheme: SwitchPreferenceCompat? = findPreference("darkTheme")
             switchTheme!!.setOnPreferenceChangeListener { _, _ ->
                 if (switchTheme.isChecked) {
-                    Toast.makeText(context, "Unchecked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = false
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    darkMode=true
                 } else {
-                    Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show()
                     switchTheme.isChecked = true
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    darkMode=false
                 }
                 false
             }
