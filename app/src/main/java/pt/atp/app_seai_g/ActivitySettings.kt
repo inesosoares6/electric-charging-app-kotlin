@@ -33,7 +33,6 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
-
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val db = FirebaseFirestore.getInstance()
@@ -51,22 +50,11 @@ class SettingsActivity : AppCompatActivity() {
                 false
             }
 
-            var name = ""
-            mAuth.currentUser?.email?.let {
-                db.collection("users").document(it).get()
-                        .addOnSuccessListener { result ->
-                            name=result["name"].toString()
-                            //Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(context, getString(R.string.error_name), Toast.LENGTH_LONG).show()
-                        }
-            }
             val countingPreference: EditTextPreference? = findPreference("signature")
             countingPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
                 val text = preference.text
                 if (TextUtils.isEmpty(text)) {
-                    name
+                    getNameFromDatabase(db,mAuth)
                 } else {
                     //TODO go find the name in database
                     mAuth.currentUser?.email?.let {
@@ -74,7 +62,7 @@ class SettingsActivity : AppCompatActivity() {
                                 "name" to text
                         ))
                     }
-                    text
+                    getNameFromDatabase(db,mAuth)
                 }
             }
             val switchLanguage: ListPreference? = findPreference("language")
@@ -96,6 +84,21 @@ class SettingsActivity : AppCompatActivity() {
 
                 true
             }
+        }
+
+        private fun getNameFromDatabase(db:FirebaseFirestore, mAuth: FirebaseAuth): String {
+            var name = ""
+            mAuth.currentUser?.email?.let {
+                db.collection("users").document(it).get()
+                        .addOnSuccessListener { result ->
+                            name = result["name"].toString()
+                            //Toast.makeText(context, result["name"].toString(), Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, getString(R.string.error_name), Toast.LENGTH_LONG).show()
+                        }
+            }
+            return name
         }
     }
 }

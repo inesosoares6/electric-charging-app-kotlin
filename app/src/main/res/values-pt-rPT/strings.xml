@@ -88,7 +88,7 @@
     <string name="application">Aplicação</string>
 
     <!-- Account Preferences -->
-    <string name="signature_title">Nome de utilizador</string>
+    <string name="signature_title">Alterar nome de utilizador</string>
     <string name="car">Carro</string>
     <string name="brand">Marca</string>
     <string name="model">Modelo</string>
