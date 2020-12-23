@@ -21,6 +21,7 @@
     <string name="failRegister">Registo falhou</string>
     <string name="register">Registar</string>
     <string name="confirm_pass">Confirmar Palavra-passe</string>
+    <string name="error_registering">Ocorreu um erro ao adicionar os dados na base de dados</string>
 
     <!-- ID charger Fragment -->
     <string name="idCharger">Insira o ID do carregador</string>
@@ -82,6 +83,8 @@
     <string name="settings">Definições</string>
     <string name="title_activity_settings">Definições</string>
     <string name="settings_button">Botão de Definições</string>
+    <string name="vehicle_addition_successful">O veículo foi adicionado com sucesso</string>
+    <string name="error_adding_vehicle">Ocorreu um erro ao adicionar o veículo</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Conta</string>

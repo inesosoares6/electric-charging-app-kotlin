@@ -52,7 +52,7 @@ class ActivityRegister : AppCompatActivity() {
                     startActivity(intent)
                 }
                 .addOnFailureListener {
-                    Toast.makeText(applicationContext, "Error adding document", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, getString(R.string.error_registering), Toast.LENGTH_LONG).show()
                 }
     }
 
