@@ -153,6 +153,7 @@ class ActivityCharging : AppCompatActivity() {
             mAuth.currentUser?.email?.let { it1 ->
                 db.collection("users").document(it1).collection("charges").document((numCharges+1).toString())
                     .set(charger)
+                db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
         }
     }
