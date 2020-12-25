@@ -51,6 +51,7 @@ class ActivityCharging : AppCompatActivity() {
         var year: String = ""
         var hour: String = ""
         var minute: String = ""
+        var type: String = ""
         mAuth= FirebaseAuth.getInstance()
 
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
@@ -64,6 +65,7 @@ class ActivityCharging : AppCompatActivity() {
             year = timeStarted.year.toString()
             hour = timeStarted.hour.toString()
             minute = timeStarted.minute.toString()
+            type = "Normal"
         }
 
         val chargeFast = findViewById<Button>(R.id.chargeFast)
@@ -77,6 +79,7 @@ class ActivityCharging : AppCompatActivity() {
             year = timeStarted.year.toString()
             hour = timeStarted.hour.toString()
             minute = timeStarted.minute.toString()
+            type = getString(R.string.fast)
         }
 
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
@@ -90,6 +93,7 @@ class ActivityCharging : AppCompatActivity() {
             year = timeStarted.year.toString()
             hour = timeStarted.hour.toString()
             minute = timeStarted.minute.toString()
+            type = getString(R.string.green)
         }
 
         val returnButton = findViewById<Button>(R.id.returnButton)
@@ -142,9 +146,10 @@ class ActivityCharging : AppCompatActivity() {
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
                 "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
-                "timeStarted" to timeStarted,
-                "timeFinished" to timeFinished,
-                "price" to 0
+//                "timeStarted" to timeStarted,
+//                "timeFinished" to timeFinished,
+                "price" to 0,
+                "type" to type
             )
             //TODO update price in database
             mAuth.currentUser?.email?.let { it1 ->

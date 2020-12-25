@@ -52,7 +52,7 @@
     <string name="ready">O seu veículo está carregado.</string>
     <string name="totalPrice">Preço a pagar:</string>
     <string name="return_to_homepage">Voltar à página inicial</string>
-    <string name="greenCharging">Carregamento Verde</string>
+    <string name="greenCharging"> Verde</string>
     <string name="textPriceGreen">Carregamento Verde:</string>
     <string name="returnButton">Cancelar</string>
 
@@ -122,5 +122,8 @@
     <string name="priceHistory">Preço:</string>
     <string name="chargerHistory">ID do carregador:</string>
     <string name="minutesHistory">minutos</string>
+    <string name="typeHistory">Tipo de carregamento: </string>
+    <string name="fast">Rápido</string>
+    <string name="green">Verde</string>
 
 </resources>

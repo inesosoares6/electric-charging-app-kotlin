@@ -52,7 +52,7 @@
     <string name="ready">Your vehicle is charged.</string>
     <string name="totalPrice">Price to pay:</string>
     <string name="return_to_homepage">Return to homepage</string>
-    <string name="greenCharging">Green charging</string>
+    <string name="greenCharging">Green</string>
     <string name="textPriceGreen">Green Charging:</string>
     <string name="returnButton">Cancel</string>
 
@@ -122,4 +122,7 @@
     <string name="priceHistory">Price:</string>
     <string name="chargerHistory">Charger ID:</string>
     <string name="minutesHistory">minutes</string>
+    <string name="typeHistory"> Type of charge: </string>
+    <string name="fast">Fast</string>
+    <string name="green">Green</string>
 </resources>

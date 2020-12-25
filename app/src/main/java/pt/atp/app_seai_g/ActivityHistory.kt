@@ -21,6 +21,7 @@ class ActivityHistory : AppCompatActivity() {
         val arrayTime: ArrayList<String> = ArrayList()
         val arrayPrice: ArrayList<String> = ArrayList()
         val arrayCharger: ArrayList<String> = ArrayList()
+        val arrayType: ArrayList<String> = ArrayList()
 
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).collection("charges").get()
@@ -30,8 +31,9 @@ class ActivityHistory : AppCompatActivity() {
                         arrayCharger.add(document["idCharger"].toString())
                         arrayPrice.add(document["price"].toString())
                         arrayTime.add(document["time"].toString())
+                        arrayType.add(document["type"].toString())
                     }
-                    sendData(arrayDate,arrayTime, arrayPrice, arrayCharger)
+                    sendData(arrayDate,arrayType, arrayTime, arrayPrice, arrayCharger)
                 }
                 .addOnFailureListener {
                     Toast.makeText(applicationContext,getString(R.string.error_getting_documents), Toast.LENGTH_LONG).show()
@@ -39,8 +41,8 @@ class ActivityHistory : AppCompatActivity() {
         }
     }
 
-    private fun sendData(arrayDate: ArrayList<String>, arrayTime: ArrayList<String>, arrayPrice: ArrayList<String>, arrayCharger: ArrayList<String>) {
-        val myListAdapter = ChargerAdapter(this, arrayDate.toTypedArray(), arrayTime.toTypedArray(), arrayPrice.toTypedArray(), arrayCharger.toTypedArray())
+    private fun sendData(arrayDate: ArrayList<String>, arrayType: ArrayList<String>, arrayTime: ArrayList<String>, arrayPrice: ArrayList<String>, arrayCharger: ArrayList<String>) {
+        val myListAdapter = ChargerAdapter(this, arrayDate.toTypedArray(), arrayType.toTypedArray(), arrayTime.toTypedArray(), arrayPrice.toTypedArray(), arrayCharger.toTypedArray())
         val listView: ListView = findViewById(R.id.listViewHistory)
         listView.adapter = myListAdapter
 
