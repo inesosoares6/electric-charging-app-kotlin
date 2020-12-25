@@ -17,17 +17,17 @@ class ChargerAdapter(private val context: Activity, private val date: Array<Stri
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.layout_history_list, null, true)
 
-        val imageView = rowView.findViewById(R.id.icon) as ImageView
-        val dateText = rowView.findViewById(R.id.date) as TextView
-        val timeText = rowView.findViewById(R.id.time) as TextView
-        val priceText = rowView.findViewById(R.id.price) as TextView
-        val chargerIDText = rowView.findViewById(R.id.charger) as TextView
+        val imageView = rowView.findViewById(R.id.iconHistory) as ImageView
+        val dateText = rowView.findViewById(R.id.dateHistory) as TextView
+        val timeText = rowView.findViewById(R.id.timeHistory) as TextView
+        val priceText = rowView.findViewById(R.id.priceHistory) as TextView
+        val chargerIDText = rowView.findViewById(R.id.chargerHistory) as TextView
 
-        dateText.text = date[position]
+        dateText.text = "Date: " + date[position]
         imageView.setImageResource(R.mipmap.ic_launcher)
-        timeText.text = time[position]
-        priceText.text = price[position]
-        chargerIDText.text = chargerID[position]
+        timeText.text = "Time charging: " + time[position] + " minutes"
+        priceText.text = "Price: " + price[position] + " €"
+        chargerIDText.text = "Charger ID: " + chargerID[position]
 
         return rowView
     }
