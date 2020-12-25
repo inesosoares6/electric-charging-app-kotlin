@@ -28,6 +28,11 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         val vehiclesButton: FloatingActionButton = rootView.findViewById(R.id.vehiclesButton)
         val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
         val userNameText: TextView = rootView.findViewById(R.id.userNameText)
+        val lastChargeDate: TextView = rootView.findViewById(R.id.lastChargeDate)
+        val lastChargeType: TextView = rootView.findViewById(R.id.lastChargeType)
+        val lastChargeTime: TextView = rootView.findViewById(R.id.lastChargeTime)
+        val lastChargePrice: TextView = rootView.findViewById(R.id.lastChargePrice)
+        val lastChargeID: TextView = rootView.findViewById(R.id.lastChargeID)
         // Access a Cloud Firestore instance from your Activity
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
@@ -63,12 +68,10 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
                     }
         }
 
-        var userName : String
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).get()
                     .addOnSuccessListener { result ->
-                        userName = result["name"].toString()
-                        userNameText.text = userName
+                        userNameText.text = result["name"].toString()
                     }
                     .addOnFailureListener {
                         Toast.makeText(context,getString(R.string.error_name),Toast.LENGTH_LONG).show()
@@ -83,6 +86,20 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         vehiclesButton.setOnClickListener {
             val intent = Intent(context,ActivityVehicleList::class.java)
             startActivity(intent)
+        }
+
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).collection("lastCharge").document("last").get()
+                    .addOnSuccessListener { result ->
+                        lastChargeDate.text = getString(R.string.dateHistory) + " " + result["dayHour"].toString()
+                        lastChargeType.text = getString(R.string.typeHistory) + " " + result["type"].toString()
+                        lastChargeTime.text = getString(R.string.timeHistory) + " " + result["time"].toString() + " " + getString(R.string.minutesHistory)
+                        lastChargePrice.text = getString(R.string.priceHistory) + " " + result["price"].toString() + " €"
+                        lastChargeID.text = getString(R.string.chargerHistory) + " " + result["idCharger"].toString()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context,getString(R.string.errorLastCharge),Toast.LENGTH_LONG).show()
+                    }
         }
 
         return rootView
