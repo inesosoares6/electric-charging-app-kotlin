@@ -42,13 +42,59 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/vehicle"
+        android:id="@+id/lastCharge"
+        android:text="@string/last_charge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/numChargesText"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastCharge"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeDate"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeType"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargePrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeTime"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargePrice"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

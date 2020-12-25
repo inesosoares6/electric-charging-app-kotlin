@@ -125,5 +125,6 @@
     <string name="typeHistory">Tipo de carregamento: </string>
     <string name="fast">Rápido</string>
     <string name="green">Verde</string>
+    <string name="last_charge">Último carregamento</string>
 
 </resources>

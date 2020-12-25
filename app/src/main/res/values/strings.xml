@@ -125,4 +125,5 @@
     <string name="typeHistory"> Type of charge: </string>
     <string name="fast">Fast</string>
     <string name="green">Green</string>
+    <string name="last_charge">Last charge</string>
 </resources>
