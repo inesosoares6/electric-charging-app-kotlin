@@ -117,4 +117,9 @@
     <string name="logout_button">Logout Button</string>
     <string name="error_getting_documents">Error getting documents</string>
     <string name="see_list_of_vehicles_saved">See list of vehicles saved >></string>
+    <string name="dateHistory"> Date: </string>
+    <string name="timeHistory">Time charging: </string>
+    <string name="priceHistory">Price:</string>
+    <string name="chargerHistory">Charger ID:</string>
+    <string name="minutesHistory">minutes</string>
 </resources>

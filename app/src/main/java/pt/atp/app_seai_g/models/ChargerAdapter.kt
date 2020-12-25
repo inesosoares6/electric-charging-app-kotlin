@@ -12,7 +12,7 @@ import pt.atp.app_seai_g.R
 class ChargerAdapter(private val context: Activity, private val date: Array<String>, private val time: Array<String>, private val price: Array<String>, private val chargerID: Array<String>)
     : ArrayAdapter<String>(context, R.layout.layout_history_list, date) {
 
-    @SuppressLint("ViewHolder", "InflateParams")
+    @SuppressLint("ViewHolder", "InflateParams", "SetTextI18n")
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.layout_history_list, null, true)
@@ -23,11 +23,11 @@ class ChargerAdapter(private val context: Activity, private val date: Array<Stri
         val priceText = rowView.findViewById(R.id.priceHistory) as TextView
         val chargerIDText = rowView.findViewById(R.id.chargerHistory) as TextView
 
-        dateText.text = "Date: " + date[position]
+        dateText.text = context.getString(R.string.dateHistory) + " " + date[position]
         imageView.setImageResource(R.mipmap.ic_launcher)
-        timeText.text = "Time charging: " + time[position] + " minutes"
-        priceText.text = "Price: " + price[position] + " €"
-        chargerIDText.text = "Charger ID: " + chargerID[position]
+        timeText.text = context.getString(R.string.timeHistory) + " " + time[position] + " " + context.getString(R.string.minutesHistory)
+        priceText.text = context.getString(R.string.priceHistory) + " " + price[position] + " €"
+        chargerIDText.text = context.getString(R.string.chargerHistory) + " " + chargerID[position]
 
         return rowView
     }

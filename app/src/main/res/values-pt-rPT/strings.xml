@@ -117,5 +117,10 @@
     <string name="logout_button">Logout Button</string>
     <string name="error_getting_documents">Erro a aceder aos documentos</string>
     <string name="see_list_of_vehicles_saved">Consultar lista de veículos >></string>
+    <string name="dateHistory"> Data: </string>
+    <string name="timeHistory">Tempo de carregamento: </string>
+    <string name="priceHistory">Preço:</string>
+    <string name="chargerHistory">ID do carregador:</string>
+    <string name="minutesHistory">minutos</string>
 
 </resources>

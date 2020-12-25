@@ -31,7 +31,6 @@ class ActivityHistory : AppCompatActivity() {
                         arrayPrice.add(document["price"].toString())
                         arrayTime.add(document["time"].toString())
                     }
-                    Toast.makeText(applicationContext,arrayTime.toString(),Toast.LENGTH_LONG).show()
                     sendData(arrayDate,arrayTime, arrayPrice, arrayCharger)
                 }
                 .addOnFailureListener {
