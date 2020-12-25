@@ -21,6 +21,7 @@
     <string name="matchPassword">Passwords do not match</string>
     <string name="successRegister">Registration successful</string>
     <string name="failRegister">Registration failed</string>
+    <string name="error_registering">Error in adding data to database</string>
 
     <!-- ID charger Fragment -->
     <string name="idCharger">Insert Charger ID</string>
@@ -51,7 +52,7 @@
     <string name="ready">Your vehicle is charged.</string>
     <string name="totalPrice">Price to pay:</string>
     <string name="return_to_homepage">Return to homepage</string>
-    <string name="greenCharging">Green charging</string>
+    <string name="greenCharging">Green</string>
     <string name="textPriceGreen">Green Charging:</string>
     <string name="returnButton">Cancel</string>
 
@@ -82,13 +83,15 @@
     <string name="settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
     <string name="settings_button">Settings Button</string>
+    <string name="vehicle_addition_successful">The vehicle was added successfully</string>
+    <string name="error_adding_vehicle">Error adding vehicle</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Account</string>
     <string name="application">Application</string>
 
     <!-- Account Preferences -->
-    <string name="signature_title">Your username</string>
+    <string name="signature_title">Change username</string>
     <string name="car">Car</string>
     <string name="brand">Brand</string>
     <string name="model">Model</string>
@@ -106,4 +109,22 @@
     <string name="resetPassword">Reset password</string>
     <string name="historic_button">Historic button</string>
     <string name="add_vehicle">Add vehicle</string>
+
+    <!-- Account Fragment -->
+    <string name="number_of_charges">Number of charges: </string>
+    <string name="error_number_of_charges">Error in reading number of charges</string>
+    <string name="error_name">Error in reading name</string>
+    <string name="logout_button">Logout Button</string>
+    <string name="error_getting_documents">Error getting documents</string>
+    <string name="see_list_of_vehicles_saved">See list of vehicles saved >></string>
+    <string name="dateHistory"> Date: </string>
+    <string name="timeHistory">Time charging: </string>
+    <string name="priceHistory">Price:</string>
+    <string name="chargerHistory">Charger ID:</string>
+    <string name="minutesHistory">minutes</string>
+    <string name="typeHistory"> Type of charge: </string>
+    <string name="fast">Fast</string>
+    <string name="green">Green</string>
+    <string name="last_charge">Last charge</string>
+    <string name="errorLastCharge">Error getting last charge</string>
 </resources>

@@ -21,6 +21,7 @@
     <string name="failRegister">Registo falhou</string>
     <string name="register">Registar</string>
     <string name="confirm_pass">Confirmar Palavra-passe</string>
+    <string name="error_registering">Ocorreu um erro ao adicionar os dados na base de dados</string>
 
     <!-- ID charger Fragment -->
     <string name="idCharger">Insira o ID do carregador</string>
@@ -51,7 +52,7 @@
     <string name="ready">O seu veículo está carregado.</string>
     <string name="totalPrice">Preço a pagar:</string>
     <string name="return_to_homepage">Voltar à página inicial</string>
-    <string name="greenCharging">Carregamento Verde</string>
+    <string name="greenCharging"> Verde</string>
     <string name="textPriceGreen">Carregamento Verde:</string>
     <string name="returnButton">Cancelar</string>
 
@@ -82,13 +83,15 @@
     <string name="settings">Definições</string>
     <string name="title_activity_settings">Definições</string>
     <string name="settings_button">Botão de Definições</string>
+    <string name="vehicle_addition_successful">O veículo foi adicionado com sucesso</string>
+    <string name="error_adding_vehicle">Ocorreu um erro ao adicionar o veículo</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Conta</string>
     <string name="application">Aplicação</string>
 
     <!-- Account Preferences -->
-    <string name="signature_title">Nome de utilizador</string>
+    <string name="signature_title">Alterar nome de utilizador</string>
     <string name="car">Carro</string>
     <string name="brand">Marca</string>
     <string name="model">Modelo</string>
@@ -106,5 +109,23 @@
     <string name="resetPassword">Alterar palavra-passe</string>
     <string name="historic_button">Botão de Histórico</string>
     <string name="add_vehicle">Adicionar veículos</string>
+
+    <!-- Account Fragment -->
+    <string name="number_of_charges">Número de carregamentos: </string>
+    <string name="error_number_of_charges">Erro ao ler número de carregamentos</string>
+    <string name="error_name">Erro ao ler o nome</string>
+    <string name="logout_button">Logout Button</string>
+    <string name="error_getting_documents">Erro a aceder aos documentos</string>
+    <string name="see_list_of_vehicles_saved">Consultar lista de veículos >></string>
+    <string name="dateHistory"> Data: </string>
+    <string name="timeHistory">Tempo de carregamento: </string>
+    <string name="priceHistory">Preço:</string>
+    <string name="chargerHistory">ID do carregador:</string>
+    <string name="minutesHistory">minutos</string>
+    <string name="typeHistory">Tipo de carregamento: </string>
+    <string name="fast">Rápido</string>
+    <string name="green">Verde</string>
+    <string name="last_charge">Último carregamento</string>
+    <string name="errorLastCharge">Erro a ler o último carregamento</string>
 
 </resources>

@@ -6,19 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 
 // Fragment of account page
 //    - sign out
@@ -26,27 +19,34 @@ import com.google.firebase.ktx.Firebase
 
 class FragmentAccount : Fragment(R.layout.fragment_account) {
 
-    private var fbAuth = FirebaseAuth.getInstance()
-
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    @SuppressLint("UseSwitchCompatOrMaterialCode", "SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView: View = inflater.inflate(R.layout.fragment_account,container,false)
-        val buttonLogout: Button = rootView.findViewById(R.id.logoutButton)
+        val buttonLogout: FloatingActionButton = rootView.findViewById(R.id.logoutButton)
         val settingsButton: FloatingActionButton = rootView.findViewById(R.id.settingsButton)
-        val darkThemeButton: Switch = rootView.findViewById(R.id.darkThemeButton)
         val historicButton: FloatingActionButton = rootView.findViewById(R.id.historicButton)
-        val database = Firebase.database
-        val myRef = database.getReference("message")
+        val vehiclesButton: FloatingActionButton = rootView.findViewById(R.id.vehiclesButton)
+        val numChargesText: TextView = rootView.findViewById(R.id.numChargesText)
+        val userNameText: TextView = rootView.findViewById(R.id.userNameText)
+        val lastChargeDate: TextView = rootView.findViewById(R.id.lastChargeDate)
+        val lastChargeType: TextView = rootView.findViewById(R.id.lastChargeType)
+        val lastChargeTime: TextView = rootView.findViewById(R.id.lastChargeTime)
+        val lastChargePrice: TextView = rootView.findViewById(R.id.lastChargePrice)
+        val lastChargeID: TextView = rootView.findViewById(R.id.lastChargeID)
+        // Access a Cloud Firestore instance from your Activity
+        val db = FirebaseFirestore.getInstance()
+        val mAuth: FirebaseAuth?
+        mAuth=FirebaseAuth.getInstance()
 
         buttonLogout.setOnClickListener{
-            fbAuth.signOut()
+            mAuth.signOut()
             Toast.makeText(context,getString(R.string.successSignOut),Toast.LENGTH_LONG).show()
             val intent = Intent(context,ActivityLogin::class.java)
             startActivity(intent)
         }
 
-        fbAuth.addAuthStateListener {
-            if(fbAuth.currentUser == null){
+        mAuth.addAuthStateListener {
+            if(mAuth.currentUser == null){
                 activity?.finish()
             }
         }
@@ -56,38 +56,51 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
             startActivity(intent)
         }
 
+        var numCharges : String
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).get()
+                    .addOnSuccessListener { result ->
+                        numCharges = result["numCharges"].toString()
+                        numChargesText.text = (activity?.getString(R.string.number_of_charges)) + "   " + numCharges
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context,getString(R.string.error_number_of_charges),Toast.LENGTH_LONG).show()
+                    }
+        }
+
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).get()
+                    .addOnSuccessListener { result ->
+                        userNameText.text = result["name"].toString()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context,getString(R.string.error_name),Toast.LENGTH_LONG).show()
+                    }
+        }
+
         historicButton.setOnClickListener{
-            /*myRef.setValue("Hello, World!")
-            Toast.makeText(context,"Sent to database", Toast.LENGTH_LONG).show()*/
+            val intent = Intent(context,ActivityHistory::class.java)
+            startActivity(intent)
         }
 
-        darkThemeButton.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                true -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    darkThemeButton.isChecked=true
-                }
-                false -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    darkThemeButton.isChecked=false
-                }
-            }
+        vehiclesButton.setOnClickListener {
+            val intent = Intent(context,ActivityVehicleList::class.java)
+            startActivity(intent)
         }
 
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Toast.makeText(context,"Value is: $value", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Toast.makeText(context,"Failed to read value.", Toast.LENGTH_LONG).show()
-            }
-        })
+        mAuth.currentUser?.email?.let {
+            db.collection("users").document(it).collection("lastCharge").document("last").get()
+                    .addOnSuccessListener { result ->
+                        lastChargeDate.text = getString(R.string.dateHistory) + " " + result["dayHour"].toString()
+                        lastChargeType.text = getString(R.string.typeHistory) + " " + result["type"].toString()
+                        lastChargeTime.text = getString(R.string.timeHistory) + " " + result["time"].toString() + " " + getString(R.string.minutesHistory)
+                        lastChargePrice.text = getString(R.string.priceHistory) + " " + result["price"].toString() + " €"
+                        lastChargeID.text = getString(R.string.chargerHistory) + " " + result["idCharger"].toString()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context,getString(R.string.errorLastCharge),Toast.LENGTH_LONG).show()
+                    }
+        }
 
         return rootView
     }

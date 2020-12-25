@@ -6,9 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ActivityAddVehicle : AppCompatActivity() {
 
@@ -16,21 +15,39 @@ class ActivityAddVehicle : AppCompatActivity() {
     private var brandTV: EditText? = null
     private var modelTV: EditText? = null
     private var buttonAddVehicle: Button? = null
-    //private lateinit var database: DatabaseReference
+    private val db = FirebaseFirestore.getInstance()
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_vehicle)
         initializeUI()
-        //database = Firebase.database.reference
+        mAuth= FirebaseAuth.getInstance()
 
         buttonAddVehicle!!.setOnClickListener{
-            //TODO verify info of vehicle and write to database
-            val intent = Intent(this, ActivityWelcome::class.java)
-            startActivity(intent)
-            Toast.makeText(applicationContext,"Didn't send data to database",Toast.LENGTH_LONG).show()
+            writeVehicleToDatabase(vehicleTV?.text.toString(),brandTV?.text.toString(),modelTV?.text.toString())
         }
 
+    }
+
+    private fun writeVehicleToDatabase(type: String, brand: String, model: String){
+        val vehicle = hashMapOf(
+                "type" to type,
+                "brand" to brand,
+                "model" to model
+        )
+        val vehicleId: String = type + "_" + brand + "_" + model
+        mAuth?.currentUser?.email?.let { it1 ->
+            db.collection("users").document(it1).collection("vehicles").document(vehicleId).set(vehicle)
+                    .addOnSuccessListener {
+                        Toast.makeText(applicationContext, getString(R.string.vehicle_addition_successful), Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, ActivityWelcome::class.java)
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(applicationContext, getString(R.string.error_adding_vehicle), Toast.LENGTH_LONG).show()
+                    }
+        }
     }
 
     private fun initializeUI() {
