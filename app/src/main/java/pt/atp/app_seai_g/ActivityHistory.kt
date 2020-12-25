@@ -1,13 +1,12 @@
 package pt.atp.app_seai_g
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import pt.atp.app_seai_g.models.ChargerAdapter
-import pt.atp.app_seai_g.models.VehicleAdapter
 
 class ActivityHistory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

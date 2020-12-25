@@ -11,7 +11,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import java.time.LocalDateTime
 
 // Activity to charge the vehicle
@@ -45,13 +44,12 @@ class ActivityCharging : AppCompatActivity() {
         var numCharges = 0
         var timeStarted: LocalDateTime = LocalDateTime.now()
         var timeFinished: LocalDateTime = LocalDateTime.now()
-        var time: String = ""
-        var day: String = ""
-        var month: String = ""
-        var year: String = ""
-        var hour: String = ""
-        var minute: String = ""
-        var type: String = ""
+        var day = ""
+        var month = ""
+        var year = ""
+        var hour = ""
+        var minute = ""
+        var type = ""
         mAuth= FirebaseAuth.getInstance()
 
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
