@@ -1,7 +1,5 @@
 package pt.atp.app_seai_g
 
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
@@ -47,24 +45,20 @@ class ActivityVehicleList : AppCompatActivity() {
         listView.adapter = myListAdapter
 
         listView.setOnItemClickListener { adapterView, _, position, _ ->
-            val itemAtPos = adapterView.getItemAtPosition(position)
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            //Toast.makeText(this, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
 
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setMessage(getString(R.string.performAction))
                     .setCancelable(false)
-                    .setPositiveButton(getString(R.string.favorite), DialogInterface.OnClickListener { dialog, id ->
-                        //TODO set as favorite
-                        //dialog.cancel()
+                    .setPositiveButton(getString(R.string.favorite)) { _, _ ->
                         setAsFavorite(itemIdAtPos.toInt())
-                    })
-                    .setNegativeButton(getString(R.string.deleteFromList), DialogInterface.OnClickListener { _, _ ->
+                    }
+                    .setNegativeButton(getString(R.string.deleteFromList)) { _, _ ->
                         deleteFromList(itemIdAtPos.toInt())
-                    })
-                    .setNeutralButton(getString(R.string.cancelElimination),DialogInterface.OnClickListener { dialog, _ ->
+                    }
+                    .setNeutralButton(getString(R.string.cancelElimination)) { dialog, _ ->
                         dialog.cancel()
-                    })
+                    }
             val alert = dialogBuilder.create()
             alert.setTitle(getString(R.string.vehicle) + " " + (itemIdAtPos+1))
             alert.show()
