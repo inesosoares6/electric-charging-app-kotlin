@@ -127,8 +127,8 @@
     <string name="green">Verde</string>
     <string name="last_charge">Último carregamento</string>
     <string name="errorLastCharge">Erro a ler o último carregamento</string>
-    <string name="termsAndConditions">A SEAI-G, com sede na FEUP, recolhe dados pessoais dos seus clientes, que trata de forma confidencial
-        e é utilizada para efeitos de gestão e utilização da respetiva aplicação de carregamento dos veículos elétricos.
-        Ao clicar no botão para efetuar o registo está a aceitar o armazenamento e tratamento destes mesmos dados.</string>
+    <string name="termsAndConditions">A SEAI-G, com sede na FEUP, recolhe dados pessoais dos seus clientes, os quais trata de forma confidencial
+        e utiliza para efeitos de gestão da respetiva aplicação de carregamento dos veículos elétricos.
+        Ao carregar no botão para efetuar o registo está a aceitar o armazenamento e tratamento destes mesmos dados.</string>
 
 </resources>
