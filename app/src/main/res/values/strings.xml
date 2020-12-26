@@ -85,6 +85,8 @@
     <string name="settings_button">Settings Button</string>
     <string name="vehicle_addition_successful">The vehicle was added successfully</string>
     <string name="error_adding_vehicle">Error adding vehicle</string>
+    <string name="languagePOR">Language switched to Portuguese</string>
+    <string name="languageEN">Language switched to English</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Account</string>
