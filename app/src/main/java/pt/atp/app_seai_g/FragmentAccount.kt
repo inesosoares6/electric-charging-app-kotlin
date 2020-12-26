@@ -102,6 +102,10 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
                         } else{
                             lastCharge.text = (context?.getString(R.string.firstCharge))
                             lastChargeDate.text = (context?.getString(R.string.firstChargeText))
+                            lastChargeType.text = (context?.getString(R.string.firstChargeText2))
+                            lastChargeTime.text = (context?.getString(R.string.firstChargeText3))
+                            lastChargePrice.text = (context?.getString(R.string.firstChargeText4))
+                            lastChargeID.text = (context?.getString(R.string.firstChargeText5))
                         }
                     }
                     .addOnFailureListener {

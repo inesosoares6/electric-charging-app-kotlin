@@ -145,4 +145,8 @@
     <string name="firstCharge">First time using the app?</string>
     <string name="lastCharge">Last charge</string>
     <string name="firstChargeText">Go to the division of "Charge Car" and perform the first charge.</string>
+    <string name="firstChargeText2"> 1. Insert the charger ID</string>
+    <string name="firstChargeText3"> 2. Next you can consult the prices of each charging mode and choose what you want.</string>
+    <string name="firstChargeText4"> 3. By this point your vehicle is charging and the app will let you know when it is finished.</string>
+    <string name="firstChargeText5">Thank you for your preference, hope you enjoyed it.</string>
 </resources>
