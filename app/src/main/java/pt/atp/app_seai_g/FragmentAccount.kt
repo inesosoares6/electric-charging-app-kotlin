@@ -91,11 +91,11 @@ class FragmentAccount : Fragment(R.layout.fragment_account) {
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).collection("lastCharge").document("last").get()
                     .addOnSuccessListener { result ->
-                        lastChargeDate.text = getString(R.string.dateHistory) + " " + result["dayHour"].toString()
-                        lastChargeType.text = getString(R.string.typeHistory) + " " + result["type"].toString()
-                        lastChargeTime.text = getString(R.string.timeHistory) + " " + result["time"].toString() + " " + getString(R.string.minutesHistory)
-                        lastChargePrice.text = getString(R.string.priceHistory) + " " + result["price"].toString() + " €"
-                        lastChargeID.text = getString(R.string.chargerHistory) + " " + result["idCharger"].toString()
+                        lastChargeDate.text = (context?.getString(R.string.dateHistory)) + " " + result["dayHour"].toString()
+                        lastChargeType.text = (context?.getString(R.string.typeHistory)) + " " + result["type"].toString()
+                        lastChargeTime.text = (context?.getString(R.string.timeHistory)) + " " + result["time"].toString() + " " + (context?.getString(R.string.minutesHistory))
+                        lastChargePrice.text = (context?.getString(R.string.priceHistory)) + " " + result["price"].toString() + " €"
+                        lastChargeID.text = (context?.getString(R.string.chargerHistory)) + " " + result["idCharger"].toString()
                     }
                     .addOnFailureListener {
                         Toast.makeText(context,getString(R.string.errorLastCharge),Toast.LENGTH_LONG).show()
