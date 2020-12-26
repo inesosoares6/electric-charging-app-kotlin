@@ -78,11 +78,11 @@ class SettingsActivity : AppCompatActivity() {
                     val entryValue = preference.entryValues[index]
                     val preferences = PreferenceManager.getDefaultSharedPreferences(context)
                     if(entryValue=="portuguese"){
-                        Toast.makeText(context, "POR", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.languagePOR), Toast.LENGTH_SHORT).show()
                         setLocale("pt")
                         preferences.edit().putString("lang", "pt").apply()
                     } else{
-                        Toast.makeText(context, "EN", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.languageEN), Toast.LENGTH_SHORT).show()
                         setLocale("en")
                         preferences.edit().putString("lang", "en").apply()
                     }

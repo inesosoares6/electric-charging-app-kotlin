@@ -44,11 +44,5 @@ class ActivityHistory : AppCompatActivity() {
         val myListAdapter = ChargerAdapter(this, arrayDate.toTypedArray(), arrayType.toTypedArray(), arrayTime.toTypedArray(), arrayPrice.toTypedArray(), arrayCharger.toTypedArray())
         val listView: ListView = findViewById(R.id.listViewHistory)
         listView.adapter = myListAdapter
-
-        listView.setOnItemClickListener { adapterView, _, position, _ ->
-            val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            Toast.makeText(this, "Click on item at $itemAtPos its item id $itemIdAtPos", Toast.LENGTH_LONG).show()
-        }
     }
 }

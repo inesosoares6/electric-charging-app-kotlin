@@ -109,6 +109,9 @@
     <string name="resetPassword">Alterar palavra-passe</string>
     <string name="historic_button">Botão de Histórico</string>
     <string name="add_vehicle">Adicionar veículos</string>
+    <string name="deleteAccount">Eliminar conta</string>
+    <string name="languagePOR">Idioma alterado para português</string>
+    <string name="languageEN">Idioma alterado para inglês</string>
 
     <!-- Account Fragment -->
     <string name="number_of_charges">Número de carregamentos: </string>
@@ -121,11 +124,32 @@
     <string name="timeHistory">Tempo de carregamento: </string>
     <string name="priceHistory">Preço:</string>
     <string name="chargerHistory">ID do carregador:</string>
-    <string name="minutesHistory">minutos</string>
+    <string name="minutesHistory">min</string>
     <string name="typeHistory">Tipo de carregamento: </string>
     <string name="fast">Rápido</string>
     <string name="green">Verde</string>
     <string name="last_charge">Último carregamento</string>
     <string name="errorLastCharge">Erro a ler o último carregamento</string>
+    <string name="termsAndConditions">A SEAI-G, com sede na FEUP, recolhe dados pessoais dos seus clientes, os quais trata de forma confidencial
+        e utiliza para efeitos de gestão da respetiva aplicação de carregamento dos veículos elétricos.
+        Ao carregar no botão para efetuar o registo está a aceitar o armazenamento e tratamento destes mesmos dados.</string>
+    <string name="performAction">Que ação pretende efetuar com este veículo?</string>
+    <string name="favorite">Predefinir como favorito</string>
+    <string name="deleteFromList">Eliminar da lista</string>
+    <string name="cancelElimination">Cancelar</string>
+
+
+    <string name="delete_account">Eliminar conta</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Tem a certeza que pretende eliminar a sua conta?</string>
+    <string name="no_return_to_homepage">Não, voltar à página inicial.</string>
+    <string name="yes_delete_account">Sim, eliminar conta.</string>
+    <string name="userDeleted">Conta eliminada</string>
+    <string name="firstCharge">Primeira vez a utilizar a aplicação? </string>
+    <string name="lastCharge">Último carregamento</string>
+    <string name="firstChargeText">Abra o separador "Carregar Carro" e efetue o primeiro carregamento.</string>
+    <string name="firstChargeText2"> 1. Inserir o ID do carregador</string>
+    <string name="firstChargeText3"> 2. De seguida pode consultar os preços de cada modo de carregamento e escolher o que deseja.</string>
+    <string name="firstChargeText4"> 3. A este ponto o veículo está a carregar e a aplicação irá informá-lo quando terminar.</string>
+    <string name="firstChargeText5">Obrigado pela sua preferência, esperamos que tenha gostado.</string>
 
 </resources>

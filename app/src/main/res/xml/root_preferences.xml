@@ -25,6 +25,14 @@
                 android:targetPackage="pt.atp.app_seai_g" />
         </Preference>
 
+        <Preference
+            app:title="@string/deleteAccount">
+            <intent
+                android:action="pt.atp.app_seai_g.SETTING_START_ACTIVITY"
+                android:targetClass="pt.atp.app_seai_g.ActivityDeleteUser"
+                android:targetPackage="pt.atp.app_seai_g" />
+        </Preference>
+
     </PreferenceCategory>
 
     <PreferenceCategory

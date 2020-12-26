@@ -113,5 +113,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
 
+    <TextView
+        android:id="@+id/textTermsAndConditions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/termsAndConditions"
+        android:textSize="10sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/button_register"
+        tools:ignore="SmallSp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -85,6 +85,8 @@
     <string name="settings_button">Settings Button</string>
     <string name="vehicle_addition_successful">The vehicle was added successfully</string>
     <string name="error_adding_vehicle">Error adding vehicle</string>
+    <string name="languagePOR">Language switched to Portuguese</string>
+    <string name="languageEN">Language switched to English</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Account</string>
@@ -109,6 +111,7 @@
     <string name="resetPassword">Reset password</string>
     <string name="historic_button">Historic button</string>
     <string name="add_vehicle">Add vehicle</string>
+    <string name="deleteAccount">Delete account</string>
 
     <!-- Account Fragment -->
     <string name="number_of_charges">Number of charges: </string>
@@ -121,10 +124,31 @@
     <string name="timeHistory">Time charging: </string>
     <string name="priceHistory">Price:</string>
     <string name="chargerHistory">Charger ID:</string>
-    <string name="minutesHistory">minutes</string>
+    <string name="minutesHistory">min</string>
     <string name="typeHistory"> Type of charge: </string>
     <string name="fast">Fast</string>
     <string name="green">Green</string>
     <string name="last_charge">Last charge</string>
     <string name="errorLastCharge">Error getting last charge</string>
+    <string name="termsAndConditions"> SEAI-G, based in FEUP, collects your personal data, which are processed confidentially and
+        used for management of the application of electric vehicle charging. By clicking on the button to register, you are accepting
+        the storage and processing of that data.</string>
+    <string name="performAction">What action do you want to perform with this vehicle?</string>
+    <string name="favorite">Predefine as favorite</string>
+    <string name="deleteFromList">Delete from list</string>
+    <string name="cancelElimination">Cancel</string>
+
+
+    <string name="delete_account">Delete account</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Are you sure that you want to delete your account?</string>
+    <string name="no_return_to_homepage">No, return to homepage.</string>
+    <string name="yes_delete_account">Yes, delete account.</string>
+    <string name="userDeleted">User account deleted</string>
+    <string name="firstCharge">First time using the app?</string>
+    <string name="lastCharge">Last charge</string>
+    <string name="firstChargeText">Go to the division of "Charge Car" and perform the first charge.</string>
+    <string name="firstChargeText2"> 1. Insert the charger ID</string>
+    <string name="firstChargeText3"> 2. Next you can consult the prices of each charging mode and choose what you want.</string>
+    <string name="firstChargeText4"> 3. By this point your vehicle is charging and the app will let you know when it is finished.</string>
+    <string name="firstChargeText5">Thank you for your preference, hope you enjoyed it.</string>
 </resources>
