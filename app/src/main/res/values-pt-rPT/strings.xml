@@ -122,7 +122,7 @@
     <string name="timeHistory">Tempo de carregamento: </string>
     <string name="priceHistory">Preço:</string>
     <string name="chargerHistory">ID do carregador:</string>
-    <string name="minutesHistory">minutos</string>
+    <string name="minutesHistory">min</string>
     <string name="typeHistory">Tipo de carregamento: </string>
     <string name="fast">Rápido</string>
     <string name="green">Verde</string>
