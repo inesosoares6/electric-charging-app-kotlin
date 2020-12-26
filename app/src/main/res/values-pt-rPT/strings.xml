@@ -142,5 +142,8 @@
     <string name="no_return_to_homepage">Não, voltar à página inicial.</string>
     <string name="yes_delete_account">Sim, eliminar conta.</string>
     <string name="userDeleted">Conta eliminada</string>
+    <string name="firstCharge">Primeira vez a utilizar a aplicação? </string>
+    <string name="lastCharge">Último carregamento</string>
+    <string name="firstChargeText">Abra o separador "Carregar Carro" e efetue o primeiro carregamento.</string>
 
 </resources>

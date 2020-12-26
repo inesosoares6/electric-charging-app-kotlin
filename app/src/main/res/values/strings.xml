@@ -142,4 +142,7 @@
     <string name="no_return_to_homepage">No, return to homepage.</string>
     <string name="yes_delete_account">Yes, delete account.</string>
     <string name="userDeleted">User account deleted</string>
+    <string name="firstCharge">First time using the app?</string>
+    <string name="lastCharge">Last charge</string>
+    <string name="firstChargeText">Go to the division of "Charge Car" and perform the first charge.</string>
 </resources>
