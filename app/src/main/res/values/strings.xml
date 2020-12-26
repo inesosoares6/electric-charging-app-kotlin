@@ -130,4 +130,8 @@
     <string name="termsAndConditions"> SEAI-G, based in FEUP, collects your personal data, which are processed confidentially and
         used for management of the application of electric vehicle charging. By clicking on the button to register, you are accepting
         the storage and processing of that data.</string>
+    <string name="performAction">What action do you want to perform with this vehicle?</string>
+    <string name="favorite">Predefine as favorite</string>
+    <string name="deleteFromList">Delete from list</string>
+    <string name="cancelElimination">Cancel</string>
 </resources>

@@ -130,5 +130,9 @@
     <string name="termsAndConditions">A SEAI-G, com sede na FEUP, recolhe dados pessoais dos seus clientes, os quais trata de forma confidencial
         e utiliza para efeitos de gestão da respetiva aplicação de carregamento dos veículos elétricos.
         Ao carregar no botão para efetuar o registo está a aceitar o armazenamento e tratamento destes mesmos dados.</string>
+    <string name="performAction">Que ação pretende efetuar com este veículo?</string>
+    <string name="favorite">Predefinir como favorito</string>
+    <string name="deleteFromList">Eliminar da lista</string>
+    <string name="cancelElimination">Cancelar</string>
 
 </resources>
