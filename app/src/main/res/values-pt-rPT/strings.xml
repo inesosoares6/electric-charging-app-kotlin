@@ -109,6 +109,7 @@
     <string name="resetPassword">Alterar palavra-passe</string>
     <string name="historic_button">Botão de Histórico</string>
     <string name="add_vehicle">Adicionar veículos</string>
+    <string name="deleteAccount">Eliminar conta</string>
 
     <!-- Account Fragment -->
     <string name="number_of_charges">Número de carregamentos: </string>
@@ -134,5 +135,12 @@
     <string name="favorite">Predefinir como favorito</string>
     <string name="deleteFromList">Eliminar da lista</string>
     <string name="cancelElimination">Cancelar</string>
+
+
+    <string name="delete_account">Eliminar conta</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Tem a certeza que pretende eliminar a sua conta?</string>
+    <string name="no_return_to_homepage">Não, voltar à página inicial.</string>
+    <string name="yes_delete_account">Sim, eliminar conta.</string>
+    <string name="userDeleted">Conta eliminada</string>
 
 </resources>

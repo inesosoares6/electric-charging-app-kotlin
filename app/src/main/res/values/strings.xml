@@ -109,6 +109,7 @@
     <string name="resetPassword">Reset password</string>
     <string name="historic_button">Historic button</string>
     <string name="add_vehicle">Add vehicle</string>
+    <string name="deleteAccount">Delete account</string>
 
     <!-- Account Fragment -->
     <string name="number_of_charges">Number of charges: </string>
@@ -134,4 +135,11 @@
     <string name="favorite">Predefine as favorite</string>
     <string name="deleteFromList">Delete from list</string>
     <string name="cancelElimination">Cancel</string>
+
+
+    <string name="delete_account">Delete account</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Are you sure that you want to delete your account?</string>
+    <string name="no_return_to_homepage">No, return to homepage.</string>
+    <string name="yes_delete_account">Yes, delete account.</string>
+    <string name="userDeleted">User account deleted</string>
 </resources>
