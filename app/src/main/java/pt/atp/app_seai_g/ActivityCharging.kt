@@ -1,6 +1,11 @@
 package pt.atp.app_seai_g
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -27,14 +32,22 @@ class ActivityCharging : AppCompatActivity() {
 
     private val client = OkHttpClient()
 
+    lateinit var notificationManager : NotificationManager
+    lateinit var notificationChannel : NotificationChannel
+    lateinit var builder : Notification.Builder
+    private val channelId = "i.apps.notifications"
+    private val description = "Test notification"
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_charging)
 
+        //TODO wait for message of charge finished
+
         //TODO put here the url
-        run("")
+        //run("")
 
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
@@ -126,7 +139,7 @@ class ActivityCharging : AppCompatActivity() {
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             timeFinished = LocalDateTime.now()
-
+            sendNotification()
         }
 
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
@@ -147,22 +160,52 @@ class ActivityCharging : AppCompatActivity() {
                         "numCharges" to (numCharges+1)
                 ))
             }
+            //TODO update price in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
                 "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
-//                "timeStarted" to timeStarted,
-//                "timeFinished" to timeFinished,
                 "price" to 0,
                 "type" to type
             )
-            //TODO update price in database
+            val docName: String = if((numCharges+1)<10){
+                "00"+(numCharges+1).toString()
+            } else if ((numCharges+1)>9 && (numCharges+1)<100){
+                "0"+(numCharges+1).toString()
+            } else{
+                (numCharges+1).toString()
+            }
             mAuth.currentUser?.email?.let { it1 ->
-                db.collection("users").document(it1).collection("charges").document((numCharges+1).toString())
+                db.collection("users").document(it1).collection("charges").document(docName)
                     .set(charger)
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
         }
+    }
+
+    private fun sendNotification() {
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(
+                channelId,description,NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+
+            builder = Notification.Builder(this,channelId)
+                .setContentTitle("Vehicle charged")
+                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setSmallIcon(R.mipmap.ic_launcher)
+        }else{
+
+            builder = Notification.Builder(this)
+                .setContentTitle("Vehicle charged")
+                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setSmallIcon(R.mipmap.ic_launcher)
+        }
+        notificationManager.notify(1234,builder.build())
+
     }
 
     private fun run(url: String){
@@ -173,7 +216,5 @@ class ActivityCharging : AppCompatActivity() {
         })
     }
 
-    override fun onBackPressed() {
-        //super.onBackPressed()
-    }
+    override fun onBackPressed(){}
 }

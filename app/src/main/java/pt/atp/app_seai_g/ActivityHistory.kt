@@ -32,7 +32,11 @@ class ActivityHistory : AppCompatActivity() {
                         arrayTime.add(document["time"].toString())
                         arrayType.add(document["type"].toString())
                     }
-                    sendData(arrayDate,arrayType, arrayTime, arrayPrice, arrayCharger)
+                    if(arrayDate.size == 1){
+                        sendData(arrayDate,arrayType, arrayTime, arrayPrice, arrayCharger)
+                    } else{
+                        sendData(arrayDate.reversed() as ArrayList<String>,arrayType.reversed() as ArrayList<String>, arrayTime.reversed() as ArrayList<String>, arrayPrice.reversed() as ArrayList<String>, arrayCharger.reversed() as ArrayList<String>)
+                    }
                 }
                 .addOnFailureListener {
                     Toast.makeText(applicationContext,getString(R.string.error_getting_documents), Toast.LENGTH_LONG).show()
