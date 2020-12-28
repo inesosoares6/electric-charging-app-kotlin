@@ -3,10 +3,8 @@ package pt.atp.app_seai_g
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.*
@@ -46,6 +43,8 @@ class ActivityCharging : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_charging)
+
+        //TODO wait for message of charge finished
 
         //TODO put here the url
         //run("")
@@ -161,16 +160,14 @@ class ActivityCharging : AppCompatActivity() {
                         "numCharges" to (numCharges+1)
                 ))
             }
+            //TODO update price in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
                 "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
-//                "timeStarted" to timeStarted,
-//                "timeFinished" to timeFinished,
                 "price" to 0,
                 "type" to type
             )
-            //TODO update price in database
             val docName: String = if((numCharges+1)<10){
                 "00"+(numCharges+1).toString()
             } else if ((numCharges+1)>9 && (numCharges+1)<100){
@@ -188,8 +185,6 @@ class ActivityCharging : AppCompatActivity() {
 
     private fun sendNotification() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        val pendingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = NotificationChannel(
                 channelId,description,NotificationManager.IMPORTANCE_HIGH)
@@ -202,14 +197,12 @@ class ActivityCharging : AppCompatActivity() {
                 .setContentTitle("Vehicle charged")
                 .setContentText("Your vehicle is charged, thank you for your preference!")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                //.setContentIntent(pendingIntent)
         }else{
 
             builder = Notification.Builder(this)
                 .setContentTitle("Vehicle charged")
                 .setContentText("Your vehicle is charged, thank you for your preference!")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                //.setContentIntent(pendingIntent)
         }
         notificationManager.notify(1234,builder.build())
 
@@ -223,7 +216,5 @@ class ActivityCharging : AppCompatActivity() {
         })
     }
 
-    override fun onBackPressed() {
-        //super.onBackPressed()
-    }
+    override fun onBackPressed(){}
 }
