@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import okhttp3.*
+import java.io.IOException
 import java.time.LocalDateTime
 
 // Activity to charge the vehicle
@@ -23,11 +25,16 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var confirmCancelPage: View
     private lateinit var finishedPage: View
 
+    private val client = OkHttpClient()
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_charging)
+
+        //TODO put here the url
+        run("")
 
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
@@ -156,6 +163,14 @@ class ActivityCharging : AppCompatActivity() {
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
         }
+    }
+
+    private fun run(url: String){
+        val request = Request.Builder().url(url).build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) = println(response.body?.string())
+        })
     }
 
     override fun onBackPressed() {
