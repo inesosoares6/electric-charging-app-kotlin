@@ -34,7 +34,7 @@ class ActivityCharging : AppCompatActivity() {
         setContentView(R.layout.activity_main_charging)
 
         //TODO put here the url
-        run("")
+        //run("")
 
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
@@ -157,8 +157,15 @@ class ActivityCharging : AppCompatActivity() {
                 "type" to type
             )
             //TODO update price in database
+            val docName: String = if((numCharges+1)<10){
+                "00"+(numCharges+1).toString()
+            } else if ((numCharges+1)>9 && (numCharges+1)<100){
+                "0"+(numCharges+1).toString()
+            } else{
+                (numCharges+1).toString()
+            }
             mAuth.currentUser?.email?.let { it1 ->
-                db.collection("users").document(it1).collection("charges").document((numCharges+1).toString())
+                db.collection("users").document(it1).collection("charges").document(docName)
                     .set(charger)
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
