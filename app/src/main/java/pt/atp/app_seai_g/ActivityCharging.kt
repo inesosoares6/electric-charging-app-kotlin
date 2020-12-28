@@ -1,6 +1,13 @@
 package pt.atp.app_seai_g
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -9,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.*
@@ -26,6 +34,12 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var finishedPage: View
 
     private val client = OkHttpClient()
+
+    lateinit var notificationManager : NotificationManager
+    lateinit var notificationChannel : NotificationChannel
+    lateinit var builder : Notification.Builder
+    private val channelId = "i.apps.notifications"
+    private val description = "Test notification"
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -126,7 +140,7 @@ class ActivityCharging : AppCompatActivity() {
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             timeFinished = LocalDateTime.now()
-
+            sendNotification()
         }
 
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
@@ -170,6 +184,35 @@ class ActivityCharging : AppCompatActivity() {
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
         }
+    }
+
+    private fun sendNotification() {
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val pendingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(
+                channelId,description,NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+
+            builder = Notification.Builder(this,channelId)
+                .setContentTitle("Vehicle charged")
+                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                //.setContentIntent(pendingIntent)
+        }else{
+
+            builder = Notification.Builder(this)
+                .setContentTitle("Vehicle charged")
+                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                //.setContentIntent(pendingIntent)
+        }
+        notificationManager.notify(1234,builder.build())
+
     }
 
     private fun run(url: String){
