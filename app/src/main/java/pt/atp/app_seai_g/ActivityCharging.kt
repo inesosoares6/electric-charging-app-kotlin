@@ -46,6 +46,16 @@ class ActivityCharging : AppCompatActivity() {
 
     private var message: String? = null
 
+    private var timeStarted: LocalDateTime? = null
+    private var timeFinished: LocalDateTime? = null
+    private var day = ""
+    private var month = ""
+    private var year = ""
+    private var hour = ""
+    private var minute = ""
+    private var type = ""
+    private var priceTotalDB: String? = null
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -69,14 +79,7 @@ class ActivityCharging : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
         var numCharges = 0
-        var timeStarted: LocalDateTime = LocalDateTime.now()
-        var timeFinished: LocalDateTime = LocalDateTime.now()
-        var day = ""
-        var month = ""
-        var year = ""
-        var hour = ""
-        var minute = ""
-        var type = ""
+
         mAuth= FirebaseAuth.getInstance()
 
         // Get prices of charging modes to show in page
@@ -93,13 +96,7 @@ class ActivityCharging : AppCompatActivity() {
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             // save variables to use in database
-            timeStarted = LocalDateTime.now()
-            day = timeStarted.dayOfMonth.toString()
-            month = timeStarted.monthValue.toString()
-            year = timeStarted.year.toString()
-            hour = timeStarted.hour.toString()
-            minute = timeStarted.minute.toString()
-            type = getString(R.string.regular_mode)
+            saveInitialValues(getString(R.string.regular_mode))
         }
 
         // Fast charging mode
@@ -112,13 +109,7 @@ class ActivityCharging : AppCompatActivity() {
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             // save variables to use in database
-            timeStarted = LocalDateTime.now()
-            day = timeStarted.dayOfMonth.toString()
-            month = timeStarted.monthValue.toString()
-            year = timeStarted.year.toString()
-            hour = timeStarted.hour.toString()
-            minute = timeStarted.minute.toString()
-            type = getString(R.string.fast)
+            saveInitialValues(getString(R.string.fast))
         }
 
         // Green charging mode
@@ -132,12 +123,7 @@ class ActivityCharging : AppCompatActivity() {
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
             // save variables to use in database
-            day = timeStarted.dayOfMonth.toString()
-            month = timeStarted.monthValue.toString()
-            year = timeStarted.year.toString()
-            hour = timeStarted.hour.toString()
-            minute = timeStarted.minute.toString()
-            type = getString(R.string.green)
+            saveInitialValues(getString(R.string.green))
         }
 
         val returnButton = findViewById<Button>(R.id.returnButton)
@@ -161,7 +147,6 @@ class ActivityCharging : AppCompatActivity() {
 
         // Charge finished
         val cancel = findViewById<Button>(R.id.cancel)
-        var priceTotalDB: String? = null
         cancel.setOnClickListener{
             doAsync {
                 Request("http://127.0.0.1:5000/stop/$apiID").run()
@@ -169,21 +154,8 @@ class ActivityCharging : AppCompatActivity() {
             // update page visible
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
-            // save variables to use in database
-            timeFinished = LocalDateTime.now()
-            sendNotification()
-            // get final price to pay
-            doAsync {
-                message = Request("http://127.0.0.1:5000/finalpriceAPP/$apiID").run()
-                try {
-                    val obj = JSONObject(message.toString())
-                    val priceTotal = obj.getString("total")
-                    totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
-                    priceTotalDB = priceTotal
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            }
+            // send info to control, send notification and save data for database
+            chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
         }
 
         // Save charge in database before returning home
@@ -207,7 +179,6 @@ class ActivityCharging : AppCompatActivity() {
                 ))
             }
 
-            //TODO update price in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
@@ -271,6 +242,38 @@ class ActivityCharging : AppCompatActivity() {
                 normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
                 premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
                 greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun saveInitialValues(typeCharge: String){
+        // save variables to use in database
+        timeStarted = LocalDateTime.now()
+        day = timeStarted!!.dayOfMonth.toString()
+        month = timeStarted!!.monthValue.toString()
+        year = timeStarted!!.year.toString()
+        hour = timeStarted!!.hour.toString()
+        minute = timeStarted!!.minute.toString()
+        type = typeCharge
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
+    private fun chargeFinished(url: String){
+        // save variables to use in database
+        timeFinished = LocalDateTime.now()
+        sendNotification()
+        // get final price to pay
+        doAsync {
+            message = Request(url).run()
+            try {
+                val obj = JSONObject(message.toString())
+                val priceTotal = obj.getString("total")
+                totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
+                priceTotalDB = priceTotal
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
