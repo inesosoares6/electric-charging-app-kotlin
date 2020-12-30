@@ -55,6 +55,10 @@
     <string name="greenCharging"> Verde</string>
     <string name="textPriceGreen">Carregamento Verde:</string>
     <string name="returnButton">Cancelar</string>
+    <string name="regular_mode">Normal</string>
+    <string name="error_getting_numCharges">Erro ao aceder a numCharges</string>
+    <string name="vehicleCharged">Veículo carregado</string>
+    <string name="vehicleChargedMessage">O seu veículo está carregado, obrigado pela sua preferência!</string>
 
     <!-- Welcome Activity -->
     <string name="title_activity_maps">Mapa</string>

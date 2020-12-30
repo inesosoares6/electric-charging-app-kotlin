@@ -1,5 +1,6 @@
 package pt.atp.app_seai_g
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -12,13 +13,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.uiThread
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import org.jetbrains.anko.doAsync
 import org.json.JSONException
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
@@ -41,6 +40,7 @@ class ActivityCharging : AppCompatActivity() {
     private val description = "Test notification"
 
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,54 +83,49 @@ class ActivityCharging : AppCompatActivity() {
         doAsync {
             message = Request(url).run()
             try {
-                // get JSONObject from JSON file
-                val obj = JSONObject(message)
-                // fetch JSONObject named employee
+                val obj = JSONObject(message.toString())
                 val prices: JSONObject = obj.getJSONObject("prices")
-                // get employee name and salary
                 val priceNormal = prices.getString("normal")
                 val pricePremium = prices.getString("premium")
                 val priceGreen = prices.getString("green")
-                normalPrice.text = getString(R.string.textPriceNormal)+" "+priceNormal+" €/kWh"
-                premiumPrice.text = getString(R.string.textPriceFast)+" "+pricePremium+"€/kWh"
-                greenPrice.text = getString(R.string.textPriceGreen)+" "+priceGreen+"€/kWh"
+                normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
+                premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
+                greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
 
-
+        // Regular charging mode
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
         chargeNormal.setOnClickListener{
-            val url = "http://127.0.0.1:5000/normal/$apiID"
-            var message: String?
-
+            // send charging mode to control
             doAsync {
-                message = Request(url).run()
+                Request("http://127.0.0.1:5000/normal/$apiID").run()
             }
-
+            // update page visible
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+            // save variables to use in database
             timeStarted = LocalDateTime.now()
             day = timeStarted.dayOfMonth.toString()
             month = timeStarted.monthValue.toString()
             year = timeStarted.year.toString()
             hour = timeStarted.hour.toString()
             minute = timeStarted.minute.toString()
-            type = "Normal"
+            type = getString(R.string.regular_mode)
         }
 
+        // Fast charging mode
         val chargeFast = findViewById<Button>(R.id.chargeFast)
         chargeFast.setOnClickListener{
-            val url = "http://127.0.0.1:5000/premium/$apiID"
-            var message: String?
-
             doAsync {
-                message = Request(url).run()
+                Request("http://127.0.0.1:5000/premium/$apiID").run()
             }
-
+            // update page visible
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
+            // save variables to use in database
             timeStarted = LocalDateTime.now()
             day = timeStarted.dayOfMonth.toString()
             month = timeStarted.monthValue.toString()
@@ -140,18 +135,17 @@ class ActivityCharging : AppCompatActivity() {
             type = getString(R.string.fast)
         }
 
+        // Green charging mode
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
-            val url = "http://127.0.0.1:5000/green/$apiID"
-            var message: String?
-
             doAsync {
-                message = Request(url).run()
+                Request("http://127.0.0.1:5000/green/$apiID").run()
             }
-
+            // update page visible
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
+            // save variables to use in database
             day = timeStarted.dayOfMonth.toString()
             month = timeStarted.monthValue.toString()
             year = timeStarted.year.toString()
@@ -179,29 +173,36 @@ class ActivityCharging : AppCompatActivity() {
             chargingPage.visibility=View.VISIBLE
         }
 
+        // Charge finished
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
-            val url = "http://127.0.0.1:5000/stop/$apiID"
-            var message: String?
-
             doAsync {
-                message = Request(url).run()
+                Request("http://127.0.0.1:5000/stop/$apiID").run()
             }
-
+            // update page visible
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
+            // save variables to use in database
             timeFinished = LocalDateTime.now()
             sendNotification()
+            // get final price to pay
+            /*
+            var message: String?
+            doAsync {
+                message = Request("http://127.0.0.1:5000/finalpriceAPP/$apiID").run()
+            }*/
         }
 
+        // Save charge in database before returning home
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
+        // get number of charges done to save the document in the correct order
         mAuth.currentUser?.email?.let {
             db.collection("users").document(it).get()
                     .addOnSuccessListener { result ->
                         numCharges=result["numCharges"].toString().toInt()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(applicationContext, "Error getting numCharges", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, getString(R.string.error_getting_numCharges), Toast.LENGTH_LONG).show()
                     }
         }
         returnHomepage.setOnClickListener{
@@ -213,15 +214,6 @@ class ActivityCharging : AppCompatActivity() {
                 ))
             }
 
-            //Codigo de acesso ao valor do preco final
-
-            /*val url = "http://127.0.0.1:5000/finalpriceAPP/$apiID"
-            var message: String?
-
-            doAsync {
-                message = Request(url).run()
-            }*/
-
             //TODO update price in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
@@ -230,6 +222,8 @@ class ActivityCharging : AppCompatActivity() {
                 "price" to 0,
                 "type" to type
             )
+
+            // Add zeros before the number so that the documents stay in order to write in historic
             val docName: String = if((numCharges+1)<10){
                 "00"+(numCharges+1).toString()
             } else if ((numCharges+1)>9 && (numCharges+1)<100){
@@ -237,6 +231,7 @@ class ActivityCharging : AppCompatActivity() {
             } else{
                 (numCharges+1).toString()
             }
+            // Save charge to historic and last charge
             mAuth.currentUser?.email?.let { it1 ->
                 db.collection("users").document(it1).collection("charges").document(docName)
                     .set(charger)
@@ -245,6 +240,7 @@ class ActivityCharging : AppCompatActivity() {
         }
     }
 
+    // Send notification when finished
     private fun sendNotification() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -256,19 +252,20 @@ class ActivityCharging : AppCompatActivity() {
             notificationManager.createNotificationChannel(notificationChannel)
 
             builder = Notification.Builder(this,channelId)
-                .setContentTitle("Vehicle charged")
-                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setContentTitle(getString(R.string.vehicleCharged))
+                .setContentText(getString(R.string.vehicleChargedMessage))
                 .setSmallIcon(R.mipmap.ic_launcher)
         }else{
 
             builder = Notification.Builder(this)
-                .setContentTitle("Vehicle charged")
-                .setContentText("Your vehicle is charged, thank you for your preference!")
+                .setContentTitle(getString(R.string.vehicleCharged))
+                .setContentText(getString(R.string.vehicleChargedMessage))
                 .setSmallIcon(R.mipmap.ic_launcher)
         }
         notificationManager.notify(1234,builder.build())
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getPrices(url: String){
         var message: String?
         val normalPrice = findViewById<TextView>(R.id.priceNormal)
@@ -278,17 +275,14 @@ class ActivityCharging : AppCompatActivity() {
         doAsync {
             message = Request(url).run()
             try {
-                // get JSONObject from JSON file
-                val obj = JSONObject(message)
-                // fetch JSONObject named employee
+                val obj = JSONObject(message.toString())
                 val prices: JSONObject = obj.getJSONObject("prices")
-                // get employee name and salary
                 val priceNormal = prices.getString("normal")
                 val pricePremium = prices.getString("premium")
                 val priceGreen = prices.getString("green")
-                normalPrice.text = getString(R.string.textPriceNormal)+" "+priceNormal+" €/kWh"
-                premiumPrice.text = getString(R.string.textPriceFast)+" "+pricePremium+"€/kWh"
-                greenPrice.text = getString(R.string.textPriceGreen)+" "+priceGreen+"€/kWh"
+                normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
+                premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
+                greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
             } catch (e: JSONException) {
                 e.printStackTrace()
             }

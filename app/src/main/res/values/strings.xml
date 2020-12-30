@@ -55,6 +55,10 @@
     <string name="greenCharging">Green</string>
     <string name="textPriceGreen">Green Charging:</string>
     <string name="returnButton">Cancel</string>
+    <string name="regular_mode">Regular</string>
+    <string name="error_getting_numCharges">Error getting numCharges</string>
+    <string name="vehicleCharged">Vehicle charged</string>
+    <string name="vehicleChargedMessage">Your vehicle is charged, thank you for your preference!</string>
 
     <!-- Welcome Activity -->
     <string name="welcome">Welcome</string>
