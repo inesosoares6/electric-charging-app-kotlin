@@ -55,7 +55,7 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             try {
                 val obj = JSONObject(message.toString())
                 val freeSlots = obj.getString("slots")
-                freeSlotsText = "FEUP: "+ freeSlots + getString(R.string.parkingFeup)
+                freeSlotsText = "FEUP: "+ freeSlots + " " + getString(R.string.parkingFeup)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
