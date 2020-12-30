@@ -176,22 +176,19 @@ class ActivityCharging : AppCompatActivity() {
                     }
         }
         returnHomepage.setOnClickListener{
-           val intent = Intent(this, ActivityWelcome::class.java)
-            startActivity(intent)
+            // get number of charges to use in document name
             mAuth.currentUser?.email?.let {
                 db.collection("users").document(it).update(mapOf("numCharges" to (numCharges+1)))
             }
-
-            // Values to save in database
+            // values to save in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
-                "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString() + "minutes",
-                "price" to priceTotalDB + "€",
+                "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
+                "price" to priceTotalDB,
                 "type" to type
             )
-
-            // Add zeros before the number so that the documents stay in order to write in historic
+            // add zeros before the number so that the documents stay in order to write in historic
             val docName: String = if((numCharges+1)<10){
                 "00"+(numCharges+1).toString()
             } else if ((numCharges+1)>9 && (numCharges+1)<100){
@@ -199,12 +196,14 @@ class ActivityCharging : AppCompatActivity() {
             } else{
                 (numCharges+1).toString()
             }
-
-            // Save charge to historic and last charge
+            // save charge to historic and last charge
             mAuth.currentUser?.email?.let { it1 ->
                 db.collection("users").document(it1).collection("charges").document(docName).set(charger)
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
+            // return to welcome page
+            val intent = Intent(this, ActivityWelcome::class.java)
+            startActivity(intent)
         }
     }
 
