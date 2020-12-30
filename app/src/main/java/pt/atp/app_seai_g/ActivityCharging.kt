@@ -102,6 +102,7 @@ class ActivityCharging : AppCompatActivity() {
         // Fast charging mode
         val chargeFast = findViewById<Button>(R.id.chargeFast)
         chargeFast.setOnClickListener{
+            // send charging mode to control
             doAsync {
                 Request("http://127.0.0.1:5000/premium/$apiID").run()
             }
@@ -115,6 +116,7 @@ class ActivityCharging : AppCompatActivity() {
         // Green charging mode
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
+            // send charging mode to control
             doAsync {
                 Request("http://127.0.0.1:5000/green/$apiID").run()
             }
@@ -126,6 +128,7 @@ class ActivityCharging : AppCompatActivity() {
             saveInitialValues(getString(R.string.green))
         }
 
+        // Return to welcome page, the client doesn't want to charge the vehicle
         val returnButton = findViewById<Button>(R.id.returnButton)
         returnButton.setOnClickListener{
             val intent = Intent(this, ActivityWelcome::class.java)
@@ -133,19 +136,21 @@ class ActivityCharging : AppCompatActivity() {
             finish()
         }
 
+        // Confirm that the client wants to cancel the charge
         val cancelCharge = findViewById<Button>(R.id.cancelCharge)
         cancelCharge.setOnClickListener{
             chargingPage.visibility=View.GONE
             confirmCancelPage.visibility=View.VISIBLE
         }
 
+        // The client wants to continue charging the vehicle
         val continueCharging = findViewById<Button>(R.id.continueCharging)
         continueCharging.setOnClickListener{
             confirmCancelPage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
         }
 
-        // Charge finished
+        // The client canceled the vehicle
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
             doAsync {
@@ -174,11 +179,10 @@ class ActivityCharging : AppCompatActivity() {
            val intent = Intent(this, ActivityWelcome::class.java)
             startActivity(intent)
             mAuth.currentUser?.email?.let {
-                db.collection("users").document(it).update(mapOf(
-                        "numCharges" to (numCharges+1)
-                ))
+                db.collection("users").document(it).update(mapOf("numCharges" to (numCharges+1)))
             }
 
+            // Values to save in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
@@ -195,10 +199,10 @@ class ActivityCharging : AppCompatActivity() {
             } else{
                 (numCharges+1).toString()
             }
+
             // Save charge to historic and last charge
             mAuth.currentUser?.email?.let { it1 ->
-                db.collection("users").document(it1).collection("charges").document(docName)
-                    .set(charger)
+                db.collection("users").document(it1).collection("charges").document(docName).set(charger)
                 db.collection("users").document(it1).collection("lastCharge").document("last").set(charger)
             }
         }
@@ -229,6 +233,7 @@ class ActivityCharging : AppCompatActivity() {
         notificationManager.notify(1234,builder.build())
     }
 
+    // Get prices to display in the screen
     @SuppressLint("SetTextI18n")
     private fun getPrices(url: String){
         var message: String?
@@ -248,6 +253,7 @@ class ActivityCharging : AppCompatActivity() {
         }
     }
 
+    // Save initial values to save to database
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveInitialValues(typeCharge: String){
         // save variables to use in database
