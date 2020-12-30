@@ -2,8 +2,8 @@ package pt.atp.app_seai_g
 
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.doAsync
+import org.json.JSONException
+import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 
 // Activity that contains the locations of the charging stations
@@ -27,6 +29,8 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
+
+    private var message: String? =null
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -43,18 +47,21 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         val feup = LatLng(41.1780, -8.5980)
+        var freeSlotsText: String? = null
 
-        //Codigo de acesso aos lugares livres - retorna um int neste formato('slots': NUMERO_DE_LUGARES_LIVRES)
-
-        /*val url = "http://127.0.0.1:5000/checkslots/"
-        var message: String?
-
+        //Check number of free slots
         doAsync {
-            message = Request(url).run()
-        }*/
-
-        //TODO update free parking slots
-        map.addMarker(MarkerOptions().position(feup).title(getString(R.string.parkingFeup)))
+            message = Request("http://127.0.0.1:5000/checkslots/").run()
+            try {
+                val obj = JSONObject(message.toString())
+                val freeSlots = obj.getString("slots")
+                freeSlotsText = "FEUP: "+ freeSlots + getString(R.string.parkingFeup)
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+        
+        map.addMarker(MarkerOptions().position(feup).title(freeSlotsText))
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
         setUpMap()
