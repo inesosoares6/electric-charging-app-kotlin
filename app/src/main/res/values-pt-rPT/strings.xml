@@ -81,7 +81,7 @@
     <string name="nfcNotSupported">Nfc não é suportado neste dispositivo</string>
     <string name="nfcDisabled">NFC desativado, por favor ative para prosseguir.</string>
     <string name="mimeType">Verifique o tipo de MIME</string>
-    <string name="parkingFeup">FEUP: 10 lugares livres</string>
+    <string name="parkingFeup">lugares livres</string>
 
     <!-- Settings Activity -->
     <string name="settings">Definições</string>

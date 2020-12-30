@@ -60,7 +60,7 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 e.printStackTrace()
             }
         }
-        
+
         map.addMarker(MarkerOptions().position(feup).title(freeSlotsText))
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
