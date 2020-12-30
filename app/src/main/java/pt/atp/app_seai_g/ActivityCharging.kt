@@ -75,19 +75,17 @@ class ActivityCharging : AppCompatActivity() {
         val normalPrice = findViewById<TextView>(R.id.priceNormal)
         val premiumPrice = findViewById<TextView>(R.id.priceFast)
         val greenPrice = findViewById<TextView>(R.id.priceGreen)
+        val totalPrice = findViewById<TextView>(R.id.textTotalPrice)
 
-        val url = "http://127.0.0.1:5000/pricesAPP/$apiID"
-       // getPrices(url)
+       // getPrices("http://127.0.0.1:5000/pricesAPP/$apiID")
         var message: String?
-
         doAsync {
-            message = Request(url).run()
+            message = Request("http://127.0.0.1:5000/pricesAPP/$apiID").run()
             try {
                 val obj = JSONObject(message.toString())
-                val prices: JSONObject = obj.getJSONObject("prices")
-                val priceNormal = prices.getString("normal")
-                val pricePremium = prices.getString("premium")
-                val priceGreen = prices.getString("green")
+                val priceNormal = obj.getString("normal")
+                val pricePremium = obj.getString("premium")
+                val priceGreen = obj.getString("green")
                 normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
                 premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
                 greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
@@ -186,11 +184,16 @@ class ActivityCharging : AppCompatActivity() {
             timeFinished = LocalDateTime.now()
             sendNotification()
             // get final price to pay
-            /*
-            var message: String?
             doAsync {
                 message = Request("http://127.0.0.1:5000/finalpriceAPP/$apiID").run()
-            }*/
+                try {
+                    val obj = JSONObject(message.toString())
+                    val priceTotal = obj.getString("total")
+                    totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
         }
 
         // Save charge in database before returning home
