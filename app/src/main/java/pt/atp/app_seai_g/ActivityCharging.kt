@@ -39,6 +39,13 @@ class ActivityCharging : AppCompatActivity() {
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
 
+    private val normalPrice: TextView = findViewById(R.id.priceNormal)
+    private val premiumPrice: TextView = findViewById(R.id.priceFast)
+    private val greenPrice: TextView = findViewById(R.id.priceGreen)
+    private val totalPrice: TextView = findViewById(R.id.textTotalPrice)
+
+    private var message: String? = null
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -72,27 +79,8 @@ class ActivityCharging : AppCompatActivity() {
         var type = ""
         mAuth= FirebaseAuth.getInstance()
 
-        val normalPrice = findViewById<TextView>(R.id.priceNormal)
-        val premiumPrice = findViewById<TextView>(R.id.priceFast)
-        val greenPrice = findViewById<TextView>(R.id.priceGreen)
-        val totalPrice = findViewById<TextView>(R.id.textTotalPrice)
-
-       // getPrices("http://127.0.0.1:5000/pricesAPP/$apiID")
-        var message: String?
-        doAsync {
-            message = Request("http://127.0.0.1:5000/pricesAPP/$apiID").run()
-            try {
-                val obj = JSONObject(message.toString())
-                val priceNormal = obj.getString("normal")
-                val pricePremium = obj.getString("premium")
-                val priceGreen = obj.getString("green")
-                normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
-                premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
-                greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
-        }
+        // Get prices of charging modes to show in page
+       getPrices("http://127.0.0.1:5000/pricesAPP/$apiID")
 
         // Regular charging mode
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
@@ -173,6 +161,7 @@ class ActivityCharging : AppCompatActivity() {
 
         // Charge finished
         val cancel = findViewById<Button>(R.id.cancel)
+        var priceTotalDB: String? = null
         cancel.setOnClickListener{
             doAsync {
                 Request("http://127.0.0.1:5000/stop/$apiID").run()
@@ -190,6 +179,7 @@ class ActivityCharging : AppCompatActivity() {
                     val obj = JSONObject(message.toString())
                     val priceTotal = obj.getString("total")
                     totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
+                    priceTotalDB = priceTotal
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
@@ -221,8 +211,8 @@ class ActivityCharging : AppCompatActivity() {
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
                 "dayHour" to (day+"-"+month+"-"+year+"  "+hour+"h"+minute+"min"),
-                "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString(),
-                "price" to 0,
+                "time" to java.time.Duration.between(timeStarted,timeFinished).toMinutes().toString() + "minutes",
+                "price" to priceTotalDB + "€",
                 "type" to type
             )
 
@@ -271,18 +261,13 @@ class ActivityCharging : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun getPrices(url: String){
         var message: String?
-        val normalPrice = findViewById<TextView>(R.id.priceNormal)
-        val premiumPrice = findViewById<TextView>(R.id.priceFast)
-        val greenPrice = findViewById<TextView>(R.id.priceGreen)
-
         doAsync {
             message = Request(url).run()
             try {
                 val obj = JSONObject(message.toString())
-                val prices: JSONObject = obj.getJSONObject("prices")
-                val priceNormal = prices.getString("normal")
-                val pricePremium = prices.getString("premium")
-                val priceGreen = prices.getString("green")
+                val priceNormal = obj.getString("normal")
+                val pricePremium = obj.getString("premium")
+                val priceGreen = obj.getString("green")
                 normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
                 premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
                 greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
