@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.integration.android.IntentIntegrator
+import org.jetbrains.anko.doAsync
+import pt.atp.app_seai_g.Data.Request
 
 // Fragment to insert charger id
 //     - verify id charger
@@ -64,6 +66,12 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
     }
 
     private fun confirmIdCharger(chargerID: String){
+        val url = "http://127.0.0.1:5000/connection/$chargerID"
+        var message: String?
+
+        doAsync {
+            message = Request(url).run()
+        }
         //TODO verify if id charger is ready to use (value available in database)
         sendID(chargerID)
     }

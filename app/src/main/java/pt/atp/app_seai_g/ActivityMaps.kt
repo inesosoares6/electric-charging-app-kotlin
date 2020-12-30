@@ -14,6 +14,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import org.jetbrains.anko.doAsync
+import pt.atp.app_seai_g.Data.Request
 
 // Activity that contains the locations of the charging stations
 //     - pin in charging station
@@ -41,6 +43,16 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         val feup = LatLng(41.1780, -8.5980)
+
+        //Codigo de acesso aos lugares livres - retorna um int neste formato('slots': NUMERO_DE_LUGARES_LIVRES)
+
+        /*val url = "http://127.0.0.1:5000/checkslots/"
+        var message: String?
+
+        doAsync {
+            message = Request(url).run()
+        }*/
+
         //TODO update free parking slots
         map.addMarker(MarkerOptions().position(feup).title(getString(R.string.parkingFeup)))
         map.uiSettings.isZoomControlsEnabled = true

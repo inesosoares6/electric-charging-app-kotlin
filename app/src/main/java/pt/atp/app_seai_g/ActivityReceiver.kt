@@ -9,6 +9,8 @@ import android.nfc.NdefMessage
 import android.nfc.NfcAdapter
 import android.widget.TextView
 import android.widget.Toast
+import org.jetbrains.anko.doAsync
+import pt.atp.app_seai_g.Data.Request
 
 // Activity to read NFC
 
@@ -92,6 +94,12 @@ class ReceiverActivity : AppCompatActivity() {
         }
     }
     private fun confirmIdCharger(chargerID: String){
+        val url = "http://127.0.0.1:5000/connection/$chargerID"
+        var message: String?
+
+        doAsync {
+            message = Request(url).run()
+        }
         //TODO verify if id charger is ready to use (value available in database)
         sendID(chargerID)
     }

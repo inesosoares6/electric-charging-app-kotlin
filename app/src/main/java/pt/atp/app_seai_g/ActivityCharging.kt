@@ -12,10 +12,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import org.json.JSONException
+import org.json.JSONObject
+import pt.atp.app_seai_g.Data.Request
 import java.time.LocalDateTime
 
 // Activity to charge the vehicle
@@ -45,6 +51,7 @@ class ActivityCharging : AppCompatActivity() {
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
         chargerID.text = bb?.getString("chargerID")
+        val apiID = bb?.getString("chargerID")
 
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
@@ -65,9 +72,43 @@ class ActivityCharging : AppCompatActivity() {
         var type = ""
         mAuth= FirebaseAuth.getInstance()
 
+        val normalPrice = findViewById<TextView>(R.id.priceNormal)
+        val premiumPrice = findViewById<TextView>(R.id.priceFast)
+        val greenPrice = findViewById<TextView>(R.id.priceGreen)
+
+        val url = "http://127.0.0.1:5000/pricesAPP/$apiID"
+       // getPrices(url)
+        var message: String?
+
+        doAsync {
+            message = Request(url).run()
+            try {
+                // get JSONObject from JSON file
+                val obj = JSONObject(message)
+                // fetch JSONObject named employee
+                val prices: JSONObject = obj.getJSONObject("prices")
+                // get employee name and salary
+                val priceNormal = prices.getString("normal")
+                val pricePremium = prices.getString("premium")
+                val priceGreen = prices.getString("green")
+                normalPrice.text = getString(R.string.textPriceNormal)+" "+priceNormal+" €/kWh"
+                premiumPrice.text = getString(R.string.textPriceFast)+" "+pricePremium+"€/kWh"
+                greenPrice.text = getString(R.string.textPriceGreen)+" "+priceGreen+"€/kWh"
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
         chargeNormal.setOnClickListener{
-            //TODO send info to control: id, charging mode NORMAL
+            val url = "http://127.0.0.1:5000/normal/$apiID"
+            var message: String?
+
+            doAsync {
+                message = Request(url).run()
+            }
+
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
@@ -81,7 +122,13 @@ class ActivityCharging : AppCompatActivity() {
 
         val chargeFast = findViewById<Button>(R.id.chargeFast)
         chargeFast.setOnClickListener{
-            //TODO send info to control: id, charging mode FAST
+            val url = "http://127.0.0.1:5000/premium/$apiID"
+            var message: String?
+
+            doAsync {
+                message = Request(url).run()
+            }
+
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
@@ -95,7 +142,13 @@ class ActivityCharging : AppCompatActivity() {
 
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
-            //TODO send info to control: id, charging mode GREEN
+            val url = "http://127.0.0.1:5000/green/$apiID"
+            var message: String?
+
+            doAsync {
+                message = Request(url).run()
+            }
+
             chargingModePage.visibility=View.GONE
             chargingPage.visibility=View.VISIBLE
             timeStarted = LocalDateTime.now()
@@ -128,7 +181,13 @@ class ActivityCharging : AppCompatActivity() {
 
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
-            //TODO send info to control: id, cancel charging
+            val url = "http://127.0.0.1:5000/stop/$apiID"
+            var message: String?
+
+            doAsync {
+                message = Request(url).run()
+            }
+
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             timeFinished = LocalDateTime.now()
@@ -153,6 +212,16 @@ class ActivityCharging : AppCompatActivity() {
                         "numCharges" to (numCharges+1)
                 ))
             }
+
+            //Codigo de acesso ao valor do preco final
+
+            /*val url = "http://127.0.0.1:5000/finalpriceAPP/$apiID"
+            var message: String?
+
+            doAsync {
+                message = Request(url).run()
+            }*/
+
             //TODO update price in database
             val charger = hashMapOf(
                 "idCharger" to bb?.getString("chargerID"),
@@ -199,5 +268,32 @@ class ActivityCharging : AppCompatActivity() {
         }
         notificationManager.notify(1234,builder.build())
     }
+
+    private fun getPrices(url: String){
+        var message: String?
+        val normalPrice = findViewById<TextView>(R.id.priceNormal)
+        val premiumPrice = findViewById<TextView>(R.id.priceFast)
+        val greenPrice = findViewById<TextView>(R.id.priceGreen)
+
+        doAsync {
+            message = Request(url).run()
+            try {
+                // get JSONObject from JSON file
+                val obj = JSONObject(message)
+                // fetch JSONObject named employee
+                val prices: JSONObject = obj.getJSONObject("prices")
+                // get employee name and salary
+                val priceNormal = prices.getString("normal")
+                val pricePremium = prices.getString("premium")
+                val priceGreen = prices.getString("green")
+                normalPrice.text = getString(R.string.textPriceNormal)+" "+priceNormal+" €/kWh"
+                premiumPrice.text = getString(R.string.textPriceFast)+" "+pricePremium+"€/kWh"
+                greenPrice.text = getString(R.string.textPriceGreen)+" "+priceGreen+"€/kWh"
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     override fun onBackPressed(){}
 }
