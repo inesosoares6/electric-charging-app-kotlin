@@ -35,6 +35,8 @@
     <string name="idText">Através de texto:</string>
     <string name="idQRCode">Através do código QR:</string>
     <string name="idNFC">Através NFC:</string>
+    <string name="insert_valid_id1">O ID do carregador </string>
+    <string name="insert_valid_id2">não está disponível, por favor tente novamente.</string>
 
     <!-- Charging Activity -->
     <string name="selectMode">Por favor selecione o modo de carregamento.</string>

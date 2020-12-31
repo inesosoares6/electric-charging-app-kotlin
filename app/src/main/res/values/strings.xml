@@ -35,6 +35,8 @@
     <string name="idText">By text:</string>
     <string name="idQRCode">By QR code scanning:</string>
     <string name="idNFC">By NFC:</string>
+    <string name="insert_valid_id1">The charger ID </string>
+    <string name="insert_valid_id2">is not available, please try again.</string>
 
     <!-- Charging Activity -->
     <string name="selectMode">Please select the charging mode.</string>
