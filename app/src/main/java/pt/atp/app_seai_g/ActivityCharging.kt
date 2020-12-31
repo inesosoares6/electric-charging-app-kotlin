@@ -102,6 +102,7 @@ class ActivityCharging : AppCompatActivity() {
         // Fast charging mode
         val chargeFast = findViewById<Button>(R.id.chargeFast)
         chargeFast.setOnClickListener{
+            // TODO verify if fast charging is available
             // send charging mode to control
             doAsync {
                 Request("http://127.0.0.1:5000/premium/$apiID").run()
@@ -116,6 +117,7 @@ class ActivityCharging : AppCompatActivity() {
         // Green charging mode
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
+            // TODO verify if green charging is available
             // send charging mode to control
             doAsync {
                 Request("http://127.0.0.1:5000/green/$apiID").run()
