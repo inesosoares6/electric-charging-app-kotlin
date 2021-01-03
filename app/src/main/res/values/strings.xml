@@ -61,6 +61,8 @@
     <string name="error_getting_numCharges">Error getting numCharges</string>
     <string name="vehicleCharged">Vehicle charged</string>
     <string name="vehicleChargedMessage">Your vehicle is charged, thank you for your preference!</string>
+    <string name="greenUnavailable">The Green charging is unavailable at the moment, please choose another charging mode.</string>
+    <string name="fastUnavailable">The Fast charging is unavailable at the moment, please choose another charging mode.</string>
 
     <!-- Welcome Activity -->
     <string name="welcome">Welcome</string>

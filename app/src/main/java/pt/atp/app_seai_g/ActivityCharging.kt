@@ -102,32 +102,55 @@ class ActivityCharging : AppCompatActivity() {
         // Fast charging mode
         val chargeFast = findViewById<Button>(R.id.chargeFast)
         chargeFast.setOnClickListener{
-            // TODO verify if fast charging is available
-            // send charging mode to control
+            // verify if fast charging is available
             doAsync {
-                Request("http://127.0.0.1:5000/premium/$apiID").run()
+                message = Request("http://127.0.0.1:5000/premiumavailable/$apiID").run()
+                try {
+                    val obj = JSONObject(message.toString())
+                    if (obj.getString("flag") == "1"){
+                        // send charging mode to control
+                        doAsync {
+                            Request("http://127.0.0.1:5000/premium/$apiID").run()
+                        }
+                        // update page visible
+                        chargingModePage.visibility=View.GONE
+                        chargingPage.visibility=View.VISIBLE
+                        // save variables to use in database
+                        saveInitialValues(getString(R.string.fast))
+                    } else{
+                        Toast.makeText(applicationContext,getString(R.string.fastUnavailable),Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
             }
-            // update page visible
-            chargingModePage.visibility=View.GONE
-            chargingPage.visibility=View.VISIBLE
-            // save variables to use in database
-            saveInitialValues(getString(R.string.fast))
         }
 
         // Green charging mode
         val chargeGreen = findViewById<Button>(R.id.chargeGreen)
         chargeGreen.setOnClickListener{
-            // TODO verify if green charging is available
-            // send charging mode to control
+            // verify if green charging is available
             doAsync {
-                Request("http://127.0.0.1:5000/green/$apiID").run()
+                message = Request("http://127.0.0.1:5000/greenavailable/$apiID").run()
+                try {
+                    val obj = JSONObject(message.toString())
+                    if (obj.getString("flag") == "1"){
+                        // send charging mode to control
+                        doAsync {
+                            Request("http://127.0.0.1:5000/green/$apiID").run()
+                        }
+                        // update page visible
+                        chargingModePage.visibility=View.GONE
+                        chargingPage.visibility=View.VISIBLE
+                        // save variables to use in database
+                        saveInitialValues(getString(R.string.green))
+                    } else{
+                        Toast.makeText(applicationContext,getString(R.string.greenUnavailable),Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
             }
-            // update page visible
-            chargingModePage.visibility=View.GONE
-            chargingPage.visibility=View.VISIBLE
-            timeStarted = LocalDateTime.now()
-            // save variables to use in database
-            saveInitialValues(getString(R.string.green))
         }
 
         // Return to welcome page, the client doesn't want to charge the vehicle
