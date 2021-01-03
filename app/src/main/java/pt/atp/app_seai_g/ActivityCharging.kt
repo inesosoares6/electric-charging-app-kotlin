@@ -22,6 +22,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 import java.time.LocalDateTime
+import kotlin.concurrent.fixedRateTimer
 
 // Activity to charge the vehicle
 //   - communication with control module
@@ -63,12 +64,29 @@ class ActivityCharging : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_charging)
 
-        //TODO wait for message of charge finished
-
         val bb: Bundle? = intent.extras
         val chargerID = findViewById<TextView>(R.id.chargerId)
         chargerID.text = bb?.getString("chargerID")
         val apiID = bb?.getString("chargerID")
+
+        // check if it is finished
+        fixedRateTimer("default", false, 0L, 3000){
+            doAsync {
+                message = Request("http://127.0.0.1:5000/finish/$apiID").run()
+                try {
+                    val obj = JSONObject(message.toString())
+                    if (obj.getString("flag") == "1"){
+                        // update page visible
+                        chargingPage.visibility=View.GONE
+                        finishedPage.visibility=View.VISIBLE
+                        // send info to control, send notification and save data for database
+                        chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
