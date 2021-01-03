@@ -34,9 +34,9 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var confirmCancelPage: View
     private lateinit var finishedPage: View
 
-    lateinit var notificationManager : NotificationManager
-    lateinit var notificationChannel : NotificationChannel
-    lateinit var builder : Notification.Builder
+    private lateinit var notificationManager : NotificationManager
+    private lateinit var notificationChannel : NotificationChannel
+    private lateinit var builder : Notification.Builder
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
 
