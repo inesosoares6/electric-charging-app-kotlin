@@ -69,25 +69,6 @@ class ActivityCharging : AppCompatActivity() {
         chargerID.text = bb?.getString("chargerID")
         val apiID = bb?.getString("chargerID")
 
-        // check if it is finished
-        fixedRateTimer("default", false, 0L, 3000){
-            doAsync {
-                message = Request("http://127.0.0.1:5000/finish/$apiID").run()
-                try {
-                    val obj = JSONObject(message.toString())
-                    if (obj.getString("flag") == "1"){
-                        // update page visible
-                        chargingPage.visibility=View.GONE
-                        finishedPage.visibility=View.VISIBLE
-                        // send info to control, send notification and save data for database
-                        chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
         confirmCancelPage = findViewById(R.id.confirmCancelPage)
@@ -97,8 +78,9 @@ class ActivityCharging : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val mAuth: FirebaseAuth?
         var numCharges = 0
-
         mAuth= FirebaseAuth.getInstance()
+
+        // ----------------------- Charge Setup --------------------------- //
 
         // Get prices of charging modes to show in page
        getPrices("http://127.0.0.1:5000/pricesAPP/$apiID")
@@ -179,6 +161,27 @@ class ActivityCharging : AppCompatActivity() {
             finish()
         }
 
+        // ----------------------- Vehicle is charging --------------------------- //
+
+        // check if it is finished
+        fixedRateTimer("default", false, 0L, 3000){
+            doAsync {
+                message = Request("http://127.0.0.1:5000/finish/$apiID").run()
+                try {
+                    val obj = JSONObject(message.toString())
+                    if (obj.getString("flag") == "1"){
+                        // update page visible
+                        chargingPage.visibility=View.GONE
+                        finishedPage.visibility=View.VISIBLE
+                        // send info to control, send notification and save data for database
+                        chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
         // Confirm that the client wants to cancel the charge
         val cancelCharge = findViewById<Button>(R.id.cancelCharge)
         cancelCharge.setOnClickListener{
@@ -205,6 +208,8 @@ class ActivityCharging : AppCompatActivity() {
             // send info to control, send notification and save data for database
             chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
         }
+
+        // ----------------------- Charge Finished --------------------------- //
 
         // Save charge in database before returning home
         val returnHomepage = findViewById<Button>(R.id.returnHomepage)
@@ -249,6 +254,8 @@ class ActivityCharging : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    // ----------------------- Auxiliary Functions --------------------------- //
 
     // Send notification when finished
     private fun sendNotification() {
