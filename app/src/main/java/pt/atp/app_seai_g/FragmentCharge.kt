@@ -22,7 +22,7 @@ import pt.atp.app_seai_g.Data.Request
 
 class FragmentCharge : Fragment(R.layout.fragment_charge) {
 
-    var message: String? = null
+    private var message: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
