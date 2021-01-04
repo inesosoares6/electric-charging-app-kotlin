@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.doAsync
-import org.json.JSONException
+import org.jetbrains.anko.uiThread
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 import pt.atp.app_seai_g.MyApplication.Companion.urlStart
@@ -52,19 +52,16 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //Check number of free slots
         doAsync {
             message = Request("$urlStart/checkslots/").run()
-            try {
+            uiThread {
                 val obj = JSONObject(message.toString())
                 val freeSlots = obj.getString("slots")
                 map.addMarker(MarkerOptions().position(feup).title("FEUP: "+ freeSlots + " " + getString(R.string.parkingFeup)))
-            } catch (e: JSONException) {
-                e.printStackTrace()
             }
         }
 
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
         setUpMap()
-
         map.isMyLocationEnabled = true
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
             if (location != null) {
@@ -91,6 +88,5 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         //   - MAP_TYPE_HYBRID displays a combination of the satellite and normal mode
         map.mapType = GoogleMap.MAP_TYPE_NORMAL
     }
-
 }
 
