@@ -11,7 +11,7 @@ class MyApplication : Application() {
 
     companion object{
         // every time we run it needs to be updated
-        const val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
+        val urlStart : String = "http://1152936b2c20.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
     }
 
     override fun onCreate() {
