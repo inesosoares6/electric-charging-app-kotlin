@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
-import pt.atp.app_seai_g.data.Request
+import pt.atp.app_seai_g.Data.Request
 
 // Activity to read NFC
 

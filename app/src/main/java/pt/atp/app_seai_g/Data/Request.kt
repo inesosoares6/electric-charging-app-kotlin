@@ -1,4 +1,4 @@
-package pt.atp.app_seai_g.data
+package pt.atp.app_seai_g.Data
 
 import android.util.Log
 import java.net.URL
