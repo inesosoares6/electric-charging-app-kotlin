@@ -76,7 +76,7 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
             uiThread{
                 val obj = JSONObject(message.toString())
                 //Toast.makeText(context,message,Toast.LENGTH_LONG).show()
-                if (obj.getString("flag")=="0"){
+                if (obj.getString("flag")=="1"){
                     sendID(chargerID)
                 } else{
                     Toast.makeText(context,getString(R.string.insert_valid_id1) +" " + chargerID + " " + getString(R.string.insert_valid_id2),Toast.LENGTH_LONG).show()
