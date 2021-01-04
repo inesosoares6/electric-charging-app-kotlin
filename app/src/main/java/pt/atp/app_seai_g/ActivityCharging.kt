@@ -57,6 +57,9 @@ class ActivityCharging : AppCompatActivity() {
     private var type = ""
     private var priceTotalDB: String? = null
 
+    // every time we run it needs to be updated
+    private val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -83,14 +86,14 @@ class ActivityCharging : AppCompatActivity() {
         // ----------------------- Charge Setup --------------------------- //
 
         // Get prices of charging modes to show in page
-       getPrices("http://127.0.0.1:5000/pricesAPP/$apiID")
+       getPrices("$urlStart/pricesAPP/$apiID")
 
         // Regular charging mode
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
         chargeNormal.setOnClickListener{
             // send charging mode to control
             doAsync {
-                Request("http://127.0.0.1:5000/normal/$apiID").run()
+                Request("$urlStart/normal/$apiID").run()
             }
             // update page visible
             chargingModePage.visibility=View.GONE
@@ -104,13 +107,13 @@ class ActivityCharging : AppCompatActivity() {
         chargeFast.setOnClickListener{
             // verify if fast charging is available
             doAsync {
-                message = Request("http://127.0.0.1:5000/premiumavailable/$apiID").run()
+                message = Request("$urlStart/premiumavailable/$apiID").run()
                 try {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
                         // send charging mode to control
                         doAsync {
-                            Request("http://127.0.0.1:5000/premium/$apiID").run()
+                            Request("$urlStart/premium/$apiID").run()
                         }
                         // update page visible
                         chargingModePage.visibility=View.GONE
@@ -131,13 +134,13 @@ class ActivityCharging : AppCompatActivity() {
         chargeGreen.setOnClickListener{
             // verify if green charging is available
             doAsync {
-                message = Request("http://127.0.0.1:5000/greenavailable/$apiID").run()
+                message = Request("$urlStart/greenavailable/$apiID").run()
                 try {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
                         // send charging mode to control
                         doAsync {
-                            Request("http://127.0.0.1:5000/green/$apiID").run()
+                            Request("$urlStart/green/$apiID").run()
                         }
                         // update page visible
                         chargingModePage.visibility=View.GONE
@@ -166,7 +169,7 @@ class ActivityCharging : AppCompatActivity() {
         // check if it is finished
         fixedRateTimer("default", false, 0L, 3000){
             doAsync {
-                message = Request("http://127.0.0.1:5000/finish/$apiID").run()
+                message = Request("$urlStart/finish/$apiID").run()
                 try {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
@@ -174,7 +177,7 @@ class ActivityCharging : AppCompatActivity() {
                         chargingPage.visibility=View.GONE
                         finishedPage.visibility=View.VISIBLE
                         // send info to control, send notification and save data for database
-                        chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
+                        chargeFinished("$urlStart/finalpriceAPP/$apiID")
                     }
                 } catch (e: JSONException) {
                     e.printStackTrace()
@@ -200,13 +203,13 @@ class ActivityCharging : AppCompatActivity() {
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
             doAsync {
-                Request("http://127.0.0.1:5000/stop/$apiID").run()
+                Request("$urlStart/stop/$apiID").run()
             }
             // update page visible
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             // send info to control, send notification and save data for database
-            chargeFinished("http://127.0.0.1:5000/finalpriceAPP/$apiID")
+            chargeFinished("$urlStart/finalpriceAPP/$apiID")
         }
 
         // ----------------------- Charge Finished --------------------------- //
