@@ -50,7 +50,6 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         val feup = LatLng(41.1780, -8.5980)
-        var freeSlotsText: String? = null
 
         //Check number of free slots
         doAsync {
@@ -58,8 +57,7 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             try {
                 val obj = JSONObject(message.toString())
                 val freeSlots = obj.getString("slots")
-                freeSlotsText = "FEUP: "+ freeSlots + " " + getString(R.string.parkingFeup)
-                map.addMarker(MarkerOptions().position(feup).title(freeSlotsText))
+                map.addMarker(MarkerOptions().position(feup).title("FEUP: "+ freeSlots + " " + getString(R.string.parkingFeup)))
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
