@@ -22,7 +22,6 @@ class MyApplication : Application() {
         Locale.setDefault(locale)
         val config = Configuration()
         config.locale = locale
-        baseContext.resources.updateConfiguration(config,
-                baseContext.resources.displayMetrics)
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 }
