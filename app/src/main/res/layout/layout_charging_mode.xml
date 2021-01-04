@@ -115,7 +115,6 @@
 
     <TextView
         android:id="@+id/priceNormal"
-        android:text="@string/textPriceNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -130,7 +129,6 @@
 
     <TextView
         android:id="@+id/priceFast"
-        android:text="@string/textPriceFast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -145,7 +143,6 @@
 
     <TextView
         android:id="@+id/priceGreen"
-        android:text="@string/textPriceGreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

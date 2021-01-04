@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.doAsync
-import org.json.JSONException
+import org.jetbrains.anko.uiThread
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 import pt.atp.app_seai_g.MyApplication.Companion.urlStart
@@ -35,16 +35,16 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var confirmCancelPage: View
     private lateinit var finishedPage: View
 
+    lateinit var normalPrice: TextView
+    lateinit var premiumPrice: TextView
+    lateinit var greenPrice: TextView
+    lateinit var totalPrice: TextView
+
     private lateinit var notificationManager : NotificationManager
     private lateinit var notificationChannel : NotificationChannel
     private lateinit var builder : Notification.Builder
     private val channelId = "i.apps.notifications"
     private val description = "Test notification"
-
-    private val normalPrice: TextView = findViewById(R.id.priceNormal)
-    private val premiumPrice: TextView = findViewById(R.id.priceFast)
-    private val greenPrice: TextView = findViewById(R.id.priceGreen)
-    private val totalPrice: TextView = findViewById(R.id.textTotalPrice)
 
     private var message: String? = null
 
@@ -58,6 +58,8 @@ class ActivityCharging : AppCompatActivity() {
     private var type = ""
     private var priceTotalDB = ""
 
+    private var finished: Boolean = false
+
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +70,11 @@ class ActivityCharging : AppCompatActivity() {
         val chargerID = findViewById<TextView>(R.id.chargerId)
         chargerID.text = bb?.getString("chargerID")
         val apiID = bb?.getString("chargerID")
+
+        normalPrice = findViewById(R.id.priceNormal)
+        premiumPrice= findViewById(R.id.priceFast)
+        greenPrice = findViewById(R.id.priceGreen)
+        totalPrice = findViewById(R.id.textTotalPrice)
 
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
@@ -83,7 +90,7 @@ class ActivityCharging : AppCompatActivity() {
         // ----------------------- Charge Setup --------------------------- //
 
         // Get prices of charging modes to show in page
-       getPrices("$urlStart/pricesAPP/$apiID")
+        getPrices("$urlStart/pricesAPP/$apiID")
 
         // Regular charging mode
         val chargeNormal = findViewById<Button>(R.id.chargeNormal)
@@ -105,7 +112,7 @@ class ActivityCharging : AppCompatActivity() {
             // verify if fast charging is available
             doAsync {
                 message = Request("$urlStart/premiumavailable/$apiID").run()
-                try {
+                uiThread {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
                         // send charging mode to control
@@ -120,8 +127,6 @@ class ActivityCharging : AppCompatActivity() {
                     } else{
                         Toast.makeText(applicationContext,getString(R.string.fastUnavailable),Toast.LENGTH_LONG).show()
                     }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
                 }
             }
         }
@@ -132,7 +137,7 @@ class ActivityCharging : AppCompatActivity() {
             // verify if green charging is available
             doAsync {
                 message = Request("$urlStart/greenavailable/$apiID").run()
-                try {
+                uiThread {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
                         // send charging mode to control
@@ -147,8 +152,6 @@ class ActivityCharging : AppCompatActivity() {
                     } else{
                         Toast.makeText(applicationContext,getString(R.string.greenUnavailable),Toast.LENGTH_LONG).show()
                     }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
                 }
             }
         }
@@ -156,6 +159,7 @@ class ActivityCharging : AppCompatActivity() {
         // Return to welcome page, the client doesn't want to charge the vehicle
         val returnButton = findViewById<Button>(R.id.returnButton)
         returnButton.setOnClickListener{
+            finished = true
             val intent = Intent(this, ActivityWelcome::class.java)
             startActivity(intent)
             finish()
@@ -167,7 +171,7 @@ class ActivityCharging : AppCompatActivity() {
         fixedRateTimer("default", false, 0L, 3000){
             doAsync {
                 message = Request("$urlStart/finish/$apiID").run()
-                try {
+                uiThread {
                     val obj = JSONObject(message.toString())
                     if (obj.getString("flag") == "1"){
                         // update page visible
@@ -176,9 +180,10 @@ class ActivityCharging : AppCompatActivity() {
                         // send info to control, send notification and save data for database
                         chargeFinished("$urlStart/finalpriceAPP/$apiID")
                     }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
                 }
+            }
+            if (finished){
+                this.cancel()
             }
         }
 
@@ -287,7 +292,8 @@ class ActivityCharging : AppCompatActivity() {
         var message: String?
         doAsync {
             message = Request(url).run()
-            try {
+            uiThread {
+                Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceNormal = obj.getString("normal")
                 val pricePremium = obj.getString("premium")
@@ -295,8 +301,6 @@ class ActivityCharging : AppCompatActivity() {
                 normalPrice.text = getString(R.string.textPriceNormal) + " " + priceNormal + " €/kWh"
                 premiumPrice.text = getString(R.string.textPriceFast) + " " + pricePremium + "€/kWh"
                 greenPrice.text = getString(R.string.textPriceGreen) + " " + priceGreen + "€/kWh"
-            } catch (e: JSONException) {
-                e.printStackTrace()
             }
         }
     }
@@ -312,24 +316,25 @@ class ActivityCharging : AppCompatActivity() {
         hour = timeStarted!!.hour.toString()
         minute = timeStarted!!.minute.toString()
         type = typeCharge
+        finished = false
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun chargeFinished(url: String){
+        finished = true
         // save variables to use in database
         timeFinished = LocalDateTime.now()
         sendNotification()
         // get final price to pay
         doAsync {
             message = Request(url).run()
-            try {
+            uiThread {
+                Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceTotal = obj.getString("total")
                 totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
                 priceTotalDB = priceTotal
-            } catch (e: JSONException) {
-                e.printStackTrace()
             }
         }
     }

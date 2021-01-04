@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.integration.android.IntentIntegrator
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
+import pt.atp.app_seai_g.MyApplication.Companion.urlStart
 
 // Fragment to insert charger id
 //     - verify id charger
@@ -70,13 +72,15 @@ class FragmentCharge : Fragment(R.layout.fragment_charge) {
 
     private fun confirmIdCharger(chargerID: String){
         doAsync {
-            message = Request("http://127.0.0.1:5000/readytocharge/$chargerID").run()
-            val obj = JSONObject(message.toString())
-            val flag = obj.getString("flag")
-            if (flag=="1"){
-                sendID(chargerID)
-            } else{
-                Toast.makeText(context,getString(R.string.insert_valid_id1) +" " + chargerID + " " + getString(R.string.insert_valid_id2),Toast.LENGTH_LONG).show()
+            message = Request("$urlStart/readytocharge/$chargerID").run()
+            uiThread{
+                val obj = JSONObject(message.toString())
+                Toast.makeText(context,message,Toast.LENGTH_LONG).show()
+                if (obj.getString("flag")=="0"){
+                    sendID(chargerID)
+                } else{
+                    Toast.makeText(context,getString(R.string.insert_valid_id1) +" " + chargerID + " " + getString(R.string.insert_valid_id2),Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
