@@ -20,8 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.doAsync
 import org.json.JSONException
 import org.json.JSONObject
-import pt.atp.app_seai_g.Data.Request
 import pt.atp.app_seai_g.MyApplication.Companion.urlStart
+import pt.atp.app_seai_g.data.Request
 import java.time.LocalDateTime
 import kotlin.concurrent.fixedRateTimer
 

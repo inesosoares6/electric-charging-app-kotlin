@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.google.zxing.integration.android.IntentIntegrator
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
-import pt.atp.app_seai_g.Data.Request
+import pt.atp.app_seai_g.data.Request
 
 // Fragment to insert charger id
 //     - verify id charger

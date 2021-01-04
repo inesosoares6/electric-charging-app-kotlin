@@ -17,8 +17,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.doAsync
 import org.json.JSONException
 import org.json.JSONObject
-import pt.atp.app_seai_g.Data.Request
 import pt.atp.app_seai_g.MyApplication.Companion.urlStart
+import pt.atp.app_seai_g.data.Request
 
 // Activity that contains the locations of the charging stations
 //     - pin in charging station
