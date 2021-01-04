@@ -30,6 +30,9 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
 
+    // every time we run it needs to be updated
+    private val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
+
     private var message: String? =null
 
     companion object {
@@ -51,17 +54,17 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         //Check number of free slots
         doAsync {
-            message = Request("http://127.0.0.1:5000/checkslots/").run()
+            message = Request("$urlStart/checkslots/").run()
             try {
                 val obj = JSONObject(message.toString())
                 val freeSlots = obj.getString("slots")
                 freeSlotsText = "FEUP: "+ freeSlots + " " + getString(R.string.parkingFeup)
+                map.addMarker(MarkerOptions().position(feup).title(freeSlotsText))
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
 
-        map.addMarker(MarkerOptions().position(feup).title(freeSlotsText))
         map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
         setUpMap()

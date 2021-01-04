@@ -55,7 +55,7 @@ class ActivityCharging : AppCompatActivity() {
     private var hour = ""
     private var minute = ""
     private var type = ""
-    private var priceTotalDB: String? = null
+    private var priceTotalDB = ""
 
     // every time we run it needs to be updated
     private val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
@@ -264,8 +264,7 @@ class ActivityCharging : AppCompatActivity() {
     private fun sendNotification() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(
-                channelId,description,NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel = NotificationChannel(channelId,description,NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(false)
