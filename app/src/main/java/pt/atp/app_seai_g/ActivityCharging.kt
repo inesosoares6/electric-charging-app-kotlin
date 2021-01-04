@@ -21,6 +21,7 @@ import org.jetbrains.anko.doAsync
 import org.json.JSONException
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
+import pt.atp.app_seai_g.MyApplication.Companion.urlStart
 import java.time.LocalDateTime
 import kotlin.concurrent.fixedRateTimer
 
@@ -56,10 +57,6 @@ class ActivityCharging : AppCompatActivity() {
     private var minute = ""
     private var type = ""
     private var priceTotalDB = ""
-
-    // every time we run it needs to be updated
-    private val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
-
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)

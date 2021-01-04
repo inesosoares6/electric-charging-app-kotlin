@@ -18,6 +18,7 @@ import org.jetbrains.anko.doAsync
 import org.json.JSONException
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
+import pt.atp.app_seai_g.MyApplication.Companion.urlStart
 
 // Activity that contains the locations of the charging stations
 //     - pin in charging station
@@ -29,9 +30,6 @@ class ActivityMaps : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-
-    // every time we run it needs to be updated
-    private val urlStart : String = "http://e4ea0cfe831a.ngrok.io"  // Forwarding: http://e4ea0cfe831a.ngrok.io -> http://localhost:5000
 
     private var message: String? =null
 
