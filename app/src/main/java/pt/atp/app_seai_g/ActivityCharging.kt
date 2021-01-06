@@ -35,10 +35,10 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var confirmCancelPage: View
     private lateinit var finishedPage: View
 
-    lateinit var normalPrice: TextView
-    lateinit var premiumPrice: TextView
-    lateinit var greenPrice: TextView
-    lateinit var totalPrice: TextView
+    private lateinit var normalPrice: TextView
+    private lateinit var premiumPrice: TextView
+    private lateinit var greenPrice: TextView
+    private lateinit var totalPrice: TextView
 
     private lateinit var notificationManager : NotificationManager
     private lateinit var notificationChannel : NotificationChannel
@@ -274,18 +274,17 @@ class ActivityCharging : AppCompatActivity() {
             notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(false)
             notificationManager.createNotificationChannel(notificationChannel)
-
             builder = Notification.Builder(this,channelId)
                 .setContentTitle(getString(R.string.vehicleCharged))
                 .setContentText(getString(R.string.vehicleChargedMessage))
                 .setSmallIcon(R.mipmap.ic_launcher)
-        }else{
-
+        }
+        /*else{
             builder = Notification.Builder(this)
                 .setContentTitle(getString(R.string.vehicleCharged))
                 .setContentText(getString(R.string.vehicleChargedMessage))
                 .setSmallIcon(R.mipmap.ic_launcher)
-        }
+        }*/
         notificationManager.notify(1234,builder.build())
     }
 
