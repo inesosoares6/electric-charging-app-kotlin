@@ -59,6 +59,7 @@ class ActivityCharging : AppCompatActivity() {
     private var priceTotalDB = ""
 
     private var finished: Boolean = false
+    private var charging: Boolean = false
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -169,16 +170,18 @@ class ActivityCharging : AppCompatActivity() {
 
         // check if it is finished
         fixedRateTimer("default", false, 0L, 3000){
-            doAsync {
-                message = Request("$urlStart/finish/$apiID").run()
-                uiThread {
-                    val obj = JSONObject(message.toString())
-                    if (obj.getString("flag") == "1"){
-                        // update page visible
-                        chargingPage.visibility=View.GONE
-                        finishedPage.visibility=View.VISIBLE
-                        // send info to control, send notification and save data for database
-                        chargeFinished("$urlStart/finalpriceAPP/$apiID")
+            if(charging){
+                doAsync {
+                    message = Request("$urlStart/finish/$apiID").run()
+                    uiThread {
+                        val obj = JSONObject(message.toString())
+                        if (obj.getString("flag") == "1"){
+                            // update page visible
+                            chargingPage.visibility=View.GONE
+                            finishedPage.visibility=View.VISIBLE
+                            // send info to control, send notification and save data for database
+                            chargeFinished("$urlStart/finalpriceAPP/$apiID")
+                        }
                     }
                 }
             }
@@ -316,12 +319,14 @@ class ActivityCharging : AppCompatActivity() {
         hour = timeStarted!!.hour.toString()
         minute = timeStarted!!.minute.toString()
         type = typeCharge
+        charging = true
         finished = false
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun chargeFinished(url: String){
+        charging = false
         finished = true
         // save variables to use in database
         timeFinished = LocalDateTime.now()
