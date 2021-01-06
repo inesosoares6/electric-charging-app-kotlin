@@ -61,8 +61,8 @@
     <string name="error_getting_numCharges">Erro ao aceder a numCharges</string>
     <string name="vehicleCharged">Veículo carregado</string>
     <string name="vehicleChargedMessage">O seu veículo está carregado, obrigado pela sua preferência!</string>
-    <string name="greenUnavailable">O carregamento Verde está indispopnível de momento, por favor escolha outro modo de carregamneto.</string>
-    <string name="fastUnavailable">O carregamento Rápido está indispopnível de momento, por favor escolha outro modo de carregamneto.</string>
+    <string name="greenUnavailable">O carregamento Verde está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
+    <string name="fastUnavailable">O carregamento Rápido está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
 
     <!-- Welcome Activity -->
     <string name="title_activity_maps">Mapa</string>

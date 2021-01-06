@@ -293,7 +293,7 @@ class ActivityCharging : AppCompatActivity() {
         doAsync {
             message = Request(url).run()
             uiThread {
-                Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceNormal = obj.getString("normal")
                 val pricePremium = obj.getString("premium")
@@ -330,7 +330,7 @@ class ActivityCharging : AppCompatActivity() {
         doAsync {
             message = Request(url).run()
             uiThread {
-                Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceTotal = obj.getString("total")
                 totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
