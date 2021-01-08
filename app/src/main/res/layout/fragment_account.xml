@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityWelcome">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="@string/logo"
+        android:layout_width="228dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/logo_seai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <TextView
+        android:id="@+id/userNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/numChargesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/userNameText"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastCharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/numChargesText"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastCharge"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeDate"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeType"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargePrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargeTime"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/lastChargeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/lastChargePrice"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/vehiclesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_vehicle_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/historicButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="center"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="38dp"
+        android:focusable="true"
+        android:contentDescription="@string/historic_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/historicButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_historic_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="center"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="38dp"
+        android:focusable="true"
+        android:contentDescription="@string/historic_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_settings_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="center"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="38dp"
+        android:focusable="true"
+        android:contentDescription="@string/settings_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/logoutButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/log_out"
+        android:scaleType="center"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_logout_foreground"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:maxImageSize="38dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/logout_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

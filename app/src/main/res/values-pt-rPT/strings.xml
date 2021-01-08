@@ -1,0 +1,163 @@
+<resources>
+
+    <string name="app_name">SEAI G</string>
+    <string name="logo">LOGO</string>
+
+    <!-- Login Page -->
+    <string name="email">Endereço de Email</string>
+    <string name="pass">Palavra-passe</string>
+    <string name="login">Entrar</string>
+    <string name="forgot_pass">Esqueci-me da palavra-passe</string>
+    <string name="successLogin">Login bem sucedido</string>
+    <string name="failLogin">Login falhou</string>
+
+    <!-- Register Page -->
+    <string name="enterName">Insira o nome</string>
+    <string name="name">Nome</string>
+    <string name="enterEmail">Insira o email</string>
+    <string name="enterPassword">Insira palavra passe</string>
+    <string name="matchPassword">Palavra passe errada</string>
+    <string name="successRegister">Registo bem sucedido</string>
+    <string name="failRegister">Registo falhou</string>
+    <string name="register">Registar</string>
+    <string name="confirm_pass">Confirmar Palavra-passe</string>
+    <string name="error_registering">Ocorreu um erro ao adicionar os dados na base de dados</string>
+
+    <!-- ID charger Fragment -->
+    <string name="idCharger">Insira o ID do carregador</string>
+    <string name="titleID">Insira o ID do carregador</string>
+    <string name="submitID">Submeter ID</string>
+    <string name="scanQRCode">Scan do código QR</string>
+    <string name="NFCreate">NFC</string>
+    <string name="hint_your_message">message hint</string>
+    <string name="label_your_message">Inserting id through NFC</string>
+    <string name="title_btn_set">NFC</string>
+    <string name="idText">Através de texto:</string>
+    <string name="idQRCode">Através do código QR:</string>
+    <string name="idNFC">Através NFC:</string>
+    <string name="insert_valid_id1">O ID do carregador </string>
+    <string name="insert_valid_id2">não está disponível, por favor tente novamente.</string>
+
+    <!-- Charging Activity -->
+    <string name="selectMode">Por favor selecione o modo de carregamento.</string>
+    <string name="normalCharging">Normal</string>
+    <string name="fastCharging">Rápido</string>
+    <string name="textPrices">Preços</string>
+    <string name="textPriceNormal">Carregamento Normal:</string>
+    <string name="textPriceFast">Carregamento Rápido:</string>
+    <string name="charging">A carregar…</string>
+    <string name="cancelCharge">Cancelar</string>
+    <string name="confirmCancel">Tem a certeza que pretende cancelar o carregamento?</string>
+    <string name="cancel">Sim, cancelar.</string>
+    <string name="notCancelReturn">Não, retomar carregamento.</string>
+    <string name="finished">Terminado</string>
+    <string name="ready">O seu veículo está carregado.</string>
+    <string name="totalPrice">Preço a pagar:</string>
+    <string name="return_to_homepage">Voltar à página inicial</string>
+    <string name="greenCharging"> Verde</string>
+    <string name="textPriceGreen">Carregamento Verde:</string>
+    <string name="returnButton">Cancelar</string>
+    <string name="regular_mode">Normal</string>
+    <string name="error_getting_numCharges">Erro ao aceder a numCharges</string>
+    <string name="vehicleCharged">Veículo carregado</string>
+    <string name="vehicleChargedMessage">O seu veículo está carregado, obrigado pela sua preferência!</string>
+    <string name="greenUnavailable">O carregamento Verde está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
+    <string name="fastUnavailable">O carregamento Rápido está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
+
+    <!-- Welcome Activity -->
+    <string name="title_activity_maps">Mapa</string>
+    <string name="search_charger_station">Procurar parque de carregamento</string>
+    <string name="welcome">Bem-vindo</string>
+    <string name="account">Conta pessoal</string>
+    <string name="incoming_nfc_message">A receber mensagem NFC</string>
+    <string name="NFCIdCharger">TextView</string>
+    <string name="home">Início</string>
+    <string name="charge_car">Carregar Carro</string>
+    <string name="person">Conta</string>
+    <string name="insertValidId">Insira um ID válido</string>
+    <string name="log_out">Terminar sessão</string>
+    <string name="successSignOut">Sessão terminada com sucesso</string>
+    <string name="forgot_password">Esqueceu-se da palavra passe?</string>
+    <string name="password_reset_instructions">É necessário introduzir o seu email para que seja possível enviar as intruções de recuperação/alteração de palavra passe.</string>
+    <string name="reset_password">Enviar</string>
+    <string name="sent_email_recover">As instruções de recuperação/alteração de palavra passe foram enviadas.</string>
+    <string name="fail_email_recover">Envio das instruções falhou, por favor tente novamente.</string>
+    <string name="nfcNotSupported">Nfc não é suportado neste dispositivo</string>
+    <string name="nfcDisabled">NFC desativado, por favor ative para prosseguir.</string>
+    <string name="mimeType">Verifique o tipo de MIME</string>
+    <string name="parkingFeup">lugares livres</string>
+
+    <!-- Settings Activity -->
+    <string name="settings">Definições</string>
+    <string name="title_activity_settings">Definições</string>
+    <string name="settings_button">Botão de Definições</string>
+    <string name="vehicle_addition_successful">O veículo foi adicionado com sucesso</string>
+    <string name="error_adding_vehicle">Ocorreu um erro ao adicionar o veículo</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Conta</string>
+    <string name="application">Aplicação</string>
+
+    <!-- Account Preferences -->
+    <string name="signature_title">Alterar nome de utilizador</string>
+    <string name="car">Carro</string>
+    <string name="brand">Marca</string>
+    <string name="model">Modelo</string>
+    <string name="vehicle">Veículo</string>
+    <string name="motorcycle">Mota</string>
+    <string name="truck">Camião</string>
+    <string name="scooter">Scooter</string>
+
+    <!-- Application Preferences -->
+    <string name="darkTheme">Tema escuro</string>
+    <string name="language_title">Idioma</string>
+    <string name="portuguese">Português</string>
+    <string name="english">Inglês</string>
+    <string name="addVehicle">Adicionar veículo</string>
+    <string name="resetPassword">Alterar palavra-passe</string>
+    <string name="historic_button">Botão de Histórico</string>
+    <string name="add_vehicle">Adicionar veículos</string>
+    <string name="deleteAccount">Eliminar conta</string>
+    <string name="languagePOR">Idioma alterado para português</string>
+    <string name="languageEN">Idioma alterado para inglês</string>
+
+    <!-- Account Fragment -->
+    <string name="number_of_charges">Número de carregamentos: </string>
+    <string name="error_number_of_charges">Erro ao ler número de carregamentos</string>
+    <string name="error_name">Erro ao ler o nome</string>
+    <string name="logout_button">Logout Button</string>
+    <string name="error_getting_documents">Erro a aceder aos documentos</string>
+    <string name="see_list_of_vehicles_saved">Consultar lista de veículos >></string>
+    <string name="dateHistory"> Data: </string>
+    <string name="timeHistory">Tempo de carregamento: </string>
+    <string name="priceHistory">Preço:</string>
+    <string name="chargerHistory">ID do carregador:</string>
+    <string name="minutesHistory">min</string>
+    <string name="typeHistory">Tipo de carregamento: </string>
+    <string name="fast">Rápido</string>
+    <string name="green">Verde</string>
+    <string name="last_charge">Último carregamento</string>
+    <string name="errorLastCharge">Erro a ler o último carregamento</string>
+    <string name="termsAndConditions">A SEAI-G, com sede na FEUP, recolhe dados pessoais dos seus clientes, os quais trata de forma confidencial
+        e utiliza para efeitos de gestão da respetiva aplicação de carregamento dos veículos elétricos.
+        Ao carregar no botão para efetuar o registo está a aceitar o armazenamento e tratamento destes mesmos dados.</string>
+    <string name="performAction">Que ação pretende efetuar com este veículo?</string>
+    <string name="favorite">Predefinir como favorito</string>
+    <string name="deleteFromList">Eliminar da lista</string>
+    <string name="cancelElimination">Cancelar</string>
+
+
+    <string name="delete_account">Eliminar conta</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Tem a certeza que pretende eliminar a sua conta?</string>
+    <string name="no_return_to_homepage">Não, voltar à página inicial.</string>
+    <string name="yes_delete_account">Sim, eliminar conta.</string>
+    <string name="userDeleted">Conta eliminada</string>
+    <string name="firstCharge">Primeira vez a utilizar a aplicação? </string>
+    <string name="lastCharge">Último carregamento</string>
+    <string name="firstChargeText">Abra o separador "Carregar Carro" e efetue o primeiro carregamento.</string>
+    <string name="firstChargeText2"> 1. Inserir o ID do carregador</string>
+    <string name="firstChargeText3"> 2. De seguida pode consultar os preços de cada modo de carregamento e escolher o que deseja.</string>
+    <string name="firstChargeText4"> 3. A este ponto o veículo está a carregar e a aplicação irá informá-lo quando terminar.</string>
+    <string name="firstChargeText5">Obrigado pela sua preferência, esperamos que tenha gostado.</string>
+
+</resources>

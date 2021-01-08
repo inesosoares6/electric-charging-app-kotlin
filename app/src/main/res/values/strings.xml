@@ -1,3 +1,162 @@
 <resources>
-    <string name="app_name">app_SEAI_G</string>
+
+    <string name="app_name">SEAI G</string>
+    <string name="logo">LOGO</string>
+
+    <!-- Login Page -->
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_pass">Forgot Password</string>
+    <string name="successLogin">Login successful</string>
+    <string name="failLogin">Login failed</string>
+
+    <!-- Register Page -->
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="enterName">Please enter name</string>
+    <string name="enterEmail">Please enter email</string>
+    <string name="enterPassword">Please enter password</string>
+    <string name="matchPassword">Passwords do not match</string>
+    <string name="successRegister">Registration successful</string>
+    <string name="failRegister">Registration failed</string>
+    <string name="error_registering">Error in adding data to database</string>
+
+    <!-- ID charger Fragment -->
+    <string name="idCharger">Insert Charger ID</string>
+    <string name="titleID">Insert charger ID</string>
+    <string name="submitID">Submit Charger ID</string>
+    <string name="scanQRCode">Scan QR code</string>
+    <string name="NFCreate">NFC</string>
+    <string name="hint_your_message">message hint</string>
+    <string name="label_your_message">Inserting id through NFC</string>
+    <string name="title_btn_set">NFC</string>
+    <string name="idText">By text:</string>
+    <string name="idQRCode">By QR code scanning:</string>
+    <string name="idNFC">By NFC:</string>
+    <string name="insert_valid_id1">The charger ID </string>
+    <string name="insert_valid_id2">is not available, please try again.</string>
+
+    <!-- Charging Activity -->
+    <string name="selectMode">Please select the charging mode.</string>
+    <string name="normalCharging">Regular charging</string>
+    <string name="fastCharging">Fast charging</string>
+    <string name="textPrices">Prices</string>
+    <string name="textPriceNormal">Regular Charging:</string>
+    <string name="textPriceFast">Fast Charging:</string>
+    <string name="charging">Charging…</string>
+    <string name="cancelCharge">Cancel</string>
+    <string name="confirmCancel">Are you sure that you want to cancel?</string>
+    <string name="cancel">Yes, cancel.</string>
+    <string name="notCancelReturn">No, resume charging.</string>
+    <string name="finished">Finished</string>
+    <string name="ready">Your vehicle is charged.</string>
+    <string name="totalPrice">Price to pay:</string>
+    <string name="return_to_homepage">Return to homepage</string>
+    <string name="greenCharging">Green</string>
+    <string name="textPriceGreen">Green Charging:</string>
+    <string name="returnButton">Cancel</string>
+    <string name="regular_mode">Regular</string>
+    <string name="error_getting_numCharges">Error getting numCharges</string>
+    <string name="vehicleCharged">Vehicle charged</string>
+    <string name="vehicleChargedMessage">Your vehicle is charged, thank you for your preference!</string>
+    <string name="greenUnavailable">The Green charging is unavailable at the moment, please choose another charging mode.</string>
+    <string name="fastUnavailable">The Fast charging is unavailable at the moment, please choose another charging mode.</string>
+
+    <!-- Welcome Activity -->
+    <string name="welcome">Welcome</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search_charger_station">Search charger station</string>
+    <string name="account">Account</string>
+    <string name="incoming_nfc_message">Incoming NFC message</string>
+    <string name="NFCIdCharger">TextView</string>
+    <string name="home">Home</string>
+    <string name="charge_car">Charge Car</string>
+    <string name="person">Account</string>
+    <string name="insertValidId">Inset valid charger ID</string>
+    <string name="log_out">Log Out</string>
+    <string name="successSignOut">Sign out successful</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="password_reset_instructions">We just need your registered email to send you password reset instructions.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="sent_email_recover">We have sent you instructions to reset your password</string>
+    <string name="fail_email_recover">Failed to send reset email</string>
+    <string name="nfcNotSupported">Nfc is not supported on this device</string>
+    <string name="nfcDisabled">NFC disabled on this device, turn on to proceed.</string>
+    <string name="mimeType">Check your MIME type</string>
+    <string name="parkingFeup">free slots</string>
+
+    <!-- Settings Activity -->
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings_button">Settings Button</string>
+    <string name="vehicle_addition_successful">The vehicle was added successfully</string>
+    <string name="error_adding_vehicle">Error adding vehicle</string>
+    <string name="languagePOR">Language switched to Portuguese</string>
+    <string name="languageEN">Language switched to English</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Account</string>
+    <string name="application">Application</string>
+
+    <!-- Account Preferences -->
+    <string name="signature_title">Change username</string>
+    <string name="car">Car</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="truck">Truck</string>
+    <string name="scooter">Scooter</string>
+
+    <!-- Application Preferences -->
+    <string name="darkTheme">Dark Theme</string>
+    <string name="language_title">Language</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="english">English</string>
+    <string name="addVehicle">Add vehicle</string>
+    <string name="resetPassword">Reset password</string>
+    <string name="historic_button">Historic button</string>
+    <string name="add_vehicle">Add vehicle</string>
+    <string name="deleteAccount">Delete account</string>
+
+    <!-- Account Fragment -->
+    <string name="number_of_charges">Number of charges: </string>
+    <string name="error_number_of_charges">Error in reading number of charges</string>
+    <string name="error_name">Error in reading name</string>
+    <string name="logout_button">Logout Button</string>
+    <string name="error_getting_documents">Error getting documents</string>
+    <string name="see_list_of_vehicles_saved">See list of vehicles saved >></string>
+    <string name="dateHistory"> Date: </string>
+    <string name="timeHistory">Time charging: </string>
+    <string name="priceHistory">Price:</string>
+    <string name="chargerHistory">Charger ID:</string>
+    <string name="minutesHistory">min</string>
+    <string name="typeHistory"> Type of charge: </string>
+    <string name="fast">Fast</string>
+    <string name="green">Green</string>
+    <string name="last_charge">Last charge</string>
+    <string name="errorLastCharge">Error getting last charge</string>
+    <string name="termsAndConditions"> SEAI-G, based in FEUP, collects your personal data, which are processed confidentially and
+        used for management of the application of electric vehicle charging. By clicking on the button to register, you are accepting
+        the storage and processing of that data.</string>
+    <string name="performAction">What action do you want to perform with this vehicle?</string>
+    <string name="favorite">Predefine as favorite</string>
+    <string name="deleteFromList">Delete from list</string>
+    <string name="cancelElimination">Cancel</string>
+
+
+    <string name="delete_account">Delete account</string>
+    <string name="are_you_sure_that_you_want_to_delete_your_account">Are you sure that you want to delete your account?</string>
+    <string name="no_return_to_homepage">No, return to homepage.</string>
+    <string name="yes_delete_account">Yes, delete account.</string>
+    <string name="userDeleted">User account deleted</string>
+    <string name="firstCharge">First time using the app?</string>
+    <string name="lastCharge">Last charge</string>
+    <string name="firstChargeText">Go to the division of "Charge Car" and perform the first charge.</string>
+    <string name="firstChargeText2"> 1. Insert the charger ID</string>
+    <string name="firstChargeText3"> 2. Next you can consult the prices of each charging mode and choose what you want.</string>
+    <string name="firstChargeText4"> 3. By this point your vehicle is charging and the app will let you know when it is finished.</string>
+    <string name="firstChargeText5">Thank you for your preference, hope you enjoyed it.</string>
 </resources>
