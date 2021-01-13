@@ -173,10 +173,8 @@ class ActivityCharging : AppCompatActivity() {
 
         // ----------------------- Vehicle is charging --------------------------- //
 
-        //TODO check if it was interrupted
-
         // check if it is finished
-        fixedRateTimer("default", false, 0L, 3000){
+        fixedRateTimer("default", false, 10000, 3000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/finish/$apiID").run()
@@ -188,6 +186,28 @@ class ActivityCharging : AppCompatActivity() {
                             finishedPage.visibility=View.VISIBLE
                             // send info to control, send notification and save data for database
                             chargeFinished("$urlStart/finalpriceAPP/$apiID", "finished")
+                        }
+                    }
+                }
+            }
+            if (finished){
+                this.cancel()
+            }
+        }
+
+        // check if it was interrupted
+        fixedRateTimer("default", false, 0L, 3000){
+            if(charging){
+                doAsync {
+                    message = Request("$urlStart/interrupt/$apiID").run()
+                    uiThread {
+                        val obj = JSONObject(message.toString())
+                        if (obj.getString("flag") == "1"){
+                            // update page visible
+                            chargingPage.visibility=View.GONE
+                            finishedPage.visibility=View.VISIBLE
+                            // send info to control, send notification and save data for database
+                            chargeFinished("$urlStart/finalpriceAPP/$apiID", "interruptedByOperator")
                         }
                     }
                 }
