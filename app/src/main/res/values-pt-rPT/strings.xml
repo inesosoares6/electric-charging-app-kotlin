@@ -61,6 +61,9 @@
     <string name="error_getting_numCharges">Erro ao aceder a numCharges</string>
     <string name="vehicleCharged">Veículo carregado</string>
     <string name="vehicleChargedMessage">O seu veículo está carregado, obrigado pela sua preferência!</string>
+    <string name="chargeInterrupted">Carregamento interrompido</string>
+    <string name="chargeInterruptedMessage">Pedimos desculpa pelo incómodo!</string>
+    <string name="chargeInterruptedMessageLayout">O carregamento foi interrompido, pedimos desculpa pelo incómodo! Se pretender continuar o carregamento, por favor inicie um novo.</string>
     <string name="greenUnavailable">O carregamento Verde está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
     <string name="fastUnavailable">O carregamento Rápido está indisponível de momento, por favor escolha outro modo de carregamneto.</string>
 

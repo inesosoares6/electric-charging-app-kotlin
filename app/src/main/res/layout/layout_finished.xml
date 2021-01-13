@@ -40,7 +40,6 @@
 
     <TextView
         android:id="@+id/textReady"
-        android:text="@string/ready"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -53,6 +52,17 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/textInterrupted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/textReady"/>
+
+
+    <TextView
         android:id="@+id/textTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textReady"
+        app:layout_constraintTop_toBottomOf="@+id/textInterrupted"
         tools:ignore="MissingConstraints" />
 
     <Button

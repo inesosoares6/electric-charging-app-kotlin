@@ -39,6 +39,9 @@ class ActivityCharging : AppCompatActivity() {
     private lateinit var premiumPrice: TextView
     private lateinit var greenPrice: TextView
     private lateinit var totalPrice: TextView
+    private lateinit var textReady: TextView
+    private lateinit var textInterrupted: TextView
+
 
     private lateinit var notificationManager : NotificationManager
     private lateinit var notificationChannel : NotificationChannel
@@ -76,6 +79,8 @@ class ActivityCharging : AppCompatActivity() {
         premiumPrice= findViewById(R.id.priceFast)
         greenPrice = findViewById(R.id.priceGreen)
         totalPrice = findViewById(R.id.textTotalPrice)
+        textReady = findViewById(R.id.textReady)
+        textInterrupted = findViewById(R.id.textInterrupted)
 
         chargingPage = findViewById(R.id.chargingPage)
         chargingModePage = findViewById(R.id.chargingModePage)
@@ -169,7 +174,7 @@ class ActivityCharging : AppCompatActivity() {
         // ----------------------- Vehicle is charging --------------------------- //
 
         // check if it is finished
-        fixedRateTimer("default", false, 0L, 3000){
+        fixedRateTimer("default", false, 10000, 3000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/finish/$apiID").run()
@@ -180,7 +185,29 @@ class ActivityCharging : AppCompatActivity() {
                             chargingPage.visibility=View.GONE
                             finishedPage.visibility=View.VISIBLE
                             // send info to control, send notification and save data for database
-                            chargeFinished("$urlStart/finalpriceAPP/$apiID")
+                            chargeFinished("$urlStart/finalpriceAPP/$apiID", "finished")
+                        }
+                    }
+                }
+            }
+            if (finished){
+                this.cancel()
+            }
+        }
+
+        // check if it was interrupted
+        fixedRateTimer("default", false, 0L, 3000){
+            if(charging){
+                doAsync {
+                    message = Request("$urlStart/interrupt/$apiID").run()
+                    uiThread {
+                        val obj = JSONObject(message.toString())
+                        if (obj.getString("flag") == "1"){
+                            // update page visible
+                            chargingPage.visibility=View.GONE
+                            finishedPage.visibility=View.VISIBLE
+                            // send info to control, send notification and save data for database
+                            chargeFinished("$urlStart/finalpriceAPP/$apiID", "interruptedByOperator")
                         }
                     }
                 }
@@ -214,7 +241,7 @@ class ActivityCharging : AppCompatActivity() {
             confirmCancelPage.visibility=View.GONE
             finishedPage.visibility=View.VISIBLE
             // send info to control, send notification and save data for database
-            chargeFinished("$urlStart/finalpriceAPP/$apiID")
+            chargeFinished("$urlStart/finalpriceAPP/$apiID", "interruptedByClient")
         }
 
         // ----------------------- Charge Finished --------------------------- //
@@ -266,7 +293,7 @@ class ActivityCharging : AppCompatActivity() {
     // ----------------------- Auxiliary Functions --------------------------- //
 
     // Send notification when finished
-    private fun sendNotification() {
+    private fun sendNotification(type: String) {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = NotificationChannel(channelId,description,NotificationManager.IMPORTANCE_HIGH)
@@ -274,17 +301,21 @@ class ActivityCharging : AppCompatActivity() {
             notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(false)
             notificationManager.createNotificationChannel(notificationChannel)
-            builder = Notification.Builder(this,channelId)
-                .setContentTitle(getString(R.string.vehicleCharged))
-                .setContentText(getString(R.string.vehicleChargedMessage))
-                .setSmallIcon(R.mipmap.ic_launcher)
+            if(type=="finished"){
+                textReady.text=getString(R.string.ready)
+                builder = Notification.Builder(this,channelId)
+                        .setContentTitle(getString(R.string.vehicleCharged))
+                        .setContentText(getString(R.string.vehicleChargedMessage))
+                        .setSmallIcon(R.mipmap.ic_launcher)
+            } else{
+                textReady.text=getString(R.string.chargeInterrupted)
+                textInterrupted.text=getString(R.string.chargeInterruptedMessageLayout)
+                builder = Notification.Builder(this,channelId)
+                        .setContentTitle(getString(R.string.chargeInterrupted))
+                        .setContentText(getString(R.string.chargeInterruptedMessage))
+                        .setSmallIcon(R.mipmap.ic_launcher)
+            }
         }
-        /*else{
-            builder = Notification.Builder(this)
-                .setContentTitle(getString(R.string.vehicleCharged))
-                .setContentText(getString(R.string.vehicleChargedMessage))
-                .setSmallIcon(R.mipmap.ic_launcher)
-        }*/
         notificationManager.notify(1234,builder.build())
     }
 
@@ -295,7 +326,6 @@ class ActivityCharging : AppCompatActivity() {
         doAsync {
             message = Request(url).run()
             uiThread {
-                //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceNormal = obj.getString("normal")
                 val pricePremium = obj.getString("premium")
@@ -324,17 +354,16 @@ class ActivityCharging : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
-    private fun chargeFinished(url: String){
+    private fun chargeFinished(url: String, type: String){
         charging = false
         finished = true
         // save variables to use in database
         timeFinished = LocalDateTime.now()
-        sendNotification()
+        sendNotification(type)
         // get final price to pay
         doAsync {
             message = Request(url).run()
             uiThread {
-                //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                 val obj = JSONObject(message.toString())
                 val priceTotal = obj.getString("total")
                 totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
