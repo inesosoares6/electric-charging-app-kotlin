@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 
@@ -97,15 +98,24 @@ class ReceiverActivity : AppCompatActivity() {
     }
     private fun confirmIdCharger(chargerID: String){
         doAsync {
-            message = Request("http://127.0.0.1:5000/readytocharge/$chargerID").run()
-            val obj = JSONObject(message.toString())
-            val flag = obj.getString("flag")
-            if (flag=="1"){
-                sendID(chargerID)
-            } else{
-                Toast.makeText(applicationContext,getString(R.string.insert_valid_id1) +" " + chargerID + " " + getString(R.string.insert_valid_id2),Toast.LENGTH_LONG).show()
+            message = Request("${MyApplication.urlStart}/readytocharge/$chargerID").run()
+            uiThread{
+                val obj = JSONObject(message.toString())
+                val flag = obj.getString("flag")
+                Toast.makeText(applicationContext,flag,Toast.LENGTH_LONG).show()
+                if (flag=="1"){
+                    sendID(chargerID)
+                } else {
+                    Toast.makeText(applicationContext,getString(R.string.insert_valid_id1) +" " + chargerID + " " + getString(R.string.insert_valid_id2),Toast.LENGTH_LONG).show()
+                    returnToWelcome()
+                }
             }
         }
+    }
+
+    private fun returnToWelcome() {
+        val intent = Intent(this,ActivityWelcome::class.java)
+        startActivity(intent)
     }
 
     private fun sendID(chargerID: String){

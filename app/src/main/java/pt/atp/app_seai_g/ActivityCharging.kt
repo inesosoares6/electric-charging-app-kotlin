@@ -174,7 +174,7 @@ class ActivityCharging : AppCompatActivity() {
         // ----------------------- Vehicle is charging --------------------------- //
 
         // check if it is finished
-        fixedRateTimer("default", false, 10000, 3000){
+        fixedRateTimer("default", false, 10000, 5000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/finish/$apiID").run()
@@ -196,13 +196,13 @@ class ActivityCharging : AppCompatActivity() {
         }
 
         // check if it was interrupted
-        fixedRateTimer("default", false, 0L, 3000){
+        fixedRateTimer("default", false, 0L, 5000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/interrupt/$apiID").run()
                     uiThread {
                         val obj = JSONObject(message.toString())
-                        if (obj.getString("flag") == "1"){
+                        if (obj.getString("flag") == "true"){
                             // update page visible
                             chargingPage.visibility=View.GONE
                             finishedPage.visibility=View.VISIBLE
