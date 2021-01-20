@@ -301,19 +301,30 @@ class ActivityCharging : AppCompatActivity() {
             notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(false)
             notificationManager.createNotificationChannel(notificationChannel)
-            if(type=="finished"){
-                textReady.text=getString(R.string.ready)
-                builder = Notification.Builder(this,channelId)
-                        .setContentTitle(getString(R.string.vehicleCharged))
-                        .setContentText(getString(R.string.vehicleChargedMessage))
-                        .setSmallIcon(R.mipmap.ic_launcher)
-            } else{
-                textReady.text=getString(R.string.chargeInterrupted)
-                textInterrupted.text=getString(R.string.chargeInterruptedMessageLayout)
-                builder = Notification.Builder(this,channelId)
-                        .setContentTitle(getString(R.string.chargeInterrupted))
-                        .setContentText(getString(R.string.chargeInterruptedMessage))
-                        .setSmallIcon(R.mipmap.ic_launcher)
+            when (type) {
+                "finished" -> {
+                    textReady.text=getString(R.string.ready)
+                    builder = Notification.Builder(this,channelId)
+                            .setContentTitle(getString(R.string.vehicleCharged))
+                            .setContentText(getString(R.string.vehicleChargedMessage))
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                }
+                "interruptedByClient" -> {
+                    textReady.text=getString(R.string.chargeFinish)
+                    textInterrupted.text=getString(R.string.chargeFinishMessage)
+                    builder = Notification.Builder(this,channelId)
+                            .setContentTitle(getString(R.string.chargeFinish))
+                            .setContentText(getString(R.string.chargeFinishMessage))
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                }
+                "interruptedByOperator" -> {
+                    textReady.text=getString(R.string.chargeInterrupted)
+                    textInterrupted.text=getString(R.string.chargeInterruptedMessageLayout)
+                    builder = Notification.Builder(this,channelId)
+                            .setContentTitle(getString(R.string.chargeInterrupted))
+                            .setContentText(getString(R.string.chargeInterruptedMessage))
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                }
             }
         }
         notificationManager.notify(1234,builder.build())
