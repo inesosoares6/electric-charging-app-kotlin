@@ -23,7 +23,9 @@ import org.json.JSONObject
 import pt.atp.app_seai_g.Data.Request
 import pt.atp.app_seai_g.MyApplication.Companion.urlStart
 import java.time.LocalDateTime
+import java.util.*
 import kotlin.concurrent.fixedRateTimer
+import kotlin.concurrent.schedule
 
 // Activity to charge the vehicle
 //   - communication with control module
@@ -372,13 +374,15 @@ class ActivityCharging : AppCompatActivity() {
         timeFinished = LocalDateTime.now()
         sendNotification(type)
         // get final price to pay
-        doAsync {
-            message = Request(url).run()
-            uiThread {
-                val obj = JSONObject(message.toString())
-                val priceTotal = obj.getString("total")
-                totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
-                priceTotalDB = priceTotal
+        Timer().schedule(1500) {
+            doAsync {
+                message = Request(url).run()
+                uiThread {
+                    val obj = JSONObject(message.toString())
+                    val priceTotal = obj.getString("total")
+                    totalPrice.text = getString(R.string.totalPrice) + " " + priceTotal + " €"
+                    priceTotalDB = priceTotal
+                }
             }
         }
     }
