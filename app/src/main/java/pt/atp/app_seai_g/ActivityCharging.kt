@@ -176,7 +176,7 @@ class ActivityCharging : AppCompatActivity() {
         // ----------------------- Vehicle is charging --------------------------- //
 
         // check if it is finished
-        fixedRateTimer("default", false, 10000, 5000){
+        fixedRateTimer("default", false, 10000, 10000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/finish/$apiID").run()
@@ -198,7 +198,7 @@ class ActivityCharging : AppCompatActivity() {
         }
 
         // check if it was interrupted
-        fixedRateTimer("default", false, 0L, 5000){
+        fixedRateTimer("default", false, 0L, 10000){
             if(charging){
                 doAsync {
                     message = Request("$urlStart/interrupt/$apiID").run()

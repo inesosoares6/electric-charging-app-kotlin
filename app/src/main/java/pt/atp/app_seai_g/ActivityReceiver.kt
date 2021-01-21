@@ -102,7 +102,7 @@ class ReceiverActivity : AppCompatActivity() {
             uiThread{
                 val obj = JSONObject(message.toString())
                 val flag = obj.getString("flag")
-                Toast.makeText(applicationContext,flag,Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext,flag,Toast.LENGTH_LONG).show()
                 if (flag=="1"){
                     sendID(chargerID)
                 } else {
