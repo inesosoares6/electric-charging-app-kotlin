@@ -236,14 +236,18 @@ class ActivityCharging : AppCompatActivity() {
         // The client canceled the vehicle
         val cancel = findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener{
+            charging = false
+            finished = true
             doAsync {
                 Request("$urlStart/stop/$apiID").run()
+                uiThread {
+                    // update page visible
+                    confirmCancelPage.visibility=View.GONE
+                    finishedPage.visibility=View.VISIBLE
+                    // send info to control, send notification and save data for database
+                    chargeFinished("$urlStart/finalpriceAPP/$apiID", "interruptedByClient")
+                }
             }
-            // update page visible
-            confirmCancelPage.visibility=View.GONE
-            finishedPage.visibility=View.VISIBLE
-            // send info to control, send notification and save data for database
-            chargeFinished("$urlStart/finalpriceAPP/$apiID", "interruptedByClient")
         }
 
         // ----------------------- Charge Finished --------------------------- //
