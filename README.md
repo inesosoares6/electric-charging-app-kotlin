@@ -1,4 +1,4 @@
-# SEAI - Sistema de Gestão de Carregamentos de Veículos Elétricos
+# Sistema de Gestão de Carregamentos de Veículos Elétricos
 
 Esta aplicação está inserida no projeto que foi realizado no âmbito da unidade curricular de Sistemas de Engenharia - Automação e Instrumentação, inserida no Mestrado Integrado de Engenharia Electrotécnica e de Computadores da Faculdade de Engenharia da Univerdidade do Porto. O projeto proposto foi o desenvolvimento de um sistema de gestão de carregamento de veículos elétricos, com vista a aplicá-lo num parque de carregamento público ou privado (por exemplo, parque da Faculdade de Engenharia ou de um supermercado).
 
