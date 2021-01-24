@@ -11,3 +11,6 @@ A aplicação para dispositivos móveis foi desenvolvida para o sistema operativ
 
 ### Sequência de carregamento
 ![SequenciaCarregamento](https://user-images.githubusercontent.com/47570179/105553458-52c42680-5cfd-11eb-9218-d124b9fc3a19.jpg)
+
+## Autor
+* Inês Soares - up201606615@fe.up.pt
